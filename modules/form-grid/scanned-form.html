@@ -1,0 +1,63 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95">
+        <!-- form container start -->
+        <div class="formbox">
+            <!-- form start -->
+            <form id="F__ID">
+                <span id=title__ID></span>
+                <!-- participant name and study id -->
+                <div class="formgroup">
+                    <fieldset class="">
+                        <div class=grid-container-1>
+                            <div><label><span class="question">Upload File</span></label><br>
+                                <label><span class="question"><u style='cursor:pointer'
+                                            id=link_File_Name__ID></u></span></label>
+                                <input type="file" name=File_Name class="formcontrol" /><button class="btn"
+                                    type="button" id=x_File_Name__ID>Remove</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: '__HOST__/assets/js/form.01.js'
+            //-------------------------------------
+            var old_load = m.load;
+            m.load = function () {
+                old_load();
+                m.set_file_link("File_Name");
+            }
+            //-------------------------------------
+            $('#F__ID input[name=File_Name]').on('change', function (evt) {
+                if (this.files.length == 1) {
+                    file_process(this.files[0])
+                }
+            });
+            //-------------------------------------
+            var file_process = function (file) {
+                // Create a new file reader and on loading a file -> run
+                var reader = new FileReader();
+                reader.onload = (function (e) {
+                    ///////////////////////////////////////////////////////////////////////////////
+                    // MANUAL EDIT REQUIRED HERE 
+                    // Specify whether the variabels are listed as rows (false) or as columns (true)
+                    // Specify the delimiter
+                    var columnWise = false;
+                    var delimiter = '=';
+                    // Get contents
+                    var contents = e.target.result;
+                    // Split the contents into rows based on the new-line character '\n'
+                })
+            }
+        }
+    </script>
+    <style>
+        /*VmInclude:__HOST__/assets/css/wapp-form.css*/
+    </style>
+</div>

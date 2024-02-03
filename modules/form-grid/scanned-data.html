@@ -1,0 +1,28 @@
+<section>
+    VmInclude:__HOST__/assets/html/grid.01.html
+  </section>
+  <script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__HOST__/assets/js/grid.01.js
+        //-------------------------------------
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+          //-------------------------------------
+        var fields="File_Name";
+        m.fields="_Form,"+fields+",Update_date,Updated_by,Submit_date,Submitted_by,_Delete"
+        //-------------------------------------
+        var cell_render=m.cell_render;
+        m.cell_render=function(records,I,field,td){
+            cell_render(records,I,field,td);
+            switch(field){
+                case 'File_Name':
+                    m.set_file_link(records,I,field,td)
+                    break;
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+  /*VmInclude:__HOST__/assets/css/grid.css*/
+</style>

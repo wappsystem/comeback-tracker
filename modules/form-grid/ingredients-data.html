@@ -1,0 +1,41 @@
+<div id=D__ID>
+    <div>
+            <!--VmInclude:__HOST__/assets/html/grid.01.html-->
+        </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__HOST__/assets/js/grid.01.js'
+            //-------------------------------------
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
+            //-------------------------------------
+            var fields="_System_ID,Stock_ID,Product_Name,Format,Location_FS,Location_BS,Business,Stocktake_date,_Check_current_stock,_Stock_change";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+                    case '_System_ID':
+                        td.html(records[I].UID);
+                        break;
+                        case '_Check_current_stock':
+                        td.html("<u style='cursor:pointer'>View</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(m.stock_level,'',{record:records[I]});
+                        });
+                        break;
+                        case '_Stock_change':
+                        td.html("<u style='cursor:pointer'>Change</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(m.stock_change,'',{record:records[I]});
+                        });
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        /*VmInclude:__HOST__/assets/css/grid.css*/
+        /*VmInclude:__HOST__/assets/css/wapp-form.css*/
+    </style>
+</div>

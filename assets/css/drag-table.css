@@ -1,0 +1,53 @@
+.draggable-table {
+	position: absolute;
+    max-width: 820px;
+    border-collapse: collapse;
+    background: white;  
+    -webkit-box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);  
+}
+  .draggable-table__drag {
+      font-size: .95em;
+      font-weight: lighter;
+      position: absolute;
+      max-width: 820px;
+      /*text-indent: 50px;    */
+      border: 1px solid #f1f1f1;
+      z-index: 10;
+      cursor: grabbing;
+      -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.05);
+              box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.05); 
+    
+      opacity: 1;
+  }  
+  
+  thead{
+    
+      height: 30px;
+      font-weight: bold;
+      padding: 10px;
+      user-select: none;
+  }
+  
+  tbody tr{
+      cursor: pointer;
+      /*border: 1px solid #010101;*/
+    }      
+      tbody td{
+        font-size: .95em;
+        /*padding-left: 20px;*/
+      }
+    
+    tr:nth-child(even) {
+        background-color: #aaa;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #bbb;
+    }    
+    
+    tr.is-dragging td {
+        cursor: grabbing;
+        background: #2c8157;
+        color: #184730;
+    }    

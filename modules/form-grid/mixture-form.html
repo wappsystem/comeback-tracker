@@ -1,0 +1,112 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95">
+		<!-- form container start -->
+		<div class="formbox">
+			<!-- form start -->
+			<form id="F__ID">
+				<span id=title__ID></span>
+				<!-- form-design name and study id -->
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-1">
+							<div><label><span class="question">Group ID</span>
+									<input type=text id="record__ID" class=formcontrol readonly />
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-1">
+							<div><label><span class="question">Group Name (normally a visit)</span>
+									<input type=text name="Group_Name" class="formcontrol width_80" />
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-1">
+							<div>
+								<label><span id="label_shoe_hide__ID" class="question">Show/Hide Entry List </span></label><br>
+								<input id="shoe_hide_1__ID" name="show_hide" type="radio" value="show">
+								<label id="shoe_hide_1_label__ID" class="rd_btn" for="shoe_hide_1__ID">Show</label>
+								<input id="shoe_hide_2__ID" name="show_hide" type="radio" value="hide">
+								<label id="shoe_hide_2_label__ID" class="rd_btn" for="shoe_hide_2__ID">Hide</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="formgroup">
+					<label><span class="question">List of data entry for this group</span></label><br>
+					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span >Add line per input
+						box</span></u>
+					<table id=grid_item_a__ID></table>
+				</div>
+
+				<div class="formgroup right">
+					<button type="submit" id="submit__ID" class="btn">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: '__HOST__/assets/js/form.01.js'
+			VmInclude: '__HOST__/assets/js/form-item-a.01.js'
+			//-------------------------------------
+			var load = m.load;
+			m.load = function () {
+				load();	
+				//-------------------------------------
+				//-------item a part
+				m.item_a_records=[]; if(m.input.record!=undefined) m.item_a_records=m.input.record.Data.items_a;
+				console.log("AAA"+JSON.stringify(m.input.record))
+				m.item_a_render();
+				//-------item a part
+			}
+            //----------------------------------
+            //item a part
+            m.item_a_fields="Entry Name|entry_name,Data entry type|entry_type,_Remove";
+            //----------------------------------
+            $('#item_a_add__ID').on('click',function(){ m.item_a_add(); })
+            //----------------------------------
+            m.item_a_cell_render=function(records,I,field,td,set_value,source){
+                switch (field) {
+                    case "entry_type":
+                        td.html("<select class='formgroup'><option></option><option value='normal'>Normal Data Entry</option><option value='questionnaire'>Questionnaire</option><option value='multi'>Multiple entry per participant</option></select>");
+                        td.find('select').val(records[I][field]);
+                        td.find('select').on('change', function () {
+                            var value = $(this).val();
+                            if (value === "" && records[I][field] === undefined) return;
+                            records[I][field] = value;
+                            m.item_a_after_change(records, I, field, td, set_value, source)
+                        });
+                        break;
+                }
+            }
+            //----------------------------------
+            m.item_a_after_change = function (records, I, field, td, set_value, source) {
+				console.log(JSON.stringify(records))
+			}
+            //----------------------------------
+            m.item_a_after_remove=function(){
+                //cal();
+            }
+            //----------------------------------
+                
+			m.before_submit = function (data, index) {
+				if(m.item_a_records!=undefined) data.items_a = m.item_a_get_data();
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		/*VmInclude: '__HOST__/assets/css/form-item-a.01.css'*/
+		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
+	</style>
+</div>

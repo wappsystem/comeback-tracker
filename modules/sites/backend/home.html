@@ -1,0 +1,83 @@
+<div id=page__ID>
+    <div class='panel__ID'>
+        <h1>Comeback Tracker</h1>
+        <p></p>
+        <button type="button" id=ingredients__ID class="btn" title="Ingredients">Ingredients</button>
+        <button type="button" id=stock__ID class="btn" title="stock">Stock</button>
+        <!--<button type="button" id=subtract__ID class="btn" title="Add">Take from stock</button>
+        <button type="button" id=mixture__ID class="btn">Define a Mixture</button>
+        <button type="button" id=people__ID class="btn">People</button>
+        <button type="button" id=outcomes__ID class="btn">Outcomes</button>-->
+        <br>
+        <button type="button" id=scanned__ID class="btn">Upload scanned data</button>
+        <!--<button type="button" id=data_entry__ID class="btn">Data entry - eCRF</button>
+        <button type="button" id=questionnaire__ID class="btn">Questionnaire - eCRF</button>
+        <button type="button" id=data_collection_layout__ID class="btn">Data collection layout</button>-->
+        </div>
+    </div>
+    <script>
+		function F__ID(){
+			$('#ingredients__ID').on('click',function(e){
+      		  $vm.load_module('ingredients-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#stock__ID').on('click',function(e){
+      		  $vm.load_module('stock-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#mixture__ID').on('click',function(e){
+      		  $vm.load_module('mixture-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#people__ID').on('click',function(e){
+      		  $vm.load_module('people-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#outcomes__ID').on('click',function(e){
+      		  $vm.load_module('outcomes-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#scanned__ID').on('click',function(e){
+      		  $vm.load_module('scanned-data',$vm.root_layout_content_slot,{});
+    		})
+		}
+    </script>
+    <style>
+        #D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s, D__ID 3s;
+            text-align: -webkit-center;
+        }
+        @media screen and (max-width: 768px) {
+        }
+        #D__ID .btn{
+            display: block;
+            padding: 10px 10px;
+            margin: 5px;
+            border-radius: 4px;
+            background-color: #167d7f;
+            border: 0;
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 1px;
+            color: #fff;
+            line-height: 1.2;
+            cursor: pointer;
+            width:250px;
+            text-align: center;
+        }
+        #D__ID .btn.hover,
+        #D__ID .btn:hover {
+            background-color: #29a0b1;
+            color: #fff;
+        }
+        #D__ID .btn.active,
+        #D__ID .btn:active {
+            background-color: #10595a;
+            color: #fff;
+        }
+        #D__ID .btn.disabled,
+        #D__ID .btn:disabled {
+            background-color: rgba(173, 93, 129, 0.2);
+            color: #fff;
+            pointer-events: none;
+        }        
+    </style>
+</div>
+
