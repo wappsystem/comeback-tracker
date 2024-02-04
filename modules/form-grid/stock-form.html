@@ -9,31 +9,41 @@
 				<!-- form-design name and study id -->
 				<div class="formgroup">
 					<fieldset class="">
-						<div class="grid-container-2">
+						<div class="grid-container-3">
 							<div><label><span class="question">Product Name</span>
 									<input type=text name="Product_Name" id="Product_Name__ID" class=formcontrol />
 								</label>
 							</div>
 							<div><label><span class="question">Ingredients ID</span>
-									<input type=text name="ingredients_uid" class=formcontrol readonly />
+									<input type=text name="Ingredients_uid" class=formcontrol readonly />
 								</label>
 							</div>
+							<div><label><span class="question">Format</span>
+								<input type=text name="Format" class=formcontrol readonly />
+							</label>
 						</div>
+					</div>
 					</fieldset>
 				</div>
 				<div class="formgroup">
 					<fieldset class="">
 						<span class="question">
-							Current Stock calculated from <span id="stocktake_date__ID"></span>
+							Current Stock<span></span>
 						</span>
 						<div class="grid-container-3">
-							<div><label><span id=FS__ID class="question">FS</span>
+							<div>
+								<label><span class="question">Front Storage</span>
+									<input type=text name="Front_Storage" class=formcontrol readonly />
 								</label>
 							</div>
-							<div><label><span id=BS__ID class="question">BS</span>
+							<div>
+								<label><span class="question">Back Storage</span>
+									<input type=text name="Back_Storage" class=formcontrol readonly />
 								</label>
 							</div>
-							<div><label><span id=Format__ID class="question">BS</span>
+							<div>
+								<label><span class="question">Total</span>
+									<input type=text name="Total_in_storage" class=formcontrol readonly />
 								</label>
 							</div>
 						</div>
@@ -45,26 +55,76 @@
 							<span class="question">
 								Transaction type
 							</span>
-							<div class="grid-container-3">
+							<div class="grid-container-4">
+								<div><input id="Transaction_type_2__ID" name="Transaction_type" type="radio"
+										value="Put in">
+									<label class="rd_btn " for="Transaction_type_2__ID">Put in</label>
+								</div>
 								<div>
 									<input id="Transaction_type_1__ID" name="Transaction_type" type="radio"
 										value="Take out">
-									<label class="rd_btn width_88" for="Transaction_type_1__ID">Take out</label>
-								</div>
-								<div><input id="Transaction_type_2__ID" name="Transaction_type" type="radio"
-										value="Put in">
-									<label class="rd_btn width_88" for="Transaction_type_2__ID">Put in</label>
+									<label class="rd_btn " for="Transaction_type_1__ID">Take out</label>
 								</div>
 								<div><input id="Transaction_type_3__ID" name="Transaction_type" type="radio"
+										value="Move">
+									<label class="rd_btn " for="Transaction_type_3__ID">Move</label>
+								</div>
+								<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
 										value="Stocktake">
-									<label class="rd_btn width_88" for="Transaction_type_3__ID">Stocktake
+									<label class="rd_btn " for="Transaction_type_4__ID">Stocktake
 										Adjustment</label>
 								</div>
 							</div>
 						</fieldset>
 					</div>
 				</div>
-
+				<div class="formgroup">
+					<div class="questiongroup ">
+						<fieldset>
+							<span class="question">
+								Specify Quantity and Date
+							</span>
+							<div class="grid-container-2">
+								<div>
+									<label><span class="question" id="quantity__ID">Quantity</span>
+										<input type="number" name="Quantity" class=formcontrol  />
+									</label>
+								</div>
+								<div>
+									<label><span class="question">Date</span>
+										<input type="date" name="Transaction_Date" class=formcontrol  />
+									</label>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>	
+				<div id="Transaction_type_in__ID">
+					<div class="formgroup">
+						<div class="questiongroup ">
+							<fieldset>
+								<div class="grid-container-2">
+									<div>
+										<label><span class="question">Product Date Type</span>
+											<select name="Product_Date_Type" class=formcontrol>
+												<option></option>
+												<option>Expiry Date</option>
+												<option>Best Before</option>
+												<option>Manufacturing Date</option>
+											</select>
+										</label>
+									</div>
+									<div>
+										<label><span class="question">Product Date</span>
+											<input type="date" name="Product_Date" class=formcontrol  />
+										</label>
+									</div>
+								</div>
+								
+							</fieldset>
+						</div>
+					</div>
+				</div>
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
 				</div>
@@ -79,11 +139,40 @@
 			var load = m.load;
 			m.load = function () {
 				load();
+				//console.log(JSON.stringify(m.input.record))
+				if(m.input.record!=undefined){
+					$("#F__ID input[name=Ingredients_uid]").val(m.input.record.UID);
+					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
+					$("#F__ID input[name=Format]").val(m.input.record.I3);
+				}
+
+				if ($("#F__ID input[name='Transaction_type']:checked").val()=="Put in"){
+					$('#Transaction_type_in__ID').show();
+				}
+				else{
+					$('#Transaction_type_in__ID').hide();
+				}
 			}
 			//----------------------------------
 			m.before_submit = function (data, index) {
 			}
 			//-------------------------------------
+			$("input[name='Transaction_type']").change(function () {
+				if ($("input[name='Transaction_type']:checked").val() == 'Put in') $('#Transaction_type_in__ID').show();
+				else {
+					$('#Transaction_type_in__ID').hide();
+					$('#F__ID input[name=Product_Date]').val("");
+					$('#F__ID select[name=Product_Date_Type]').val("");
+				}
+				if ($("#F__ID input[name='Transaction_type']:checked").val()=="Move"){
+					$('#quantity__ID').text("Quantity moved from BS to FS");
+				}
+				else{
+					$('#quantity__ID').text("Quantity");
+				}
+			})
+			//-------------------------------------
+
 			//auto select client
 			var get_name = function (record) {
 				var name = record.Data.Product_Name;
@@ -94,11 +183,10 @@
 				return name;
 			}
 			var autocomplete_req_1 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
-			var autocomplete_callback_1 = function (items) { 
-				$("#F__ID input[name=ingredients_uid]").val(items["UID"]); 
-				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record)); 
-				$("#F__ID #Format__ID").text(items.record.I3);
-				$("#F__ID #stocktake_date__ID").text(items.record.I4);
+			var autocomplete_callback_1 = function (items) {
+				$("#F__ID input[name=Ingredients_uid]").val(items["UID"]);
+				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
+				$("#F__ID input[name=Format]").val(items.record.I3);
 				console.log(JSON.stringify(items.record));
 			}
 			var autocomplete_list_1 = function (records) {

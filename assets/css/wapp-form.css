@@ -235,7 +235,10 @@ padding:10px
     opacity: 0;
     position: fixed;
   }
-
+  #D__ID .align-centre{
+    display: flex;
+    align-items: center;
+  }
   #D__ID .rd_btn_wide {
     padding: 10px 10px;
     background-color: #ddd;

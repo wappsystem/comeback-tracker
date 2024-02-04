@@ -39,21 +39,30 @@
 				</div>
 				<div class="formgroup">
 					<div class="questiongroup ">
-					  <fieldset class="">
-						<span class="question">Format </span>
-						<div class="grid-container-5">
-						  <div>
-							<input id="Format_0__ID" name="Format" type="radio" value="Tablets" >
-							<label id="Format_button_text_0__ID" class="rd_btn width_80 " for="Format_0__ID">Tablets</label>
-						  </div>
-						  <div>
-							<input id="Format_1__ID" name="Format" type="radio" value="Powder">
-							<label id="Format_button_text_1__ID" class="rd_btn width_80 " for="Format_1__ID">Powder</label>
-						  </div>
-						</div>
-					  </fieldset>
+						<fieldset class="">
+							<span class="question">Format </span>
+							<div class="grid-container-3">
+								<div>
+									<input id="Format_0__ID" name="Format" type="radio" value="Tablets">
+									<label id="Format_button_text_0__ID" class="rd_btn width_80 "
+										for="Format_0__ID">Tablets</label>
+								</div>
+								<div>
+									<input id="Format_1__ID" name="Format" type="radio" value="Powder">
+									<label id="Format_button_text_1__ID" class="rd_btn width_80 "
+										for="Format_1__ID">Powder</label>
+								</div>
+								<div id="powder_show__ID">
+									<div class="align-centre">
+										<span> 1 Tbsp= &nbsp;</span>
+											<input type="number" min=1 step="1" name="Tbsp_to_grams" class="formcontrol" style="width:50px" />
+										<span>&nbsp;grams</span>
+									</div>
+								</div>
+							</div>
+						</fieldset>
 					</div>
-				  </div>
+				</div>
 				<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-2">
@@ -78,23 +87,23 @@
 								</label>
 							</div>
 							<div><label><span class="question">Business ID</span>
-								<input type=text name="Business_uid" class="formcontrol width_80" readonly />
-							</label>
+									<input type=text name="Business_uid" class="formcontrol width_80" readonly />
+								</label>
+							</div>
 						</div>
-					</div>
 					</fieldset>
 				</div>
 				<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-1">
-							<div><label><span class="question">Stocktake date (Startpoint for calculating stock)  </span>
+							<div><label><span class="question">Stocktake date (Startpoint for calculating stock) </span>
 									<input type=date name="Stocktake_date" class="formcontrol" />
 								</label>
 							</div>
 						</div>
 					</fieldset>
 				</div>
-		  
+
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
 				</div>
@@ -110,12 +119,24 @@
 			var load = m.load;
 			m.load = function () {
 				load();
+				if ($("input[name='Format']:checked").val() == 'Powder') $('#powder_show__ID').show();
+				else {
+					$('#powder_show__ID').hide();
+					$('#F__ID input[name=Tbsp_to_grams]').val("");
+				}
 				//-------item a part
 				m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items_a;
 				m.item_a_render();
 				//-------item a part
 			}
 			//----------------------------------
+			$("input[name='Format']").change(function () {
+				if ($("input[name='Format']:checked").val() == 'Powder') $('#powder_show__ID').show();
+				else {
+					$('#powder_show__ID').hide();
+					$('#F__ID input[name=Tbsp_to_grams]').val("");
+				}
+			})
 			//item a part
 			m.item_a_fields = "Characteristic,Comments,_Remove";
 			//----------------------------------
@@ -135,10 +156,10 @@
 
 			m.before_submit = function (data, index) {
 				if (m.item_a_records != undefined) data.items_a = m.item_a_get_data();
-				index.I1=parseInt(data.Stock_ID)
-				index.I2=data.Product_Name;
-				index.I3=data.Format;
-				index.I4=data.Stocktake_date;
+				index.I1 = parseInt(data.Stock_ID)
+				index.I2 = data.Product_Name;
+				index.I3 = data.Format;
+				//index.I4 = data.Stocktake_date;
 			}
 			//-------------------------------------
 			//auto select client
@@ -151,7 +172,7 @@
 				name += "|" + record.Data.Contact_person + " " + record.Data.Phone_number;
 				return name;
 			}
-			var autocomplete_req_1 = { cmd: "find",field:".I1", table: m.client_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_req_1 = { cmd: "find", field: ".I1", table: m.client_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_1 = function (items) { $("#F__ID input[name=Business_uid]").val(items["UID"]); $("#F__ID input[name=Business]").val(get_client_info(items.record)); }
 			var autocomplete_list_1 = function (records) {
 				var items = [];
@@ -171,7 +192,7 @@
 				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }
 				I++; if (I > 50) { clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
 			}, 100);
-			
+
 			//-------------------------------------
 
 		}

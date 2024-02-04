@@ -10,7 +10,7 @@ m.load=function(){
     $('#submit__ID').show();
     $('#delete__ID').hide(); if(m.input!=undefined && m.input.record!=undefined && m.input.record._id!==undefined) $('#delete__ID').show();
     if(m.input!=undefined && m.input.record!=undefined && m.input.record.Data!==undefined) {
-        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name+" - "+m.input.record.Data.Name);
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
         $('#record__ID').val(m.input.record.UID)
     }
     else $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);

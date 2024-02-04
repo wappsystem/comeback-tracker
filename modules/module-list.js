@@ -6,14 +6,12 @@
     var m=$vm.module_list;
     var api="wapp";
     //-------------------------------------------------------------------------------------
-    m[p+"ingredients-data"] ={url:H+"/form-grid/ingredients-data.html",Table:"ingredients-comeback",form_module:"ingredients-form",task_name:"Ingredients",};                   
+    m[p+"ingredients-data"] ={url:H+"/form-grid/ingredients-data.html",Table:"ingredients-comeback",form_module:"ingredients-form",child_stock:"stock-form",task_name:"Ingredients",};                   
     m[p+"ingredients-form"] ={url:H+"/form-grid/ingredients-form.html",Table:"ingredients-comeback",client_table:"business-comeback",task_name:"Ingredients"};
-    m[p+"stock-data"] ={url:H+"/form-grid/stock-data.html",Table:"stock-comeback",form_module:"stock-form",task_name:"Stock"};                   
+    m[p+"stock-data"] ={url:H+"/form-grid/stock-data.html",Table:"stock-comeback",form_module:"stock-form",task_name:"Stock Transaction"};                   
     m[p+"stock-form"] ={url:H+"/form-grid/stock-form.html",Table:"stock-comeback",client_table:"ingredients-comeback",task_name:"Stock Transaction"};
     m[p+"mixture-data"] ={url:H+"/form-grid/mixture-data.html",Table:"mixture-comeback",form_module:"mixture-form",task_name:"Mixture"};                   
     m[p+"mixture-form"] ={url:H+"/form-grid/mixture-form.html",Table:"mixture-comeback",task_name:"Mixture"};
-    m[p+"people-data"] ={url:H+"/form-grid/people-data.html",Table:"people-comeback",form_module:"people-form",task_name:"People"};                   
-    m[p+"people-form"] ={url:H+"/form-grid/people-form.html",Table:"people-comeback",task_name:"People"};
     m[p+"outcomes-data"] ={url:H+"/form-grid/outcomes-data.html",Table:"outcomes-comeback",form_module:"outcomes-form",task_name:"Outcomes"};                   
     m[p+"outcomes-form"] ={url:H+"/form-grid/outcomes-form.html",Table:"outcomes-comeback",task_name:"Outcomes"};
     m[p+"scanned-data"] ={url:H+"/form-grid/scanned-data.html",Table:"scanned-comeback",form_module:"scanned-form",task_name:"Upload"};                   
@@ -22,6 +20,8 @@
     m[p+"panel-setup"]=    	        {url:H+"/panels/setup.html"};
     m[p+"business-data"] ={url:H+"/form-grid/business-data.html",Table:"business-comeback",form_module:"business-form",task_name:"Business"};                   
     m[p+"business-form"] ={url:H+"/form-grid/business-form.html",Table:"business-comeback",Table2:"mixture-comeback",Table3:"people-comeback",task_name:"Business"};
+    m[p+"people-data"] ={url:H+"/form-grid/people-data.html",Table:"people-comeback",form_module:"people-form",task_name:"People"};                   
+    m[p+"people-form"] ={url:H+"/form-grid/people-form.html",Table:"people-comeback",task_name:"People"};
 
 
 
