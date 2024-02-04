@@ -9,20 +9,28 @@
 				<!-- form-design name and study id -->
 				<div class="formgroup">
 					<fieldset class="">
-						<div class="grid-container-3">
-							<div><label><span class="question">Product Name</span>
+						<div class="grid-container-4">
+							<div>
+								<label><span class="question">Product Name</span>
 									<input type=text name="Product_Name" id="Product_Name__ID" class=formcontrol />
 								</label>
 							</div>
-							<div><label><span class="question">Ingredients ID</span>
+							<div>
+								<label><span class="question">Ingredients ID</span>
 									<input type=text name="Ingredients_uid" class=formcontrol readonly />
 								</label>
 							</div>
-							<div><label><span class="question">Format</span>
-								<input type=text name="Format" class=formcontrol readonly />
-							</label>
+							<div>
+								<label><span class="question">Format</span>
+									<input type=text name="Format" class=formcontrol readonly />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Conversion</span>
+									<p id="conversion__ID"></p>
+								</label>
+							</div>
 						</div>
-					</div>
 					</fieldset>
 				</div>
 				<div class="formgroup">
@@ -87,7 +95,7 @@
 							<div class="grid-container-2">
 								<div>
 									<label><span class="question" id="quantity__ID">Quantity</span>
-										<input type="number" name="Quantity" class=formcontrol  />
+										<input type="text" name="Quantity" id="Quantity__ID" class=formcontrol readonly />
 									</label>
 								</div>
 								<div>
@@ -106,7 +114,7 @@
 								<div class="grid-container-2">
 									<div>
 										<label><span class="question">Product Date Type</span>
-											<select name="Product_Date_Type" class=formcontrol>
+											<select name="Product_Date_Type" id="Product_Date_Type__ID" class=formcontrol>
 												<option></option>
 												<option>Expiry Date</option>
 												<option>Best Before</option>
@@ -116,7 +124,7 @@
 									</div>
 									<div>
 										<label><span class="question">Product Date</span>
-											<input type="date" name="Product_Date" class=formcontrol  />
+											<input type="date" name="Product_Date" id="Product_Date__ID" class=formcontrol  />
 										</label>
 									</div>
 								</div>
@@ -139,36 +147,75 @@
 			var load = m.load;
 			m.load = function () {
 				load();
-				//console.log(JSON.stringify(m.input.record))
+				console.log(JSON.stringify(m.input.record))
 				if(m.input.record!=undefined){
 					$("#F__ID input[name=Ingredients_uid]").val(m.input.record.UID);
 					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
 					$("#F__ID input[name=Format]").val(m.input.record.I3);
+					$("#F__ID #conversion__ID").text("1 tbsp = "+m.input.record.Data.Tbsp_to_grams+" grams");
 				}
-
-				if ($("#F__ID input[name='Transaction_type']:checked").val()=="Put in"){
-					$('#Transaction_type_in__ID').show();
-				}
-				else{
-					$('#Transaction_type_in__ID').hide();
-				}
+				switch($("#F__ID input[name='Transaction_type']:checked").val()){
+					case 'Move': 
+						$('#quantity__ID').text("Quantity moved from BS to FS");
+						$('#Transaction_type_in__ID').hide();
+						//$('#F__ID input[name=Product_Date]').val("");
+						//$('#F__ID select[name=Product_Date_Type]').val("");
+						break;
+					case 'Take out':
+						$('#quantity__ID').text("Quantity taken from Front Storage");
+						$('#Transaction_type_in__ID').show();
+						document.getElementById('Product_Date__ID').readOnly=true;
+						document.getElementById('Product_Date_Type__ID').disabled=true;
+						break;
+					case 'Put in':
+						$('#quantity__ID').text("Quantity put into Back Storage");
+						$('#Transaction_type_in__ID').show();
+						document.getElementById('Product_Date__ID').readOnly=false;
+						document.getElementById('Product_Date_Type__ID').disabled=false;
+						break;
+					case 'Stocktake':
+						$('#quantity__ID').text("Set Quantity in Front Storage");
+						$('#Transaction_type_in__ID').hide();
+						break;
+					default:
+						$('#quantity__ID').text("Quantity");
+						$('#Transaction_type_in__ID').hide();
+						break;
+					}
 			}
 			//----------------------------------
 			m.before_submit = function (data, index) {
+				index.I3=data.Transaction_type;
 			}
 			//-------------------------------------
 			$("input[name='Transaction_type']").change(function () {
-				if ($("input[name='Transaction_type']:checked").val() == 'Put in') $('#Transaction_type_in__ID').show();
-				else {
-					$('#Transaction_type_in__ID').hide();
-					$('#F__ID input[name=Product_Date]').val("");
-					$('#F__ID select[name=Product_Date_Type]').val("");
-				}
-				if ($("#F__ID input[name='Transaction_type']:checked").val()=="Move"){
+				switch($("#F__ID input[name='Transaction_type']:checked").val()){
+            	case 'Move': 
 					$('#quantity__ID').text("Quantity moved from BS to FS");
-				}
-				else{
+					$('#Transaction_type_in__ID').hide();
+					//$('#F__ID input[name=Product_Date]').val("");
+					//$('#F__ID select[name=Product_Date_Type]').val("");
+					break;
+				case 'Take out':
+					$('#quantity__ID').text("Quantity taken from Front Storage");
+					$('#Transaction_type_in__ID').show();
+					document.getElementById('Product_Date__ID').readOnly=true;
+					document.getElementById('Product_Date_Type__ID').disabled=true;
+					break;
+				case 'Put in':
+					$('#quantity__ID').text("Quantity put into Back Storage");
+					$('#Transaction_type_in__ID').show();
+					document.getElementById('Product_Date__ID').readOnly=false;
+					document.getElementById('Product_Date_Type__ID').disabled=false;
+					break;
+				case 'Stocktake':
+					$('#quantity__ID').text("Set Quantity in Front Storage");
+					$('#Transaction_type_in__ID').hide();
+					break;
+				default:
 					$('#quantity__ID').text("Quantity");
+					$('#Transaction_type_in__ID').hide();
+					break;
 				}
 			})
 			//-------------------------------------
