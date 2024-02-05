@@ -52,6 +52,11 @@
 									<label id="Format_button_text_1__ID" class="rd_btn width_80 "
 										for="Format_1__ID">Powder</label>
 								</div>
+								<div>
+									<input id="Format_2__ID" name="Format" type="radio" value="Fluid">
+									<label id="Format_button_text_2__ID" class="rd_btn width_80 "
+										for="Format_2__ID">Fluid</label>
+								</div>
 								<div id="powder_show__ID">
 									<div class="align-centre">
 										<span> 1 Tbsp= &nbsp;</span>
@@ -82,18 +87,18 @@
 				<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-2">
-							<div><label><span class="question">Business</span>
-									<input type=text name="Business" id="Business__ID" class="formcontrol width_80" />
+							<div><label><span class="question">Supplier</span>
+									<input type=text name="Supplier" id="Supplier__ID" class="formcontrol width_80" />
 								</label>
 							</div>
-							<div><label><span class="question">Business ID</span>
-									<input type=text name="Business_uid" class="formcontrol width_80" readonly />
+							<div><label><span class="question">Supplier ID</span>
+									<input type=text name="Supplier_uid" class="formcontrol width_80" readonly />
 								</label>
 							</div>
 						</div>
 					</fieldset>
 				</div>
-				<div class="formgroup">
+				<!--<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-1">
 							<div><label><span class="question">Stocktake date (Startpoint for calculating stock) </span>
@@ -102,7 +107,7 @@
 							</div>
 						</div>
 					</fieldset>
-				</div>
+				</div>-->
 
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
@@ -164,16 +169,16 @@
 			//-------------------------------------
 			//auto select client
 			var get_name = function (record) {
-				var name = record.Data.Business_Name;
+				var name = record.Data.Supplier_Name;
 				return name;
 			}
 			var get_client_info = function (record) {
-				var name = record.Data.Business_Name
+				var name = record.Data.Supplier_Name
 				name += "|" + record.Data.Contact_person + " " + record.Data.Phone_number;
 				return name;
 			}
 			var autocomplete_req_1 = { cmd: "find", field: ".I1", table: m.client_table, options: {}, skip: 0, limit: 10 }
-			var autocomplete_callback_1 = function (items) { $("#F__ID input[name=Business_uid]").val(items["UID"]); $("#F__ID input[name=Business]").val(get_client_info(items.record)); }
+			var autocomplete_callback_1 = function (items) { $("#F__ID input[name=Supplier_uid]").val(items["UID"]); $("#F__ID input[name=Supplier]").val(get_client_info(items.record)); }
 			var autocomplete_list_1 = function (records) {
 				var items = [];
 				for (var i = 0; i < records.length; i++) {
@@ -186,7 +191,7 @@
 				return items;
 			}
 			var wait1 = function () {
-				$vm.autocomplete($('#Business__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
+				$vm.autocomplete($('#Supplier__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
 			}
 			var I = 0; var loop_1 = setInterval(function () {
 				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }

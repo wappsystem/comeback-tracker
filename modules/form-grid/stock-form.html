@@ -12,23 +12,25 @@
 						<div class="grid-container-4">
 							<div>
 								<label><span class="question">Product Name</span>
-									<input type=text name="Product_Name" id="Product_Name__ID" class=formcontrol />
+									<input type=text name="Product_Name" id="Product_Name__ID" class="formcontrol threeqwidth" />
 								</label>
 							</div>
 							<div>
-								<label><span class="question">Ingredients ID</span>
-									<input type=text name="Ingredients_uid" class=formcontrol readonly />
+								<label><span class="question">Products ID</span>
+									<input type=text name="Product_uid" class="formcontrol threeqwidth" readonly />
 								</label>
 							</div>
 							<div>
 								<label><span class="question">Format</span>
-									<input type=text name="Format" class=formcontrol readonly />
+									<input type=text name="Format" class="formcontrol threeqwidth" readonly />
 								</label>
 							</div>
-							<div>
-								<label><span class="question">Conversion</span>
-									<p id="conversion__ID"></p>
-								</label>
+							<div id="convers__ID" style="display:none">
+								<div>
+									<label><span class="question">Conversion</span>
+										<p class="" id="conversion__ID"></p>
+									</label>
+								</div>
 							</div>
 						</div>
 					</fieldset>
@@ -92,10 +94,22 @@
 							<span class="question">
 								Specify Quantity and Date
 							</span>
-							<div class="grid-container-2">
+							<div class="grid-container-3">
 								<div>
 									<label><span class="question" id="quantity__ID">Quantity</span>
-										<input type="text" name="Quantity" id="Quantity__ID" class=formcontrol readonly />
+										<input type="text" name="Quantity" id="Quantity__ID" class=formcontrol />
+									</label>
+								</div>
+								<div id="select_tbsp__ID">
+									<label><span class="question" >Select # tbsp</span>
+										<select id="select_powder__ID" class=formcontrol >
+											<option value="0.125">1/8 tbsp</option>
+											<option value="0.250">1/4 tbsp</option>
+											<option value="0.5">1/2 tbsp</option>
+											<option value="1">1 tbsp</option>
+											<option value="2">2 tbsp</option>
+											<option value="3">3 tbsp</option>
+										</select>
 									</label>
 								</div>
 								<div>
@@ -149,9 +163,11 @@
 				load();
 				console.log(JSON.stringify(m.input.record))
 				if(m.input.record!=undefined){
-					$("#F__ID input[name=Ingredients_uid]").val(m.input.record.UID);
+					$("#F__ID input[name=Product_uid]").val(m.input.record.UID);
 					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
 					$("#F__ID input[name=Format]").val(m.input.record.I3);
+					if(m.input.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
+					else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);};
 					$("#F__ID #conversion__ID").text("1 tbsp = "+m.input.record.Data.Tbsp_to_grams+" grams");
 				}
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
@@ -168,7 +184,9 @@
 						document.getElementById('Product_Date_Type__ID').disabled=true;
 						break;
 					case 'Put in':
-						$('#quantity__ID').text("Quantity put into Back Storage");
+						if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity__ID').text("Quantity in grams put into Back Storage");
+						else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity__ID').text("Quantity in ml put into Back Storage");
+						else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity__ID').text("Quantity numbers of pills put into Back Storage");						
 						$('#Transaction_type_in__ID').show();
 						document.getElementById('Product_Date__ID').readOnly=false;
 						document.getElementById('Product_Date_Type__ID').disabled=false;
@@ -185,7 +203,10 @@
 			}
 			//----------------------------------
 			m.before_submit = function (data, index) {
+				index.I1=parseInt(data.Product_uid)
 				index.I3=data.Transaction_type;
+				index.I4=parseInt(data.Front_Storage)
+				index.I5=parseInt(data.Back_Storage)
 			}
 			//-------------------------------------
 			$("input[name='Transaction_type']").change(function () {
@@ -193,17 +214,22 @@
             	case 'Move': 
 					$('#quantity__ID').text("Quantity moved from BS to FS");
 					$('#Transaction_type_in__ID').hide();
+					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
 					//$('#F__ID input[name=Product_Date]').val("");
 					//$('#F__ID select[name=Product_Date_Type]').val("");
 					break;
 				case 'Take out':
 					$('#quantity__ID').text("Quantity taken from Front Storage");
 					$('#Transaction_type_in__ID').show();
+					$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);
 					document.getElementById('Product_Date__ID').readOnly=true;
 					document.getElementById('Product_Date_Type__ID').disabled=true;
 					break;
 				case 'Put in':
-					$('#quantity__ID').text("Quantity put into Back Storage");
+					if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity__ID').text("Quantity in grams put into Back Storage");
+					else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity__ID').text("Quantity in ml put into Back Storage");
+					else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity__ID').text("Quantity numbers of pills put into Back Storage");
+					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
 					$('#Transaction_type_in__ID').show();
 					document.getElementById('Product_Date__ID').readOnly=false;
 					document.getElementById('Product_Date_Type__ID').disabled=false;
@@ -211,6 +237,7 @@
 				case 'Stocktake':
 					$('#quantity__ID').text("Set Quantity in Front Storage");
 					$('#Transaction_type_in__ID').hide();
+					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
 					break;
 				default:
 					$('#quantity__ID').text("Quantity");
@@ -219,7 +246,6 @@
 				}
 			})
 			//-------------------------------------
-
 			//auto select client
 			var get_name = function (record) {
 				var name = record.Data.Product_Name;
@@ -231,9 +257,12 @@
 			}
 			var autocomplete_req_1 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_1 = function (items) {
-				$("#F__ID input[name=Ingredients_uid]").val(items["UID"]);
+				$("#F__ID input[name=Product_uid]").val(items["UID"]);
 				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
 				$("#F__ID input[name=Format]").val(items.record.I3);
+				$("#F__ID #conversion__ID").text("1 tbsp = "+items.record.Data.Tbsp_to_gram+" grams");
+				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
+				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
 				console.log(JSON.stringify(items.record));
 			}
 			var autocomplete_list_1 = function (records) {

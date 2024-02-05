@@ -2,14 +2,14 @@
     <div class='panel__ID'>
         <h1>Comeback Tracker Setup</h1>
         <p></p>
-        <button type="button" id=business__ID class="btn" title="Business">Business</button>
+        <button type="button" id=supplier__ID class="btn" title="Supplier">Supplier</button>
         <button type="button" id=people__ID class="btn" title="People">People</button>
         </div>
     </div>
     <script>
 		function F__ID(){
-			$('#business__ID').on('click',function(e){
-      		  $vm.load_module('business-data',$vm.root_layout_content_slot,{});
+			$('#supplier__ID').on('click',function(e){
+      		  $vm.load_module('supplier-data',$vm.root_layout_content_slot,{});
     		})
 			$('#people__ID').on('click',function(e){
       		  //$vm.load_module('people-data',$vm.root_layout_content_slot,{});

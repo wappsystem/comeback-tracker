@@ -10,7 +10,7 @@
 				<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-1">
-							<div><label><span class="question">Business ID</span>
+							<div><label><span class="question">Supplier ID</span>
 									<input type=text id="record__ID" class=formcontrol readonly />
 								</label>
 							</div>
@@ -20,8 +20,8 @@
 				<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-1">
-							<div><label><span class="question">Business Name</span>
-									<input type=text name="Business_Name" class="formcontrol width_80" />
+							<div><label><span class="question">Supplier Name</span>
+									<input type=text name="Supplier_Name" class="formcontrol width_80" />
 								</label>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
             //----------------------------------
                 
 			m.before_submit = function (data, index) {
-				index.I1=data.Business_Name;
+				index.I1=data.Supplier_Name;
 			}
 			//-------------------------------------
 		}
