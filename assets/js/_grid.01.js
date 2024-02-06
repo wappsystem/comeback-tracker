@@ -5,7 +5,9 @@ m.query={};
 m.options={}
 m.sort={_id:-1}
 m.projection={}
-if(m.title!=undefined) $('#title__ID').text(m.title);
+//console.log("Grid.01.js: "+JSON.stringify(m))
+$('#nav_title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+//if(m.title!=undefined) $('#nav_title__ID').text(m.title);
 //-------------------------------------
 m.set_req=function(){
 };
@@ -103,6 +105,7 @@ m.render=function(){
         header_name=header_name.replace(/_/g,' ');
         var header_id=m.field_id[i];
         if(m.field_header[i]=='_Form')        txt+="<th "+print+" data-header="+header_id+"></th>";
+        else if(m.field_header[i]=='_Duplicate')        txt+="<th "+print+" data-header="+header_id+"></th>";
         else if(m.field_header[i]=='_Delete') txt+="<th "+print+" data-header="+header_id+" style='width:30px;'></th>";
         else                                  txt+="<th "+print+" data-header="+header_id+">"+header_name+"</th>";
     }
@@ -114,8 +117,8 @@ m.render=function(){
             var value="";
             if(m.records[i][b]!==undefined){
                 value=m.records[i][b];
-                //if(b=="Submit_date") value=$vm.date_to_ddmmyyyy(value.substring(0,10));
-                if(b=="Submit_date") value=new Date(value).toLocaleDateString(window.navigator.userLanguage || window.navigator.language);
+                if(b=="Submit_date") value=$vm.date_to_ddmmyyyy(value.substring(0,10));
+                //if(b=="Submit_date") value=new Date(value).toLocaleDateString(window.navigator.userLanguage || window.navigator.language);
             }
             else{
                 if(m.records[i]['Data']!=undefined && m.records[i]['Data'][b]!==undefined){
@@ -159,6 +162,21 @@ m.cell_process=function(){
             })
         }
         //-------------------------
+        if(column_name=='_Duplicate'){
+            var data_id=$(this).attr('data-id');
+            $(this).css({'color':'#666','padding-left':'8px','padding-right':'8px'})
+            $(this).html("<u style='cursor:pointer'><i class='fa fa-plus-square-o'></i></u>");
+            $(this).find('u').on('click',function(){
+                m.form_I=row;
+                var prefix=""; if(m.prefix!=undefined) prefix=m.prefix;
+                if($vm.module_list[prefix+m.form_module]===undefined){
+                    alert('Can not find "'+m.form_module+'" in the module list');
+                    return;
+                }
+                $vm.load_module(prefix+m.form_module,$vm.root_layout_content_slot,{dup:'yes',record:m.records[I]});
+            })
+        }
+        //-------------------------
         if(column_name=='_Delete'){
             $(this).css({'color':'#666','padding-left':'8px','padding-right':'8px'})
             $(this).html("<u style='cursor:pointer'><i class='fa fa-trash-o'></i></u>");
@@ -166,7 +184,35 @@ m.cell_process=function(){
             $(this).find('u').on('click',function(){
                 var rid=$(this).data('ID');
                 if(confirm("Are you sure to delete?\n")){
+                    var pt_tab=$vm.module_list['form-design-data'].Table
+                    var uid=parseInt(m.records[row].Data.Participant_uid)
+                    var query={UID:uid}
+                    jQuery.ajaxSetup({ async: false });
+                    $vm.request({ cmd:'find',table:pt_tab,query:query,limit:1}, function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+                            var pt_data=res.result[0].Data;
+                            pt_data[$vm.module_list[$vm.module_list[$vm.vm['__ID'].name].form_module].progress]="";
+                            $vm.request({cmd:'update',id:res.result[0]._id,table:pt_tab,data:pt_data},function(res){
+                                //-----------------------------
+                                if(res.status=="lk"){
+                                    $vm.alert("This record is locked.");
+                                    return;
+                                }
+                                //-----------------------------
+                                if(res.status=="np"){
+                                    alert("No permission to update this record.");
+                                    return;
+                                }
+                                //-----------------------------
+                            })
+                        }
+                    })
                     m.delete(rid);
+                    jQuery.ajaxSetup({ async: true });                
                 }
             })
         }
@@ -389,7 +435,7 @@ $('#new__ID').on('click', function(){
     }
     if(m.form_module!=undefined){
         var prefix=""; if(m.prefix!=undefined) prefix=m.prefix;
-        $vm.load_module(prefix+m.form_module,'',{goback:1});
+        $vm.load_module(prefix+m.form_module,'',{goback:1,form_info:m.input.record});
         return;
     }
     if(m.new_process!=undefined){

@@ -35,115 +35,129 @@
 						</div>
 					</fieldset>
 				</div>
-				<div class="formgroup">
-					<fieldset class="">
-						<span class="question">
-							Current Stock<span></span>
-						</span>
-						<div class="grid-container-3">
-							<div>
-								<label><span class="question">Front Storage</span>
-									<input type=text name="Front_Storage" class=formcontrol readonly />
-								</label>
-							</div>
-							<div>
-								<label><span class="question">Back Storage</span>
-									<input type=text name="Back_Storage" class=formcontrol readonly />
-								</label>
-							</div>
-							<div>
-								<label><span class="question">Total</span>
-									<input type=text name="Total_in_storage" class=formcontrol readonly />
-								</label>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<div class="questiongroup ">
-						<fieldset>
+				<div id="product_selection__ID">
+					<div class="formgroup">
+						<fieldset class="">
 							<span class="question">
-								Transaction type
-							</span>
-							<div class="grid-container-4">
-								<div><input id="Transaction_type_2__ID" name="Transaction_type" type="radio"
-										value="Put in">
-									<label class="rd_btn " for="Transaction_type_2__ID">Put in</label>
-								</div>
-								<div>
-									<input id="Transaction_type_1__ID" name="Transaction_type" type="radio"
-										value="Take out">
-									<label class="rd_btn " for="Transaction_type_1__ID">Take out</label>
-								</div>
-								<div><input id="Transaction_type_3__ID" name="Transaction_type" type="radio"
-										value="Move">
-									<label class="rd_btn " for="Transaction_type_3__ID">Move</label>
-								</div>
-								<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
-										value="Stocktake">
-									<label class="rd_btn " for="Transaction_type_4__ID">Stocktake
-										Adjustment</label>
-								</div>
-							</div>
-						</fieldset>
-					</div>
-				</div>
-				<div class="formgroup">
-					<div class="questiongroup ">
-						<fieldset>
-							<span class="question">
-								Specify Quantity and Date
+								Current Stock<span></span>
 							</span>
 							<div class="grid-container-3">
 								<div>
-									<label><span class="question" id="quantity__ID">Quantity</span>
-										<input type="text" name="Quantity" id="Quantity__ID" class=formcontrol />
+									<label><span class="question">Front Storage</span>
+										<input type=text name="Front_Storage" class=formcontrol readonly />
 									</label>
-								</div>
-								<div id="select_tbsp__ID">
-									<label><span class="question" >Select # tbsp</span>
-										<select id="select_powder__ID" class=formcontrol >
-											<option value="0.125">1/8 tbsp</option>
-											<option value="0.250">1/4 tbsp</option>
-											<option value="0.5">1/2 tbsp</option>
-											<option value="1">1 tbsp</option>
-											<option value="2">2 tbsp</option>
-											<option value="3">3 tbsp</option>
-										</select>
+									<label><span class="question">Update Stock</span>
+										<input type=text id="Front_Storage__ID" class=formcontrol readonly />
 									</label>
 								</div>
 								<div>
-									<label><span class="question">Date</span>
-										<input type="date" name="Transaction_Date" class=formcontrol  />
+									<label><span class="question">Back Storage</span>
+										<input type=text name="Back_Storage" class=formcontrol readonly />
+									</label>
+									<label><span class="question">&nbsp;</span>
+										<input type=text id="Back_Storage__ID" class=formcontrol readonly />
+									</label>
+								</div>
+								<div>
+									<label><span class="question">Total</span>
+										<input type=text name="Total_in_storage" class=formcontrol readonly />
+									</label>
+									<label><span class="question">&nbsp;</span>
+										<input type=text id="Total_in_storage__ID" class=formcontrol readonly />
 									</label>
 								</div>
 							</div>
 						</fieldset>
 					</div>
-				</div>	
-				<div id="Transaction_type_in__ID">
 					<div class="formgroup">
 						<div class="questiongroup ">
 							<fieldset>
-								<div class="grid-container-2">
-									<div>
-										<label><span class="question">Product Date Type</span>
-											<select name="Product_Date_Type" id="Product_Date_Type__ID" class=formcontrol>
-												<option></option>
-												<option>Expiry Date</option>
-												<option>Best Before</option>
-												<option>Manufacturing Date</option>
-											</select>
-										</label>
+								<span class="question">
+									Transaction type
+								</span>
+								<div class="grid-container-4">
+									<div><input id="Transaction_type_2__ID" name="Transaction_type" type="radio"
+											value="Put in">
+										<label class="rd_btn " for="Transaction_type_2__ID">Put in</label>
 									</div>
 									<div>
-										<label><span class="question">Product Date</span>
-											<input type="date" name="Product_Date" id="Product_Date__ID" class=formcontrol  />
-										</label>
+										<input id="Transaction_type_1__ID" name="Transaction_type" type="radio"
+											value="Take out">
+										<label class="rd_btn " for="Transaction_type_1__ID">Take out</label>
+									</div>
+									<div><input id="Transaction_type_3__ID" name="Transaction_type" type="radio"
+											value="Move">
+										<label class="rd_btn " for="Transaction_type_3__ID">Move</label>
+									</div>
+									<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
+											value="Stocktake">
+										<label class="rd_btn " for="Transaction_type_4__ID">Stocktake
+											Adjustment</label>
 									</div>
 								</div>
-								
 							</fieldset>
+						</div>
+					</div>
+					<div id="quantity_div__ID">
+						<div class="formgroup">
+							<div class="questiongroup ">
+								<fieldset>
+									<span class="question">
+										Specify Quantity and Date
+									</span>
+									<div class="grid-container-3">
+										<div>
+											<label><span class="question" id="quantity_label__ID">Quantity</span>
+												<input type="text" name="Quantity" id="Quantity__ID" class=formcontrol />
+											</label>
+										</div>
+										<div id="select_tbsp__ID">
+											<label><span class="question" >Select # tbsp</span>
+												<select id="select_powder__ID" class=formcontrol >
+													<option value="0"></option>
+													<option value="0.125">1/8 tbsp</option>
+													<option value="0.250">1/4 tbsp</option>
+													<option value="0.5">1/2 tbsp</option>
+													<option value="1">1 tbsp</option>
+													<option value="2">2 tbsp</option>
+													<option value="3">3 tbsp</option>
+												</select>
+											</label>
+										</div>
+										<div>
+											<label><span class="question">Date</span>
+												<input type="date" name="Transaction_Date" class=formcontrol  />
+											</label>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>	
+						<div id="Transaction_type_in__ID">
+							<div class="formgroup">
+								<div class="questiongroup ">
+									<fieldset>
+										<div class="grid-container-2">
+											<div>
+												<label><span class="question">Product Date Type</span>
+													<select name="Product_Date_Type" id="Product_Date_Type__ID" class=formcontrol>
+														<option></option>
+														<option>Expiry Date</option>
+														<option>Best Before</option>
+														<option>Manufacturing Date</option>
+													</select>
+												</label>
+											</div>
+											<div>
+												<label><span class="question">Product Date</span>
+													<input type="date" name="Product_Date" id="Product_Date__ID" class=formcontrol  />
+												</label>
+											</div>
+										</div>
+										
+									</fieldset>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -158,10 +172,15 @@
 			//-------------------------------------
 			VmInclude: '__HOST__/assets/js/form.01.js'
 			//-------------------------------------
+			var conversion=0;
 			var load = m.load;
 			m.load = function () {
 				load();
-				console.log(JSON.stringify(m.input.record))
+				console.log(JSON.stringify(m.input))
+				$('#F__ID input[name="Front_Storage"]').val("0");
+				$('#F__ID input[name="Back_Storage"]').val("0");
+				$('#F__ID input[name="Total_in_storage"]').val("0");
+				$('#product_selection__ID').hide();
 				if(m.input.record!=undefined){
 					$("#F__ID input[name=Product_uid]").val(m.input.record.UID);
 					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
@@ -169,82 +188,163 @@
 					if(m.input.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 					else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);};
 					$("#F__ID #conversion__ID").text("1 tbsp = "+m.input.record.Data.Tbsp_to_grams+" grams");
+					conversion=parseFloat(m.input.record.Data.Tbsp_to_grams);
+					get_last_transaction(m.input.record.UID);
+					$('#product_selection__ID').show();
 				}
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
 					case 'Move': 
-						$('#quantity__ID').text("Quantity moved from BS to FS");
+						$('#quantity_label__ID').text("Quantity moved from BS to FS");
 						$('#Transaction_type_in__ID').hide();
 						//$('#F__ID input[name=Product_Date]').val("");
 						//$('#F__ID select[name=Product_Date_Type]').val("");
 						break;
 					case 'Take out':
-						$('#quantity__ID').text("Quantity taken from Front Storage");
+						$('#quantity_label__ID').text("Quantity taken from Front Storage");
 						$('#Transaction_type_in__ID').show();
 						document.getElementById('Product_Date__ID').readOnly=true;
 						document.getElementById('Product_Date_Type__ID').disabled=true;
 						break;
 					case 'Put in':
-						if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity__ID').text("Quantity in grams put into Back Storage");
-						else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity__ID').text("Quantity in ml put into Back Storage");
-						else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity__ID').text("Quantity numbers of pills put into Back Storage");						
+						if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity_label__ID').text("Quantity in grams put into Back Storage");
+						else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity_label__ID').text("Quantity in ml put into Back Storage");
+						else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity_label__ID').text("Quantity numbers of pills put into Back Storage");						
 						$('#Transaction_type_in__ID').show();
 						document.getElementById('Product_Date__ID').readOnly=false;
 						document.getElementById('Product_Date_Type__ID').disabled=false;
 						break;
 					case 'Stocktake':
-						$('#quantity__ID').text("Set Quantity in Front Storage");
+						$('#quantity_label__ID').text("Set Quantity in Front Storage");
 						$('#Transaction_type_in__ID').hide();
 						break;
 					default:
-						$('#quantity__ID').text("Quantity");
+						$('#quantity_label__ID').text("Quantity");
 						$('#Transaction_type_in__ID').hide();
+						$('#quantity_div__ID').hide();
 						break;
 					}
 			}
 			//----------------------------------
 			m.before_submit = function (data, index) {
+				data.Total_in_storage=$('#Total_in_storage__ID').val()
+				data.Front_Storage=$('#Front_Storage__ID').val()
+				data.Back_Storage=$('#Back_Storage__ID').val()
 				index.I1=parseInt(data.Product_uid)
 				index.I3=data.Transaction_type;
-				index.I4=parseInt(data.Front_Storage)
-				index.I5=parseInt(data.Back_Storage)
+				index.I4=parseFloat($('#Front_Storage__ID').val()).toFixed(0);
+				index.I5=parseFloat($('#Back_Storage__ID').val()).toFixed(0);
 			}
+			//-------------------------------------
+			$("#F__ID #select_powder__ID").change(function () {
+				$('#F__ID input[name="Quantity"]').val((conversion*parseFloat($('#select_powder__ID').val())).toFixed(0));
+				var bs=0;
+				var fs=0;
+				var nq=0;
+				bs=parseFloat($('#F__ID input[name="Back_Storage"]').val());
+				fs=parseFloat($('#F__ID input[name="Front_Storage"]').val());
+				nq=parseFloat($('#F__ID input[name="Quantity"]').val())
+				$('#Back_Storage__ID').val((bs).toFixed(0));
+				$('#Front_Storage__ID').val((fs-nq).toFixed(0));
+				$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
+
+
+			})
 			//-------------------------------------
 			$("input[name='Transaction_type']").change(function () {
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
             	case 'Move': 
-					$('#quantity__ID').text("Quantity moved from BS to FS");
+					$('#quantity_label__ID').text("Quantity moved from BS to FS");
 					$('#Transaction_type_in__ID').hide();
-					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
+					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);
+					$('#quantity_div__ID').show();						
 					//$('#F__ID input[name=Product_Date]').val("");
 					//$('#F__ID select[name=Product_Date_Type]').val("");
 					break;
 				case 'Take out':
-					$('#quantity__ID').text("Quantity taken from Front Storage");
+					$('#quantity_label__ID').text("Quantity taken from Front Storage");
 					$('#Transaction_type_in__ID').show();
 					$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);
 					document.getElementById('Product_Date__ID').readOnly=true;
 					document.getElementById('Product_Date_Type__ID').disabled=true;
+					$('#quantity_div__ID').show();						
 					break;
 				case 'Put in':
-					if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity__ID').text("Quantity in grams put into Back Storage");
-					else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity__ID').text("Quantity in ml put into Back Storage");
-					else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity__ID').text("Quantity numbers of pills put into Back Storage");
+					if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity_label__ID').text("Quantity in grams put into Back Storage");
+					else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity_label__ID').text("Quantity in ml put into Back Storage");
+					else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity_label__ID').text("Quantity numbers of pills put into Back Storage");
 					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
 					$('#Transaction_type_in__ID').show();
 					document.getElementById('Product_Date__ID').readOnly=false;
 					document.getElementById('Product_Date_Type__ID').disabled=false;
+					$('#quantity_div__ID').show();						
 					break;
 				case 'Stocktake':
-					$('#quantity__ID').text("Set Quantity in Front Storage");
+					$('#quantity_label__ID').text("Set Quantity in Front Storage");
 					$('#Transaction_type_in__ID').hide();
 					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
+					$('#quantity_div__ID').show();						
 					break;
 				default:
-					$('#quantity__ID').text("Quantity");
+					$('#quantity_label__ID').text("Quantity");
 					$('#Transaction_type_in__ID').hide();
+					$('#quantity_div__ID').hide();						
+
 					break;
 				}
 			})
+			//-------------------------------------
+			$("input[name='Quantity']").change(function () {
+				var bs=0;
+				var fs=0;
+				var nq=0;
+				bs=parseFloat($('#F__ID input[name="Back_Storage"]').val());
+				fs=parseFloat($('#F__ID input[name="Front_Storage"]').val());
+				nq=parseFloat($('#F__ID input[name="Quantity"]').val())
+				switch($("#F__ID input[name='Transaction_type']:checked").val()){
+            	case 'Move': 
+						$('#Back_Storage__ID').val((bs-nq).toFixed(0));
+						$('#Front_Storage__ID').val((fs+nq).toFixed(0));
+						$('#Total_in_storage__ID').val((bs+fs).toFixed(0))					
+					break;
+				case 'Take out':
+						$('#Back_Storage__ID').val((bs).toFixed(0));
+						$('#Front_Storage__ID').val((fs-nq).toFixed(0));
+						$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
+					break;
+				case 'Put in':
+						$('#Back_Storage__ID').val((nq+bs).toFixed(0));
+						$('#Front_Storage__ID').val(fs.toFixed(0));
+						$('#Total_in_storage__ID').val((bs+fs+nq).toFixed(0))					
+					break;
+				case 'Stocktake':
+						$('#Back_Storage__ID').val((bs).toFixed(0));
+						$('#Front_Storage__ID').val((fs-nq).toFixed(0));
+						$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
+					break;
+				default:
+					break;
+				}
+			})
+			//-------------------------------------
+			var get_last_transaction=function(product_uid){
+				//jQuery.ajaxSetup({ async: false });
+				var query={I1:parseInt(product_uid)}
+                    $vm.request({ cmd:'find',table:m.Table,query:query,limit:1}, function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							$('#F__ID input[name="Front_Storage"]').val(res.result[0].I4.toString())
+							$('#F__ID input[name="Back_Storage"]').val(res.result[0].I5.toString())
+							$('#F__ID input[name="Total_in_storage"]').val(res.result[0].Data.Total_in_storage)
+                        }
+						else{
+							console.log("Nothing in db")
+						}
+                    })
+                  //jQuery.ajaxSetup({ async: true });                
+			}
 			//-------------------------------------
 			//auto select client
 			var get_name = function (record) {
@@ -261,8 +361,11 @@
 				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
 				$("#F__ID input[name=Format]").val(items.record.I3);
 				$("#F__ID #conversion__ID").text("1 tbsp = "+items.record.Data.Tbsp_to_gram+" grams");
+				conversion=parseFloat(items.record.Data.Tbsp_to_gram);
 				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
+				get_last_transaction(items["UID"]);
+				$('#product_selection__ID').show();
 				console.log(JSON.stringify(items.record));
 			}
 			var autocomplete_list_1 = function (records) {
