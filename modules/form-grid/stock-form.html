@@ -41,29 +41,37 @@
 							<span class="question">
 								Current Stock<span></span>
 							</span>
-							<div class="grid-container-3">
+							<div class="grid-container-4">
 								<div>
 									<label><span class="question">Front Storage</span>
-										<input type=text name="Front_Storage" class=formcontrol readonly />
+										<input type=text name="Front_Storage" class="formcontrol threeqwidth" readonly />
 									</label>
 									<label><span class="question">Update Stock</span>
-										<input type=text id="Front_Storage__ID" class=formcontrol readonly />
+										<input type=text id="Front_Storage__ID" class="formcontrol threeqwidth" readonly />
 									</label>
 								</div>
 								<div>
 									<label><span class="question">Back Storage</span>
-										<input type=text name="Back_Storage" class=formcontrol readonly />
+										<input type=text name="Back_Storage" class="formcontrol threeqwidth" readonly />
 									</label>
 									<label><span class="question">&nbsp;</span>
-										<input type=text id="Back_Storage__ID" class=formcontrol readonly />
+										<input type=text id="Back_Storage__ID" class="formcontrol threeqwidth" readonly />
 									</label>
 								</div>
 								<div>
 									<label><span class="question">Total</span>
-										<input type=text name="Total_in_storage" class=formcontrol readonly />
+										<input type=text name="Total_in_storage" class="formcontrol threeqwidth" readonly />
 									</label>
 									<label><span class="question">&nbsp;</span>
-										<input type=text id="Total_in_storage__ID" class=formcontrol readonly />
+										<input type=text id="Total_in_storage__ID" class="formcontrol threeqwidth" readonly />
+									</label>
+								</div>
+								<div>
+									<label><span class="question">Current Batch</span>
+										<input type=text name="Current_Batch" class="formcontrol threeqwidth" readonly />
+									</label>
+									<label><span class="question">&nbsp;</span>
+										<input type=text id="Current_Batch__ID" class="formcontrol threeqwidth" readonly />
 									</label>
 								</div>
 							</div>
@@ -108,25 +116,25 @@
 									<div class="grid-container-3">
 										<div>
 											<label><span class="question" id="quantity_label__ID">Quantity</span>
-												<input type="text" name="Quantity" id="Quantity__ID" class=formcontrol />
+												<input type="text" name="Quantity" id="Quantity__ID" class="formcontrol" />
 											</label>
 										</div>
 										<div id="select_tbsp__ID">
-											<label><span class="question" >Select # tbsp</span>
-												<select id="select_powder__ID" class=formcontrol >
+											<label><span class="question" >Select # tsp</span>
+												<select id="select_powder__ID" class="formcontrol" >
 													<option value="0"></option>
-													<option value="0.125">1/8 tbsp</option>
-													<option value="0.250">1/4 tbsp</option>
-													<option value="0.5">1/2 tbsp</option>
-													<option value="1">1 tbsp</option>
-													<option value="2">2 tbsp</option>
-													<option value="3">3 tbsp</option>
+													<option value="0.125">1/8 tsp</option>
+													<option value="0.250">1/4 tsp</option>
+													<option value="0.5">1/2 tsp</option>
+													<option value="1">1 tsp</option>
+													<option value="2">2 tsp</option>
+													<option value="3">3 tsp</option>
 												</select>
 											</label>
 										</div>
 										<div>
 											<label><span class="question">Date</span>
-												<input type="date" name="Transaction_Date" class=formcontrol  />
+												<input type="date" name="Transaction_Date" class="formcontrol"  />
 											</label>
 										</div>
 									</div>
@@ -137,10 +145,10 @@
 							<div class="formgroup">
 								<div class="questiongroup ">
 									<fieldset>
-										<div class="grid-container-2">
+										<div class="grid-container-3">
 											<div>
-												<label><span class="question">Product Date Type</span>
-													<select name="Product_Date_Type" id="Product_Date_Type__ID" class=formcontrol>
+												<label><span class="question">Usage Type</span>
+													<select name="Usage_Type" id="Usage_Type__ID" class="formcontrol">
 														<option></option>
 														<option>Expiry Date</option>
 														<option>Best Before</option>
@@ -149,8 +157,13 @@
 												</label>
 											</div>
 											<div>
-												<label><span class="question">Product Date</span>
-													<input type="date" name="Product_Date" id="Product_Date__ID" class=formcontrol  />
+												<label><span class="question">Usage Date</span>
+													<input type="date" name="Usage_Date" id="Usage_Date__ID" class="formcontrol"  />
+												</label>
+											</div>
+											<div>
+												<label><span class="question">Active Batch</span>
+													<input type="text" name="Active_Batch" id="Active_Batch__ID" class="formcontrol" readonly />
 												</label>
 											</div>
 										</div>
@@ -187,7 +200,7 @@
 					$("#F__ID input[name=Format]").val(m.input.record.I3);
 					if(m.input.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 					else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);};
-					$("#F__ID #conversion__ID").text("1 tbsp = "+m.input.record.Data.Tbsp_to_grams+" grams");
+					$("#F__ID #conversion__ID").text("1 tsp = "+m.input.record.Data.Tbsp_to_grams+" grams");
 					conversion=parseFloat(m.input.record.Data.Tbsp_to_grams);
 					get_last_transaction(m.input.record.UID);
 					$('#product_selection__ID').show();
@@ -196,22 +209,22 @@
 					case 'Move': 
 						$('#quantity_label__ID').text("Quantity moved from BS to FS");
 						$('#Transaction_type_in__ID').hide();
-						//$('#F__ID input[name=Product_Date]').val("");
-						//$('#F__ID select[name=Product_Date_Type]').val("");
+						//$('#F__ID input[name=Usage_Date]').val("");
+						//$('#F__ID select[name=Usage_Type]').val("");
 						break;
 					case 'Take out':
 						$('#quantity_label__ID').text("Quantity taken from Front Storage");
 						$('#Transaction_type_in__ID').show();
-						document.getElementById('Product_Date__ID').readOnly=true;
-						document.getElementById('Product_Date_Type__ID').disabled=true;
+						document.getElementById('Usage_Date__ID').readOnly=true;
+						document.getElementById('Usage_Type__ID').disabled=true;
 						break;
 					case 'Put in':
 						if($("#F__ID input[name=Format]").val()=='Powder') $('#quantity_label__ID').text("Quantity in grams put into Back Storage");
 						else if($("#F__ID input[name=Format]").val()=='Fluid') $('#quantity_label__ID').text("Quantity in ml put into Back Storage");
 						else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity_label__ID').text("Quantity numbers of pills put into Back Storage");						
 						$('#Transaction_type_in__ID').show();
-						document.getElementById('Product_Date__ID').readOnly=false;
-						document.getElementById('Product_Date_Type__ID').disabled=false;
+						document.getElementById('Usage_Date__ID').readOnly=false;
+						document.getElementById('Usage_Type__ID').disabled=false;
 						break;
 					case 'Stocktake':
 						$('#quantity_label__ID').text("Set Quantity in Front Storage");
@@ -226,13 +239,15 @@
 			}
 			//----------------------------------
 			m.before_submit = function (data, index) {
-				data.Total_in_storage=$('#Total_in_storage__ID').val()
-				data.Front_Storage=$('#Front_Storage__ID').val()
-				data.Back_Storage=$('#Back_Storage__ID').val()
+				data.Total_in_storage=$('#Total_in_storage__ID').val();
+				data.Front_Storage=$('#Front_Storage__ID').val();
+				data.Back_Storage=$('#Back_Storage__ID').val();
+				data.Current_Batch=$('#Current_Batch__ID').val();
 				index.I1=parseInt(data.Product_uid)
 				index.I3=data.Transaction_type;
 				index.I4=parseFloat($('#Front_Storage__ID').val()).toFixed(0);
 				index.I5=parseFloat($('#Back_Storage__ID').val()).toFixed(0);
+				index.I6=parseFloat($('#Current_Batch__ID').val()).toFixed(0);
 			}
 			//-------------------------------------
 			$("#F__ID #select_powder__ID").change(function () {
@@ -251,21 +266,23 @@
 			})
 			//-------------------------------------
 			$("input[name='Transaction_type']").change(function () {
+				if($("#F__ID input[name=Format").val()=="Powder") {console.log("Format");$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
+				else {console.log("Format hide");$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
             	case 'Move': 
 					$('#quantity_label__ID').text("Quantity moved from BS to FS");
 					$('#Transaction_type_in__ID').hide();
 					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);
 					$('#quantity_div__ID').show();						
-					//$('#F__ID input[name=Product_Date]').val("");
-					//$('#F__ID select[name=Product_Date_Type]').val("");
+					//$('#F__ID input[name=Usage_Date]').val("");
+					//$('#F__ID select[name=Usage_Type]').val("");
 					break;
 				case 'Take out':
 					$('#quantity_label__ID').text("Quantity taken from Front Storage");
 					$('#Transaction_type_in__ID').show();
-					$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);
-					document.getElementById('Product_Date__ID').readOnly=true;
-					document.getElementById('Product_Date_Type__ID').disabled=true;
+					//$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);
+					document.getElementById('Usage_Date__ID').readOnly=true;
+					document.getElementById('Usage_Type__ID').disabled=true;
 					$('#quantity_div__ID').show();						
 					break;
 				case 'Put in':
@@ -274,9 +291,10 @@
 					else if($("#F__ID input[name=Format]").val()=='Tablets') $('#quantity_label__ID').text("Quantity numbers of pills put into Back Storage");
 					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
 					$('#Transaction_type_in__ID').show();
-					document.getElementById('Product_Date__ID').readOnly=false;
-					document.getElementById('Product_Date_Type__ID').disabled=false;
-					$('#quantity_div__ID').show();						
+					document.getElementById('Usage_Date__ID').readOnly=false;
+					document.getElementById('Usage_Type__ID').disabled=false;
+					$('#quantity_div__ID').show();	
+					$("#F__ID input[name=Active_Batch]").val('Not Active');					
 					break;
 				case 'Stocktake':
 					$('#quantity_label__ID').text("Set Quantity in Front Storage");
@@ -297,34 +315,71 @@
 				var bs=0;
 				var fs=0;
 				var nq=0;
+				var cb=0;
 				bs=parseFloat($('#F__ID input[name="Back_Storage"]').val());
 				fs=parseFloat($('#F__ID input[name="Front_Storage"]').val());
 				nq=parseFloat($('#F__ID input[name="Quantity"]').val())
+				cb=parseFloat($('#F__ID input[name="Current_Batch"]').val())
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
             	case 'Move': 
 						$('#Back_Storage__ID').val((bs-nq).toFixed(0));
 						$('#Front_Storage__ID').val((fs+nq).toFixed(0));
-						$('#Total_in_storage__ID').val((bs+fs).toFixed(0))					
+						$('#Total_in_storage__ID').val((bs+fs).toFixed(0));					
+						$('#Current_Batch__ID').val((cb).toFixed(0));					
 					break;
 				case 'Take out':
 						$('#Back_Storage__ID').val((bs).toFixed(0));
 						$('#Front_Storage__ID').val((fs-nq).toFixed(0));
 						$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
+						$('#Current_Batch__ID').val((cb-nq).toFixed(0));
+						var cn=cb-nq;
+						if(cb-nq<=0) {
+							set_active_batch(cn);
+						}				
 					break;
 				case 'Put in':
 						$('#Back_Storage__ID').val((nq+bs).toFixed(0));
 						$('#Front_Storage__ID').val(fs.toFixed(0));
-						$('#Total_in_storage__ID').val((bs+fs+nq).toFixed(0))					
+						$('#Total_in_storage__ID').val((bs+fs+nq).toFixed(0))
+						$('#Current_Batch__ID').val((cb).toFixed(0));
+						if(bs+fs==0) {
+							$("#F__ID input[name=Active_Batch]").val('Active');
+							$('#Current_Batch__ID').val((nq).toFixed(0));
+						}
 					break;
 				case 'Stocktake':
 						$('#Back_Storage__ID').val((bs).toFixed(0));
-						$('#Front_Storage__ID').val((fs-nq).toFixed(0));
-						$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
+						$('#Front_Storage__ID').val((nq).toFixed(0));
+						$('#Total_in_storage__ID').val((bs+nq).toFixed(0))					
+						//$('#Current_Batch__ID').val((cb).toFixed(0));					
 					break;
 				default:
 					break;
 				}
 			})
+			//-------------------------------------
+			var set_active_batch=function(product_uid,cn){
+				//jQuery.ajaxSetup({ async: false });
+				m.query={$and:[{I1:parseInt(product_uid)},{I3:"Put in"},{"Data.Active_Batch": { "$eq": "Not Active"}}] }
+				var query={I1:parseInt(product_uid)}
+                    $vm.request({ cmd:'find',table:m.Table,query:query}, function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							$('#F__ID input[name="Current_Batch"]').val(res.result[res.result.length-1].Data.Quantity);
+							$('#F__ID #Current_Batch__ID').val((parseFloat(res.result[res.result.length-1].Data.Quantity)-cn).toFixed(0));
+							$('#F__ID input[name="Usage_Type"]').val(res.result[res.result.length-1].Data.Usage_Type);
+							$('#F__ID input[name="Usage_Date"]').val(res.result[res.result.length-1].Data.Usage_Date);
+							$('#F__ID input[name="Active_Batch"]').val("Active");
+                        }
+						else{
+							console.log("Nothing in db")
+						}
+                    })
+                  //jQuery.ajaxSetup({ async: true });                
+			}
 			//-------------------------------------
 			var get_last_transaction=function(product_uid){
 				//jQuery.ajaxSetup({ async: false });
@@ -335,8 +390,11 @@
                             return;
                         }        
                         if (res.result.length > 0) {
-							$('#F__ID input[name="Front_Storage"]').val(res.result[0].I4.toString())
-							$('#F__ID input[name="Back_Storage"]').val(res.result[0].I5.toString())
+							$('#F__ID input[name="Front_Storage"]').val(res.result[0].I4.toString());
+							$('#F__ID input[name="Back_Storage"]').val(res.result[0].I5.toString());
+							if(res.result[0].I6!=undefined && res.result[0].I6!="" ){
+								$('#F__ID input[name="Current_Batch"]').val(res.result[0].I6.toString());
+							} 
 							$('#F__ID input[name="Total_in_storage"]').val(res.result[0].Data.Total_in_storage)
                         }
 						else{
@@ -360,7 +418,7 @@
 				$("#F__ID input[name=Product_uid]").val(items["UID"]);
 				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
 				$("#F__ID input[name=Format]").val(items.record.I3);
-				$("#F__ID #conversion__ID").text("1 tbsp = "+items.record.Data.Tbsp_to_gram+" grams");
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tbsp_to_gram+" grams");
 				conversion=parseFloat(items.record.Data.Tbsp_to_gram);
 				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
