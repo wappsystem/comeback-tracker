@@ -83,25 +83,25 @@
 								<span class="question">
 									Transaction type
 								</span>
-								<div class="grid-container-4">
+								<div class="grid-container-3">
 									<div><input id="Transaction_type_2__ID" name="Transaction_type" type="radio"
 											value="Put in">
-										<label class="rd_btn " for="Transaction_type_2__ID">Put in</label>
+										<label class="rd_btn width_btn_full textcenter" for="Transaction_type_2__ID">Put in</label>
 									</div>
 									<div>
 										<input id="Transaction_type_1__ID" name="Transaction_type" type="radio"
 											value="Take out">
-										<label class="rd_btn " for="Transaction_type_1__ID">Take out</label>
+										<label class="rd_btn width_btn_full textcenter" for="Transaction_type_1__ID">Take out</label>
 									</div>
 									<div><input id="Transaction_type_3__ID" name="Transaction_type" type="radio"
 											value="Move">
-										<label class="rd_btn " for="Transaction_type_3__ID">Move</label>
+										<label class="rd_btn width_btn_full textcenter" for="Transaction_type_3__ID">Move</label>
 									</div>
-									<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
+									<!--<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
 											value="Stocktake">
 										<label class="rd_btn " for="Transaction_type_4__ID">Stocktake
 											Adjustment</label>
-									</div>
+									</div>-->
 								</div>
 							</fieldset>
 						</div>
@@ -189,19 +189,24 @@
 			var load = m.load;
 			m.load = function () {
 				load();
-				console.log(JSON.stringify(m.input))
+				console.log(JSON.stringify(m.input.record))
 				$('#F__ID input[name="Front_Storage"]').val("0");
 				$('#F__ID input[name="Back_Storage"]').val("0");
 				$('#F__ID input[name="Total_in_storage"]').val("0");
+				$('#F__ID input[name="Current_Batch"]').val("0");
 				$('#product_selection__ID').hide();
 				if(m.input.record!=undefined){
+					$('#F__ID input[name="Front_Storage"]').val("0");
+					$('#F__ID input[name="Back_Storage"]').val("0");
+					$('#F__ID input[name="Total_in_storage"]').val("0");
+					$('#F__ID input[name="Current_Batch"]').val("0");
 					$("#F__ID input[name=Product_uid]").val(m.input.record.UID);
 					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
 					$("#F__ID input[name=Format]").val(m.input.record.I3);
+					conversion=parseFloat(m.input.record.Data.Tbsp_to_grams);
 					if(m.input.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 					else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);};
 					$("#F__ID #conversion__ID").text("1 tsp = "+m.input.record.Data.Tbsp_to_grams+" grams");
-					conversion=parseFloat(m.input.record.Data.Tbsp_to_grams);
 					get_last_transaction(m.input.record.UID);
 					$('#product_selection__ID').show();
 				}
@@ -226,10 +231,10 @@
 						document.getElementById('Usage_Date__ID').readOnly=false;
 						document.getElementById('Usage_Type__ID').disabled=false;
 						break;
-					case 'Stocktake':
+					/*case 'Stocktake':
 						$('#quantity_label__ID').text("Set Quantity in Front Storage");
 						$('#Transaction_type_in__ID').hide();
-						break;
+						break;*/
 					default:
 						$('#quantity_label__ID').text("Quantity");
 						$('#Transaction_type_in__ID').hide();
@@ -252,22 +257,17 @@
 			//-------------------------------------
 			$("#F__ID #select_powder__ID").change(function () {
 				$('#F__ID input[name="Quantity"]').val((conversion*parseFloat($('#select_powder__ID').val())).toFixed(0));
-				var bs=0;
-				var fs=0;
-				var nq=0;
-				bs=parseFloat($('#F__ID input[name="Back_Storage"]').val());
-				fs=parseFloat($('#F__ID input[name="Front_Storage"]').val());
-				nq=parseFloat($('#F__ID input[name="Quantity"]').val())
-				$('#Back_Storage__ID').val((bs).toFixed(0));
-				$('#Front_Storage__ID').val((fs-nq).toFixed(0));
-				$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
-
-
+				update_stock();
 			})
 			//-------------------------------------
 			$("input[name='Transaction_type']").change(function () {
 				if($("#F__ID input[name=Format").val()=="Powder") {console.log("Format");$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {console.log("Format hide");$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
+				$("#F__ID #Quantity__ID").val("");
+				$('#Back_Storage__ID').val("");
+				$('#Front_Storage__ID').val("");
+				$('#Total_in_storage__ID').val("")					
+				$('#Current_Batch__ID').val("")
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
             	case 'Move': 
 					$('#quantity_label__ID').text("Quantity moved from BS to FS");
@@ -296,12 +296,12 @@
 					$('#quantity_div__ID').show();	
 					$("#F__ID input[name=Active_Batch]").val('Not Active');					
 					break;
-				case 'Stocktake':
+				/*case 'Stocktake':
 					$('#quantity_label__ID').text("Set Quantity in Front Storage");
 					$('#Transaction_type_in__ID').hide();
 					$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);						
 					$('#quantity_div__ID').show();						
-					break;
+					break;*/
 				default:
 					$('#quantity_label__ID').text("Quantity");
 					$('#Transaction_type_in__ID').hide();
@@ -311,51 +311,68 @@
 				}
 			})
 			//-------------------------------------
-			$("input[name='Quantity']").change(function () {
+			var update_stock=function(){
+				console.log("QNTY")
 				var bs=0;
 				var fs=0;
 				var nq=0;
 				var cb=0;
 				bs=parseFloat($('#F__ID input[name="Back_Storage"]').val());
 				fs=parseFloat($('#F__ID input[name="Front_Storage"]').val());
-				nq=parseFloat($('#F__ID input[name="Quantity"]').val())
-				cb=parseFloat($('#F__ID input[name="Current_Batch"]').val())
+				nq=parseFloat($('#F__ID input[name="Quantity"]').val());
+				cb=parseFloat($('#F__ID input[name="Current_Batch"]').val());
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
             	case 'Move': 
-						$('#Back_Storage__ID').val((bs-nq).toFixed(0));
-						$('#Front_Storage__ID').val((fs+nq).toFixed(0));
-						$('#Total_in_storage__ID').val((bs+fs).toFixed(0));					
-						$('#Current_Batch__ID').val((cb).toFixed(0));					
+						if(bs-nq < 0) {
+							$vm.alert("Not enough in Back Storage. Max = "+bs.toFixed(0))
+							nq=bs;
+							$('#F__ID input[name="Quantity"]').val(nq.toFixed(0));
+						}
+						$('#F__ID #Back_Storage__ID').val((bs-nq).toFixed(0));
+						$('#F__ID #Front_Storage__ID').val((fs+nq).toFixed(0));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs).toFixed(0));					
+						$('#F__ID #Current_Batch__ID').val((cb).toFixed(0));					
 					break;
 				case 'Take out':
-						$('#Back_Storage__ID').val((bs).toFixed(0));
-						$('#Front_Storage__ID').val((fs-nq).toFixed(0));
-						$('#Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
-						$('#Current_Batch__ID').val((cb-nq).toFixed(0));
+					console.log("cur: "+cb+ " nq: "+nq)
+						if(fs-nq < 0) {
+							$vm.alert("Not enough in Front Storage. Max = "+fs.toFixed(0))
+							nq=fs;
+							$('#F__ID input[name="Quantity"]').val(nq.toFixed(0));
+						}
+						$('#F__ID #Back_Storage__ID').val((bs).toFixed(0));
+						$('#F__ID #Front_Storage__ID').val((fs-nq).toFixed(0));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
+						$('#F__ID #Current_Batch__ID').val((cb-nq).toFixed(0));
 						var cn=cb-nq;
 						if(cb-nq<=0) {
 							set_active_batch(cn);
 						}				
 					break;
 				case 'Put in':
-						$('#Back_Storage__ID').val((nq+bs).toFixed(0));
-						$('#Front_Storage__ID').val(fs.toFixed(0));
-						$('#Total_in_storage__ID').val((bs+fs+nq).toFixed(0))
-						$('#Current_Batch__ID').val((cb).toFixed(0));
+						$('#F__ID #Back_Storage__ID').val((nq+bs).toFixed(0));
+						$('#F__ID #Front_Storage__ID').val(fs.toFixed(0));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs+nq).toFixed(0))
+						$('#F__ID #Current_Batch__ID').val((cb).toFixed(0));
 						if(bs+fs==0) {
 							$("#F__ID input[name=Active_Batch]").val('Active');
-							$('#Current_Batch__ID').val((nq).toFixed(0));
+							$('#F__ID #Current_Batch__ID').val((nq).toFixed(0));
 						}
 					break;
-				case 'Stocktake':
+				/*case 'Stocktake':
 						$('#Back_Storage__ID').val((bs).toFixed(0));
 						$('#Front_Storage__ID').val((nq).toFixed(0));
 						$('#Total_in_storage__ID').val((bs+nq).toFixed(0))					
 						//$('#Current_Batch__ID').val((cb).toFixed(0));					
-					break;
+					break;*/
 				default:
 					break;
 				}
+
+			}
+			//-------------------------------------
+			$("input[name='Quantity']").change(function () {
+				update_stock();
 			})
 			//-------------------------------------
 			var set_active_batch=function(product_uid,cn){
@@ -399,6 +416,10 @@
                         }
 						else{
 							console.log("Nothing in db")
+							$('#F__ID input[name="Front_Storage"]').val("0");
+							$('#F__ID input[name="Back_Storage"]').val("0");
+							$('#F__ID input[name="Total_in_storage"]').val("0");
+							$('#F__ID input[name="Current_Batch"]').val("0");
 						}
                     })
                   //jQuery.ajaxSetup({ async: true });                
@@ -415,6 +436,10 @@
 			}
 			var autocomplete_req_1 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_1 = function (items) {
+				$('#F__ID input[name="Front_Storage"]').val("0");
+				$('#F__ID input[name="Back_Storage"]').val("0");
+				$('#F__ID input[name="Total_in_storage"]').val("0");
+				$('#F__ID input[name="Current_Batch"]').val("0");
 				$("#F__ID input[name=Product_uid]").val(items["UID"]);
 				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
 				$("#F__ID input[name=Format]").val(items.record.I3);
