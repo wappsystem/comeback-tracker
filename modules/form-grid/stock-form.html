@@ -203,6 +203,7 @@
 					$("#F__ID input[name=Product_uid]").val(m.input.record.UID);
 					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
 					$("#F__ID input[name=Format]").val(m.input.record.I3);
+
 					conversion=parseFloat(m.input.record.Data.Tbsp_to_grams);
 					if(m.input.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 					else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);};
@@ -248,6 +249,8 @@
 				data.Front_Storage=$('#Front_Storage__ID').val();
 				data.Back_Storage=$('#Back_Storage__ID').val();
 				data.Current_Batch=$('#Current_Batch__ID').val();
+				data.Usage_Type=$('#Usage_Type__ID').val();
+				data.Usage_Date=$('#Usage_Date__ID').val();
 				index.I1=parseInt(data.Product_uid)
 				index.I3=data.Transaction_type;
 				index.I4=parseFloat($('#Front_Storage__ID').val()).toFixed(0);
@@ -346,7 +349,8 @@
 						$('#F__ID #Current_Batch__ID').val((cb-nq).toFixed(0));
 						var cn=cb-nq;
 						if(cb-nq<=0) {
-							set_active_batch(cn);
+							var prod_id= $('#F__ID input[name="Product_uid"]').val();
+							set_active_batch(prod_id,cn);
 						}				
 					break;
 				case 'Put in':
@@ -377,19 +381,51 @@
 			//-------------------------------------
 			var set_active_batch=function(product_uid,cn){
 				//jQuery.ajaxSetup({ async: false });
-				m.query={$and:[{I1:parseInt(product_uid)},{I3:"Put in"},{"Data.Active_Batch": { "$eq": "Not Active"}}] }
-				var query={I1:parseInt(product_uid)}
+				console.log("set_active_batch")
+				var query={$and:[{I1:parseInt(product_uid)},{I3: { "$eq":"Put in"}},{"Data.Active_Batch": { "$eq": "Not Active"}}] }
                     $vm.request({ cmd:'find',table:m.Table,query:query}, function (res) {
                         if (res.sys.permission == false) {
                             $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
                             return;
                         }        
                         if (res.result.length > 0) {
+							console.log("get result")
 							$('#F__ID input[name="Current_Batch"]').val(res.result[res.result.length-1].Data.Quantity);
 							$('#F__ID #Current_Batch__ID').val((parseFloat(res.result[res.result.length-1].Data.Quantity)-cn).toFixed(0));
-							$('#F__ID input[name="Usage_Type"]').val(res.result[res.result.length-1].Data.Usage_Type);
+							$('#F__ID #Usage_Type__ID').val(res.result[res.result.length-1].Data.Usage_Type);
 							$('#F__ID input[name="Usage_Date"]').val(res.result[res.result.length-1].Data.Usage_Date);
-							$('#F__ID input[name="Active_Batch"]').val("Active");
+
+/*							// Save data here, and do the update after submit.
+							var rid=res.result[res.result.length-1]._id
+							//$('#F__ID input[name="Active_Batch"]').val("Active");
+							var all_data=res.result[res.result.length-1].Data;
+							all_data.Active_Batch="Active";
+							$vm.request({ cmd:'update',id:rid,table:m.Table,data:all_data}, function (res) {
+								if(res.status=="np"){
+                        			alert("No permission to update this record.");
+                        		return;
+                    			}
+							})
+*/							
+                        }
+						else{
+							console.log("Nothing in db")
+						}
+                    })
+                  //jQuery.ajaxSetup({ async: true });                
+			}
+			//-------------------------------------
+			var get_active_batch=function(product_uid){
+				//jQuery.ajaxSetup({ async: false });
+				var query={$and:[{I1:parseInt(product_uid)},{I3: { "$eq":"Put in"}},{"Data.Active_Batch": { "$eq": "Active"}}] }
+                    $vm.request({ cmd:'find',table:m.Table,query:query,limit:1}, function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							$('#F__ID #Usage_Type__ID').val(res.result[0].Data.Usage_Type);
+							$('#F__ID input[name="Usage_Date"]').val(res.result[0].Data.Usage_Date);
                         }
 						else{
 							console.log("Nothing in db")
@@ -413,6 +449,9 @@
 								$('#F__ID input[name="Current_Batch"]').val(res.result[0].I6.toString());
 							} 
 							$('#F__ID input[name="Total_in_storage"]').val(res.result[0].Data.Total_in_storage)
+							//$("#F__ID input[name=Usage_Type]").val(m.input.record.Data.Usage_Type);
+							//$("#F__ID input[name=Usage_Date]").val(m.input.record.Data.Usage_Date);
+
                         }
 						else{
 							console.log("Nothing in db")
@@ -422,7 +461,8 @@
 							$('#F__ID input[name="Current_Batch"]').val("0");
 						}
                     })
-                  //jQuery.ajaxSetup({ async: true });                
+                  //jQuery.ajaxSetup({ async: true }); 
+				  get_active_batch(product_uid)               
 			}
 			//-------------------------------------
 			//auto select client
