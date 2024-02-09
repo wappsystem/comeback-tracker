@@ -14,29 +14,19 @@
 									<input type=text id="record__ID" class=formcontrol readonly />
 								</label>
 							</div>
-							<div><label><span class="question">Stock ID</span>
-									<input type=number min="1" name="Stock_ID" class=formcontrol />
-								</label>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<fieldset class="">
-						<div class="grid-container-1">
 							<div><label><span class="question">Product Name</span>
-									<input type=text name="Product_Name" class="formcontrol width_80" />
-								</label>
-							</div>
+								<input type=text name="Product_Name" class="formcontrol width_80" />
+							</label>
 						</div>
+					</div>
 					</fieldset>
 				</div>
-				<div class="formgroup">
+				<!--<div class="formgroup">
 					<label><span class="question">Characteristics</span></label><br>
 					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span>Add
 							Characteristic</span></u>
 					<table id=grid_item_a__ID></table>
-				</div>
+				</div>-->
 				<div class="formgroup">
 					<div class="questiongroup ">
 						<fieldset class="">
@@ -70,7 +60,7 @@
 				</div>
 				<div class="formgroup">
 					<fieldset class="">
-						<div class="grid-container-2">
+						<div class="grid-container-3">
 							<div>
 								<label><span class="question">Location Front Storage</span>
 									<input type=text name="Location_FS" class="formcontrol width_80" />
@@ -79,6 +69,11 @@
 							<div>
 								<label><span class="question">Location Back Storage</span>
 									<input type=text name="Location_BS" class="formcontrol width_80" />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Warning Level for Alert</span>
+									<input type=text name="Warning_Level" class="formcontrol width_80" />
 								</label>
 							</div>
 						</div>
@@ -119,7 +114,6 @@
 		function F__ID() {
 			//-------------------------------------
 			VmInclude: '__HOST__/assets/js/form.01.js'
-			VmInclude: '__HOST__/assets/js/form-item-a.01.js'
 			//-------------------------------------
 			var load = m.load;
 			m.load = function () {
@@ -130,8 +124,8 @@
 					$('#F__ID input[name=Tbsp_to_grams]').val("");
 				}
 				//-------item a part
-				m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items_a;
-				m.item_a_render();
+//				m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items_a;
+//				m.item_a_render();
 				//-------item a part
 			}
 			//----------------------------------
@@ -145,7 +139,7 @@
 			//item a part
 			m.item_a_fields = "Characteristic,Comments,_Remove";
 			//----------------------------------
-			$('#item_a_add__ID').on('click', function () { m.item_a_add(); })
+			//$('#item_a_add__ID').on('click', function () { m.item_a_add(); })
 			//----------------------------------
 			m.item_a_cell_render = function (records, I, field, td, set_value, source) {
 			}

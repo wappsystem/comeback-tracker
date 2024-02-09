@@ -265,6 +265,40 @@
 						}
 					})
 				}
+				//var stock_level_table=$vm.module_list[$vm.vm['__ID'].name].stock_level_table;
+				var query={I1:parseInt(data.Product_uid)} 
+                    $vm.request({ cmd:'find',table:m.stock_level_table,query:query,limit:1},function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							console.log("get result")
+							var level_rid=res.result[0]._id
+							index2={};
+							index2.I2=parseFloat(data.Total_in_storage);
+							index2.I1=index.I1
+							$vm.request({ cmd:'update',id:level_rid,table:m.stock_level_table,index:index2}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+
+						}
+						else{
+							console.log("Nothing in db")
+							index2={};
+							index2.I2=parseFloat(data.Total_in_storage);
+							index2.I1=index.I1
+							$vm.request({ cmd:'insert',table:m.stock_level_table,index:index2}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+						}
+                    })
 			}
 			//-------------------------------------
 			$("#F__ID #select_powder__ID").change(function () {

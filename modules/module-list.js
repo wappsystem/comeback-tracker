@@ -6,10 +6,14 @@
     var m=$vm.module_list;
     var api="wapp";
     //-------------------------------------------------------------------------------------
-    m[p+"products-data"] ={url:H+"/form-grid/products-data.html",Table:"products-comeback",form_module:"products-form",child_stock:"stock-form",task_name:"Products",};                   
+    m[p+"products-data"] ={url:H+"/form-grid/products-data.html",Table:"products-comeback",form_module:"products-form",child_stock:"stock-form",child_process:"process-form",task_name:"Products",};                   
     m[p+"products-form"] ={url:H+"/form-grid/products-form.html",Table:"products-comeback",client_table:"supplier-comeback",task_name:"Products"};
     m[p+"stock-data"] ={url:H+"/form-grid/stock-data.html",Table:"stock-comeback",form_module:"stock-form",task_name:"Stock Transaction"};                   
-    m[p+"stock-form"] ={url:H+"/form-grid/stock-form.html",Table:"stock-comeback",client_table:"products-comeback",task_name:"Stock Transaction"};
+    m[p+"stock-form"] ={url:H+"/form-grid/stock-form.html",Table:"stock-comeback",client_table:"products-comeback",stock_level_table:"stock-level-comeback",task_name:"Stock Transaction"};
+    m[p+"process-data"] ={url:H+"/form-grid/process-data.html",Table:"process-comeback",form_module:"process-form",task_name:"Process"};                   
+    m[p+"process-form"] ={url:H+"/form-grid/process-form.html",Table:"process-comeback",client_table:"products-comeback",task_name:"Process"};
+    m[p+"stock-level-data"] ={url:H+"/form-grid/stock-level-data.html",Table:"products-comeback",Table2:"stock-level-comeback",task_name:"Stock Level"};                   
+
     m[p+"mixture-data"] ={url:H+"/form-grid/mixture-data.html",Table:"mixture-comeback",form_module:"mixture-form",task_name:"Mixture"};                   
     m[p+"mixture-form"] ={url:H+"/form-grid/mixture-form.html",Table:"mixture-comeback",task_name:"Mixture"};
     m[p+"outcomes-data"] ={url:H+"/form-grid/outcomes-data.html",Table:"outcomes-comeback",form_module:"outcomes-form",task_name:"Outcomes"};                   
@@ -33,7 +37,9 @@
     //if(window.location.toString().indexOf('tb=demo')!=-1){
         for(p in $vm.module_list){
             $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
+            $vm.module_list[p].Table2="demo-"+$vm.module_list[p].Table2;
             $vm.module_list[p].client_table="demo-"+$vm.module_list[p].client_table;
+            $vm.module_list[p].stock_level_table="demo-"+$vm.module_list[p].stock_level_table;
         }
     //}
 

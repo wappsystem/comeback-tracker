@@ -9,7 +9,7 @@
             //-------------------------------------
             $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
             //-------------------------------------
-            var fields="_System_ID,Stock_ID,Product_Name,Format,Tbsp_to_grams,Location_FS,Location_BS,Supplier,_View_and/or_Change_Stock";
+            var fields="_System_ID,Product_Name,Format,Tbsp_to_grams,Location_FS,Location_BS,Warning_Level,Supplier,_View_and/or_Change_Stock,_Process";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
@@ -22,6 +22,13 @@
                         td.find('u').on('click',function(){
                             //console.log(JSON.stringify(records[I]))
     						$vm.load_module(m.child_stock,'',{record:records[I]});
+                        });
+                        break;
+                        case '_Process':
+                        td.html("<u style='cursor:pointer'>Process</u>");
+                        td.find('u').on('click',function(){
+                            //console.log(JSON.stringify(records[I]))
+    						$vm.load_module(m.child_process,'',{record:records[I]});
                         });
                         break;
                 }

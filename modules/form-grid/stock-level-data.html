@@ -1,0 +1,30 @@
+<div id=D__ID>
+    <div>
+            <!--VmInclude:__HOST__/assets/html/grid.01.html-->
+        </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__HOST__/assets/js/grid.01.js'
+            //-------------------------------------
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
+            //-------------------------------------
+            var fields="_System_ID,Product_Name,Location_FS,Location_BS,Stock_level,Warning_Level";
+            m.fields=""+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.sort={_id:1}
+            m.cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+                    case '_System_ID':
+                        td.html(records[I].UID);
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        /*VmInclude:__HOST__/assets/css/grid.css*/
+        /*VmInclude:__HOST__/assets/css/wapp-form.css*/
+    </style>
+</div>

@@ -2,12 +2,14 @@
     <div class='panel__ID'>
         <h1>Comeback Tracker</h1>
         <p></p>
-        <button type="button" id=ingredients__ID class="btn" title="Products">Products</button>
-        <button type="button" id=stock__ID class="btn" title="stock">Stock</button>
+        <button type="button" id=ingredients__ID class="btn" title="Products">Product List</button>
+        <button type="button" id=stock__ID class="btn" title="stock">Stock Taransaction</button>
         <!--<button type="button" id=subtract__ID class="btn" title="Add">Take from stock</button>
         <button type="button" id=mixture__ID class="btn">Define a Mixture</button>
         <button type="button" id=people__ID class="btn">People</button>
         <button type="button" id=outcomes__ID class="btn">Outcomes</button>-->
+        <br>
+        <button type="button" id=stock_level__ID class="btn">Check Stock Level</button>
         <br>
         <button type="button" id=scanned__ID class="btn">Upload scanned data</button>
         <!--<button type="button" id=data_entry__ID class="btn">Data entry - eCRF</button>
@@ -22,6 +24,9 @@
     		})
 			$('#stock__ID').on('click',function(e){
       		  $vm.load_module('stock-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#stock_level__ID').on('click',function(e){
+      		  $vm.load_module('stock-level-data',$vm.root_layout_content_slot,{});
     		})
 			$('#mixture__ID').on('click',function(e){
       		  $vm.load_module('mixture-data',$vm.root_layout_content_slot,{});

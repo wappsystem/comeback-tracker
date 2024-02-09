@@ -1,0 +1,93 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95">
+		<!-- form container start -->
+		<div class="formbox">
+			<!-- form start -->
+			<form id="F__ID">
+				<span id=title__ID></span>
+				<!-- form-design name and study id -->
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-4">
+							<div>
+								<label><span class="question">Product Name</span>
+									<input type=text name="Product_Name" id="Product_Name__ID" class="formcontrol threeqwidth" />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Products ID</span>
+									<input type=text name="Product_uid" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="formgroup right">
+					<button type="submit" id="submit__ID" class="btn">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: '__HOST__/assets/js/form.01.js'
+			//-------------------------------------
+			var conversion=0;
+			var load = m.load;
+			m.load = function () {
+				load();
+				console.log(JSON.stringify(m.input.record))
+				if(m.input.record!=undefined){
+					$("#F__ID input[name=Product_uid]").val(m.input.record.UID);
+					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
+				}
+				m.input.record={};
+			}
+			//----------------------------------
+			m.before_submit = function (data, index) {
+			}
+			//-------------------------------------
+			//-------------------------------------
+			//auto select client
+			var get_name = function (record) {
+				var name = record.Data.Product_Name;
+				return name;
+			}
+			var get_client_info = function (record) {
+				var name = record.Data.Product_Name
+				return name;
+			}
+			var autocomplete_req_1 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_callback_1 = function (items) {
+				$("#F__ID input[name=Product_uid]").val(items["UID"]);
+				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
+			}
+			var autocomplete_list_1 = function (records) {
+				var items = [];
+				for (var i = 0; i < records.length; i++) {
+					var obj = {};
+					obj.label = get_name(records[i]);
+					obj['UID'] = records[i].UID;
+					obj['record'] = records[i];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait1 = function () {
+				$vm.autocomplete($('#Product_Name__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
+			}
+			var I = 0; var loop_1 = setInterval(function () {
+				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }
+				I++; if (I > 50) { clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			}, 100);
+
+			//-------------------------------------
+
+		}
+	</script>
+	<style>
+		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
+	</style>
+</div>
