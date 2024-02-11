@@ -217,7 +217,7 @@
 					get_last_transaction(m.input.record.UID);
 					$('#product_selection__ID').show();
 				}
-				m.input.record={};
+				//m.input.record={};
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
 					case 'Move': 
 						$('#quantity_label__ID').text("Quantity moved from BS to FS");
@@ -542,6 +542,7 @@
 				console.log(JSON.stringify(items.record));
 			}
 			var autocomplete_list_1 = function (records) {
+				console.log("auto_1")
 				var items = [];
 				for (var i = 0; i < records.length; i++) {
 					var obj = {};
@@ -553,6 +554,7 @@
 				return items;
 			}
 			var wait1 = function () {
+				console.log("wait_1")
 				$vm.autocomplete($('#Product_Name__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
 			}
 			var I = 0; var loop_1 = setInterval(function () {
@@ -568,6 +570,7 @@
 				update_stock();
 			}
 			var autocomplete_list_2=function(records){
+				console.log("auto_2")
 				var items=[];
 				console.log(JSON.stringify(records))
 				for(var i=0;i<records.length;i++){
@@ -578,11 +581,12 @@
 				}
 				return items;
 			}
-			var wait1=function(){
+			var wait2=function(){
+				console.log("wait_2")
 				$vm.autocomplete($('#select_powder__ID'),autocomplete_req_2,autocomplete_list_2,autocomplete_callback_2);
 			}
 			var I=0; var loop_2=setInterval(function (){
-				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_2); wait1(); }
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_2); wait2(); }
 				I++; if(I>50){ clearInterval(loop_2); alert("jquery-ui.min.js is not installed."); }
 			},100);
 			//-------------------------------------
