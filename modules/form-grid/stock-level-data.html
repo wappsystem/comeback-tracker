@@ -32,7 +32,7 @@
                 //console.log(JSON.stringify(stock_res))
                 for(var i=0;i<res.result.length-1;i++){
                     for(var j=0;j<stock_res.length;j++){
-                        console.log(res.result[i].UID+' '+stock_res[j].I1)
+                        //console.log(res.result[i].UID+' '+stock_res[j].I1)
                         if(res.result[i].UID==stock_res[j].I1){
                             res.result[i].Data.Stock_level=stock_res[j].I2;
                             break;
@@ -46,6 +46,30 @@
                     case '_System_ID':
                         td.html(records[I].UID);
                         break;
+                        case 'Stock_level':
+                        if(records[I].Data['Stock_level']!=undefined && records[I].Data[field]!=undefined){
+                            if(parseFloat(records[I].Data[field])>parseFloat(records[I].Data['Warning_Level'])){
+                                td.html(records[I].Data[field]);
+                                td.css('background-color','lightgreen')
+                            }
+                            else{
+                                td.html(records[I].Data[field]);
+                                td.css('background-color','red')                        
+                            }
+                        }
+                    break;
+                    case 'Warning_Level':
+                        if(records[I].Data['Stock_level']!=undefined && records[I].Data[field]!=undefined){
+                            if(parseFloat(records[I].Data['Stock_level'])>parseFloat(records[I].Data[field])){
+                                td.html(records[I].Data[field]);
+                                td.css('background-color','lightgreen')
+                            }
+                            else{
+                                td.html(records[I].Data[field]);
+                                td.css('background-color','red')                        
+                            }
+                        }
+                    break;
                 }
             }
             //-------------------------------------
