@@ -11,8 +11,36 @@
             //-------------------------------------
             var fields="_System_ID,Product_Name,Location_FS,Location_BS,Stock_level,Warning_Level";
             m.fields=""+fields+",Submit_date,Submitted_by,_Delete";
+            //m.sort={_id:1}
             //-------------------------------------
-            m.sort={_id:1}
+            var tb=$vm.module_list['stock-level-data'].Table2;
+            var stock_res={}
+            m.load=function(){
+                $vm.request({cmd:"find",table:tb,options:{}},function(res){
+                    if (res.sys.permission == false) {
+                        $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        return;
+                    }
+                    if (res.result.length > 0) {
+                        stock_res=res.result;
+                    }
+                })
+            }
+            //-------------------------------------
+            m.data_process=function(res){
+                //console.log(JSON.stringify(res.result))
+                //console.log(JSON.stringify(stock_res))
+                for(var i=0;i<res.result.length-1;i++){
+                    for(var j=0;j<stock_res.length;j++){
+                        console.log(res.result[i].UID+' '+stock_res[j].I1)
+                        if(res.result[i].UID==stock_res[j].I1){
+                            res.result[i].Data.Stock_level=stock_res[j].I2;
+                            break;
+                        }
+                    }
+                }
+            }
+            //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
                     case '_System_ID':
@@ -21,7 +49,7 @@
                 }
             }
             //-------------------------------------
-        }
+    }
     </script>
     <style>
         /*VmInclude:__HOST__/assets/css/grid.css*/
