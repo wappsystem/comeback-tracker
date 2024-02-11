@@ -217,7 +217,7 @@
 					get_last_transaction(m.input.record.UID);
 					$('#product_selection__ID').show();
 				}
-				//m.input.record={};
+				m.input.record={};
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
 					case 'Move': 
 						$('#quantity_label__ID').text("Quantity moved from BS to FS");
