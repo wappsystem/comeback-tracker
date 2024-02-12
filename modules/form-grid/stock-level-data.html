@@ -30,7 +30,7 @@
             m.data_process=function(res){
                 //console.log(JSON.stringify(res.result))
                 //console.log(JSON.stringify(stock_res))
-                for(var i=0;i<res.result.length-1;i++){
+                for(var i=0;i<res.result.length;i++){
                     for(var j=0;j<stock_res.length;j++){
                         //console.log(res.result[i].UID+' '+stock_res[j].I1)
                         if(res.result[i].UID==stock_res[j].I1){
