@@ -1,0 +1,229 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95">
+		<!-- form container start -->
+		<div class="formbox">
+			<!-- form start -->
+			<form id="F__ID">
+				<span id=title__ID></span>
+				<!-- form-design name and study id -->
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-2">
+							<div><label><span class="question">Formula ID</span>
+									<input type=text id="record__ID" class=formcontrol readonly />
+								</label>
+							</div>
+								<div><label><span class="question">Formula Name </span>
+										<input type=text name="Formula_Name" class="formcontrol width_80" />
+									</label>
+								</div>
+							</div>
+					</fieldset>
+				</div>
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-2">
+							<div><label><span class="question">ID</span>
+								<input type=text name="Name__ID" class="formcontrol" readonly />
+								</label>
+							</div>
+							<div><label><span class="question">Who took the Formula</span>
+								<input type=text id=Name__ID name="First_Name" class="formcontrol width_80" />
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-4">
+							<div>
+								<label><span class="question">Product Name</span>
+									<input type=text name="Product_Name" id="Product_Name__ID" class="formcontrol threeqwidth" />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Products ID</span>
+									<input type=text name="Product_uid" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Format</span>
+									<input type=text name="Format" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+							<div id="convers__ID" style="display:none">
+								<div>
+									<label><span class="question">Conversion</span>
+										<p class="" id="conversion__ID"></p>
+									</label>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="formgroup">
+					<label><span class="question">Ingredients</span></label><br>
+					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span >Add line per ingredient</span></u>
+					<table id=grid_item_a__ID></table>
+				</div>
+				<div class="formgroup">
+						<div class="grid-container-1">
+							<div><label ><span class="question">Text area for scanning QR codes</span>
+								<textarea style="width:98%" type=text name="Scanning_QR" class="formcontrol" ></textarea>
+								</label>
+							</div>
+						</div>
+				</div>
+
+				<div class="formgroup right">
+					<button type="submit" id="submit__ID" class="btn">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: '__HOST__/assets/js/form.01.js'
+			VmInclude: '__HOST__/assets/js/form-item-a.01.js'
+			//-------------------------------------
+			var load = m.load;
+			m.load = function () {
+				load();	
+				//-------------------------------------
+				//-------item a part
+				m.item_a_records=[]; if(m.input.record!=undefined) m.item_a_records=m.input.record.Data.items_a;
+				console.log("AAA"+JSON.stringify(m.input.record))
+				m.item_a_render();
+				//-------item a part
+			}
+            //----------------------------------
+            //item a part
+            m.item_a_fields="Product,ID,Format,Tsp_to_grams,Amount,_Remove";
+            //----------------------------------
+            $('#item_a_add__ID').on('click',function(){ m.item_a_add(); })
+            //----------------------------------
+            m.item_a_cell_render=function(records,I,field,td,set_value,source){
+                switch (field) {
+                 /*   case "Format":
+                        td.html("<select class='formgroup'><option></option><option value='Tablets'>Tablets</option><option value='Powder'>Powder</option><option value='Fluid'>Fluid</option></select>");
+                        td.find('select').val(records[I][field]);
+                        td.find('select').on('change', function () {
+                            var value = $(this).val();
+                            if (value === "" && records[I][field] === undefined) return;
+                            records[I][field] = value;
+                            m.item_a_after_change(records, I, field, td, set_value, source)
+                        });
+                        break;*/
+						case "Product":
+						td.html('<input type=text name="Product" id="Product__ID" class="formcontrol threeqwidth" />')
+						td.find('input').val(records[I][field]);
+                        td.find('input').on('click', function () {
+                            var value = $("#Product_Name__ID").val();
+							console.log("value: "+value)
+                            if (value === "" && records[I][field] === undefined) return;
+                            records[I][field] = value;
+							m.item_a_render();
+                            m.item_a_after_change(records, I, field, td, set_value, source)
+                        });
+                        break;
+                }
+            }
+            //----------------------------------
+            m.item_a_after_change = function (records, I, field, td, set_value, source) {
+				console.log("after change: "+JSON.stringify(records))
+			}
+            //----------------------------------
+            m.item_a_after_remove=function(){
+                //cal();
+            }
+            //----------------------------------
+                
+			m.before_submit = function (data, index) {
+				if(m.item_a_records!=undefined) data.items_a = m.item_a_get_data();
+			}
+			//-------------------------------------
+			//auto select client
+			var get_name = function (record) {
+				var name = record.Data.First_Name;
+				return name;
+			}
+			var get_client_info = function (record) {
+				var name = record.Data.First_Name;
+				return name;
+			}
+			var autocomplete_req_1 = { cmd: "find", field: ".I1", table: m.client2_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_callback_1 = function (items) { $("#F__ID input[name=Name__ID]").val(items["UID"]); $("#F__ID input[name=First_Name]").val(get_client_info(items.record)); }
+			var autocomplete_list_1 = function (records) {
+				var items = [];
+				for (var i = 0; i < records.length; i++) {
+					var obj = {};
+					obj.label = get_name(records[i]);
+					obj['UID'] = records[i].UID;
+					obj['record'] = records[i];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait1 = function () {
+				$vm.autocomplete($('#Name__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
+			}
+			var I = 0; var loop_1 = setInterval(function () {
+				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }
+				I++; if (I > 50) { clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			}, 100);
+
+			//-------------------------------------wait_2
+			//auto select client
+			var get_name_2 = function (record) {
+				var name = record.Data.Product_Name;
+				return name;
+			}
+			var get_client_info_2 = function (record) {
+				var name = record.Data.Product_Name
+				return name;
+			}
+			var autocomplete_req_2 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_callback_2 = function (items) {
+				console.log("autocomplete_callback_2");
+				console.log(JSON.stringify(items));
+				$("#F__ID input[name=Product_uid]").val(items["UID"]);
+				$("#F__ID input[name=Product_Name]").val(get_client_info_2(items.record));
+				$("#F__ID input[name=Format]").val(items.record.I3);
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tbsp_to_gram+" grams");
+				conversion=parseFloat(items.record.Data.Tbsp_to_gram);
+				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
+				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
+				console.log(JSON.stringify(items.record));
+			}
+			var autocomplete_list_2 = function (records) {
+				console.log("auto_2")
+				var items = [];
+				for (var i = 0; i < records.length; i++) {
+					var obj = {};
+					obj.label = get_name_2(records[i]);
+					obj['UID'] = records[i].UID;
+					obj['record'] = records[i];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait2 = function () {
+				console.log("wait_2")
+				$vm.autocomplete($('#Product_Name__ID'), autocomplete_req_2, autocomplete_list_2, autocomplete_callback_2);
+			}
+			var I = 0; var loop_2 = setInterval(function () {
+				console.log("loop");
+				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_2); wait2(); }
+				I++; if (I > 50) { clearInterval(loop_2); alert("jquery-ui.min.js is not installed."); }
+			}, 100);
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		/*VmInclude: '__HOST__/assets/css/form-item-a.01.css'*/
+		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
+	</style>
+</div>

@@ -1,0 +1,12 @@
+[
+    {"datetime":{"date":"20/02/2024","time":"10:30"}},
+    {"people":{"id":1,"name":"Adam"}},
+    {"formula":[
+        {"product":{"product_id":5,"product_name":"Tomato","format":"powder","tsp_to_grams":10,"quantity":1.5}},
+        {"product":{"product_id":4,"product_name":"Broccoli","format":"fluid","quantity":10}},
+        {"product":{"product_id":2,"product_name":"Mushroom","format":"tables","quantity":2}}
+        ]
+    }
+]
+
+https://blog.qr4.nl/QR-Code-Clock.aspx

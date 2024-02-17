@@ -31,29 +31,27 @@
             var old_load = m.load;
             m.load = function () {
                 old_load();
+                console.log("load")
                 m.set_file_link("File_Name");
             }
             //-------------------------------------
             $('#F__ID input[name=File_Name]').on('change', function (evt) {
                 if (this.files.length == 1) {
+                    console.log("Start")
                     file_process(this.files[0])
                 }
             });
             //-------------------------------------
             var file_process = function (file) {
-                // Create a new file reader and on loading a file -> run
+                console.log("file_process")
                 var reader = new FileReader();
                 reader.onload = (function (e) {
-                    ///////////////////////////////////////////////////////////////////////////////
-                    // MANUAL EDIT REQUIRED HERE 
-                    // Specify whether the variabels are listed as rows (false) or as columns (true)
-                    // Specify the delimiter
-                    var columnWise = false;
-                    var delimiter = '=';
-                    // Get contents
                     var contents = e.target.result;
-                    // Split the contents into rows based on the new-line character '\n'
-                })
+                    console.log(contents)
+                    var jsn=JSON.parse(contents);
+                    console.log(JSON.stringify(jsn[2].formula))
+                });
+                reader.readAsText(file);
             }
         }
     </script>

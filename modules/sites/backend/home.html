@@ -4,8 +4,8 @@
         <p></p>
         <button type="button" id=ingredients__ID class="btn" title="Products">Product List</button>
         <button type="button" id=stock__ID class="btn" title="stock">Stock Transaction</button>
-        <!--<button type="button" id=subtract__ID class="btn" title="Add">Take from stock</button>
-        <button type="button" id=mixture__ID class="btn">Define a Mixture</button>
+        <button type="button" id=formula__ID class="btn" title="Add">Formula</button>
+        <!--<button type="button" id=mixture__ID class="btn">Define a Mixture</button>
         <button type="button" id=people__ID class="btn">People</button>
         <button type="button" id=outcomes__ID class="btn">Outcomes</button>-->
         <br>
@@ -28,8 +28,8 @@
 			$('#stock_level__ID').on('click',function(e){
       		  $vm.load_module('stock-level-data',$vm.root_layout_content_slot,{});
     		})
-			$('#mixture__ID').on('click',function(e){
-      		  $vm.load_module('mixture-data',$vm.root_layout_content_slot,{});
+			$('#formula__ID').on('click',function(e){
+      		  $vm.load_module('formula-data',$vm.root_layout_content_slot,{});
     		})
 			$('#people__ID').on('click',function(e){
       		  $vm.load_module('people-data',$vm.root_layout_content_slot,{});
