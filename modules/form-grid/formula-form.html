@@ -29,7 +29,7 @@
 								</label>
 							</div>
 							<div><label><span class="question">Who took the Formula</span>
-								<input type=text id=Name__ID name="First_Name" class="formcontrol width_80" />
+								<input type=text id=Name_first__ID name="First_Name" class="formcontrol width_80" />
 								</label>
 							</div>
 						</div>
@@ -54,6 +54,9 @@
 								</label>
 							</div>
 							<div id="convers__ID" style="display:none">
+								<div style="display:none">
+									<input type=text name="Tsp_to_grams"/>
+								</div>
 								<div>
 									<label><span class="question">Conversion</span>
 										<p class="" id="conversion__ID"></p>
@@ -61,21 +64,44 @@
 								</div>
 							</div>
 						</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<label><span class="question">Ingredients</span></label><br>
-					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span >Add line per ingredient</span></u>
-					<table id=grid_item_a__ID></table>
-				</div>
-				<div class="formgroup">
-						<div class="grid-container-1">
-							<div><label ><span class="question">Text area for scanning QR codes</span>
-								<textarea style="width:98%" type=text name="Scanning_QR" class="formcontrol" ></textarea>
+						<div class="grid-container-3">
+							<div>
+								<label><span class="question" >Add Product to  the Formula</span>
+								<span style='cursor:pointer;padding:2px 0' id=item_a_add__ID class="rd_btn width_btn_full textcenter">Add Product</span>
+								</label>
+								<!--<label><span class="question">Ingredients</span></label><br>
+								<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span >Add line per ingredient</span></u>-->
+							</div>
+							<div>
+								<label><span class="question" id="quantity_label__ID">Quantity</span>
+									<input type="text" name="Quantity" id="Quantity__ID" class="formcontrol" />
+								</label>
+							</div>
+							<div id="select_tbsp__ID">
+								<label><span class="question" id="select_powder_label__ID">Select Measurement</span>
+									<input type="text" name="select_powder" id="select_powder__ID" class="formcontrol" />
 								</label>
 							</div>
 						</div>
+					</fieldset>
 				</div>
+				<div class="formgroup">
+					<table id=grid_item_a__ID></table>
+				</div>
+				<!--<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-2">
+							<div><label><span class="question">Date</span>
+									<input type=date name="Date" class='formcontrol width_80' />
+								</label>
+							</div>
+								<div><label><span class="question">Time </span>
+										<input type=text name="Time" class="formcontrol width_80" />
+									</label>
+								</div>
+							</div>
+					</fieldset>
+				</div>-->
 
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
@@ -93,18 +119,52 @@
 			m.load = function () {
 				load();	
 				//-------------------------------------
+				/*if(m.input.record==undefined) {
+					var currentdate = new Date();
+					$("#F__ID input[name='Date']").val(currentdate.getFullYear() +"-"+(((currentdate.getMonth()+1) < 10)?"0":"") + (currentdate.getMonth()+1) +"-"+((currentdate.getDate() < 10)?"0":"") + currentdate.getDate());
+					$("#F__ID input[name='Time']").val(((currentdate.getHours() < 10)?"0":"") + currentdate.getHours() +":"+ ((currentdate.getMinutes() < 10)?"0":"") + currentdate.getMinutes() +":"+ ((currentdate.getSeconds() < 10)?"0":"") + currentdate.getSeconds());
+				}*/
 				//-------item a part
-				m.item_a_records=[]; if(m.input.record!=undefined) m.item_a_records=m.input.record.Data.items_a;
+				m.item_a_records=[]; 
+				if(m.input.record!=undefined) m.item_a_records=m.input.record.Data.items_a;
 				console.log("AAA"+JSON.stringify(m.input.record))
 				m.item_a_render();
 				//-------item a part
 			}
             //----------------------------------
             //item a part
-            m.item_a_fields="Product,ID,Format,Tsp_to_grams,Amount,_Remove";
+            m.item_a_fields="Product,P_ID,Format,Tsp_to_grams,Quantity,_Remove";
             //----------------------------------
-            $('#item_a_add__ID').on('click',function(){ m.item_a_add(); })
+            $('#item_a_add__ID').on('click',function(){ m.item_a_add_product();m.item_a_cell_render(); })
             //----------------------------------
+			m.item_a_add_product=function(){
+				console.log("ADD")
+				var new_records;
+				var new_row={}
+				for(var i=0;i<m.item_a_field_id.length;i++){
+					var b=m.item_a_field_id[i];
+					switch (b){
+						case "Product": 
+						new_row['Product']=$("#F__ID input[name='Product_Name']").val();
+						break;
+						case "P_ID": 
+						new_row['P_ID']=$("#F__ID input[name='Product_uid']").val();
+						break;
+						case "Format": 
+						new_row['Format']=$("#F__ID input[name='Format']").val();
+						break;
+						case "Tsp_to_grams": 
+						new_row['Tsp_to_grams']=$("#F__ID input[name='Tsp_to_grams']").val();
+						break;
+						case "Quantity": 
+						new_row['Quantity']=$("#F__ID input[name='Quantity']").val();
+						break;
+					}
+				}
+				m.item_a_records.splice(m.item_a_records.length, 0, new_row);
+				m.item_a_render(m.item_a_records.length);
+			};
+			//----------------------------------
             m.item_a_cell_render=function(records,I,field,td,set_value,source){
                 switch (field) {
                  /*   case "Format":
@@ -116,7 +176,7 @@
                             records[I][field] = value;
                             m.item_a_after_change(records, I, field, td, set_value, source)
                         });
-                        break;*/
+                        break;
 						case "Product":
 						td.html('<input type=text name="Product" id="Product__ID" class="formcontrol threeqwidth" />')
 						td.find('input').val(records[I][field]);
@@ -129,6 +189,7 @@
                             m.item_a_after_change(records, I, field, td, set_value, source)
                         });
                         break;
+						*/
                 }
             }
             //----------------------------------
@@ -143,6 +204,14 @@
                 
 			m.before_submit = function (data, index) {
 				if(m.item_a_records!=undefined) data.items_a = m.item_a_get_data();
+				//Sort Product ID in order for easier search
+				var prod=[];
+				for (var i=0;i<data.items_a.length;i++){
+					prod.push(parseInt(data.items_a[i].P_ID))
+				}
+				prod.sort(function(a, b) {return a - b;});
+				console.log(JSON.stringify(prod))
+				index.I2=JSON.stringify(prod);
 			}
 			//-------------------------------------
 			//auto select client
@@ -168,7 +237,7 @@
 				return items;
 			}
 			var wait1 = function () {
-				$vm.autocomplete($('#Name__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
+				$vm.autocomplete($('#Name_first__ID'), autocomplete_req_1, autocomplete_list_1, autocomplete_callback_1);
 			}
 			var I = 0; var loop_1 = setInterval(function () {
 				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }
@@ -188,15 +257,16 @@
 			var autocomplete_req_2 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_2 = function (items) {
 				console.log("autocomplete_callback_2");
-				console.log(JSON.stringify(items));
+				//console.log(JSON.stringify(items));
 				$("#F__ID input[name=Product_uid]").val(items["UID"]);
 				$("#F__ID input[name=Product_Name]").val(get_client_info_2(items.record));
 				$("#F__ID input[name=Format]").val(items.record.I3);
-				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tbsp_to_gram+" grams");
-				conversion=parseFloat(items.record.Data.Tbsp_to_gram);
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_grams+" grams");
+				$("#F__ID input[name=Tsp_to_grams]").val(items.record.Data.Tsp_to_grams);
+				conversion=parseFloat(items.record.Data.Tsp_to_grams);
 				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
-				console.log(JSON.stringify(items.record));
+				//console.log(JSON.stringify(items.record));
 			}
 			var autocomplete_list_2 = function (records) {
 				console.log("auto_2")
@@ -219,6 +289,34 @@
 				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_2); wait2(); }
 				I++; if (I > 50) { clearInterval(loop_2); alert("jquery-ui.min.js is not installed."); }
 			}, 100);
+			//-------------------------------------
+			//auto select predefined measurement
+			var autocomplete_req_3={cmd:"find",field:'.I1',table:m.measurement_table2,options:{},skip:0,limit:10}
+			var autocomplete_callback_3=function(items){
+				//console.log(JSON.stringify(items)) 
+				$('#F__ID input[name="Quantity"]').val((conversion*parseFloat(items.datax.Value)).toFixed(0));
+				//update_stock();
+			}
+			var autocomplete_list_3=function(records){
+				console.log("auto_3")
+				var items=[];
+				//console.log(JSON.stringify(records))
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.datax=records[i].Data;
+					obj.label=records[i].Data.Measurement;
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait3=function(){
+				//console.log("wait_3")
+				$vm.autocomplete($('#select_powder__ID'),autocomplete_req_3,autocomplete_list_3,autocomplete_callback_3);
+			}
+			var I=0; var loop_3=setInterval(function (){
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_3); wait3(); }
+				I++; if(I>50){ clearInterval(loop_3); alert("jquery-ui.min.js is not installed."); }
+			},100);
 			//-------------------------------------
 		}
 	</script>

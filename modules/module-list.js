@@ -15,11 +15,11 @@
     m[p+"stock-level-data"] ={url:H+"/form-grid/stock-level-data.html",Table:"products-comeback",Table2:"stock-level-comeback",task_name:"Stock Level"};                   
 
     m[p+"formula-data"] ={url:H+"/form-grid/formula-data.html",Table:"formula-comeback",form_module:"formula-form",task_name:"Formula"};                   
-    m[p+"formula-form"] ={url:H+"/form-grid/formula-form.html",Table:"formula-comeback",client_table:"products-comeback",client2_table:"people-comeback",task_name:"Formula"};
+    m[p+"formula-form"] ={url:H+"/form-grid/formula-form.html",Table:"formula-comeback",client_table:"products-comeback",client2_table:"people-comeback",measurement_table2:"measurement-comeback",task_name:"Formula"};
     m[p+"outcomes-data"] ={url:H+"/form-grid/outcomes-data.html",Table:"outcomes-comeback",form_module:"outcomes-form",task_name:"Outcomes"};                   
     m[p+"outcomes-form"] ={url:H+"/form-grid/outcomes-form.html",Table:"outcomes-comeback",task_name:"Outcomes"};
     m[p+"scanned-data"] ={url:H+"/form-grid/scanned-data.html",Table:"scanned-comeback",form_module:"scanned-form",task_name:"Upload"};                   
-    m[p+"scanned-form"] ={url:H+"/form-grid/scanned-form.html",Table:"scanned-comeback",Table2:"formula-comeback",Table3:"people-comeback",task_name:"Upload data"};
+    m[p+"scanned-form"] ={url:H+"/form-grid/scanned-form.html",Table:"scanned-comeback",Table2:"formula-comeback",Table3:"people-comeback",task_name:"Scanner input"};
 
     m[p+"panel-setup"]=    	        {url:H+"/panels/setup.html"};
     m[p+"supplier-data"] ={url:H+"/form-grid/supplier-data.html",Table:"supplier-comeback",form_module:"supplier-form",task_name:"Supplier"};                   
@@ -40,6 +40,7 @@
             $vm.module_list[p].client2_table="demo-"+$vm.module_list[p].client2_table;
             $vm.module_list[p].stock_level_table="demo-"+$vm.module_list[p].stock_level_table;
             $vm.module_list[p].measurement_table="demo-"+$vm.module_list[p].measurement_table;
+            $vm.module_list[p].measurement_table2="demo-"+$vm.module_list[p].measurement_table2;
         }
     //}
 

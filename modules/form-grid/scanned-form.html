@@ -10,17 +10,16 @@
                 <div class="formgroup">
                     <fieldset class="">
                         <div class=grid-container-1>
-                            <div><label><span class="question">Upload File</span></label><br>
-                                <label><span class="question"><u style='cursor:pointer'
-                                            id=link_File_Name__ID></u></span></label>
-                                <input type="file" name=File_Name class="formcontrol" /><button class="btn"
-                                    type="button" id=x_File_Name__ID>Remove</button>
-                            </div>
+                                <textarea name="scanned_input" id="scanned_input__ID" style="width:98%; min-height: 400px;" class="formgroup"></textarea>
                         </div>
                     </fieldset>
                 </div>
+                <div class="formgroup right">
+					<button type="submit" id="submit__ID" class="btn">Submit</button>
+				</div>
             </form>
         </div>
+
     </div>
     VmInclude:__COMPONENT__/m/model.01.html
     <script>
@@ -28,30 +27,50 @@
             //-------------------------------------
             VmInclude: '__HOST__/assets/js/form.01.js'
             //-------------------------------------
-            var old_load = m.load;
-            m.load = function () {
-                old_load();
-                console.log("load")
-                m.set_file_link("File_Name");
+			var load = m.load;
+			m.load = function () {
+				load();	
+                document.getElementById("scanned_input__ID").focus();
+
             }
             //-------------------------------------
-            $('#F__ID input[name=File_Name]').on('change', function (evt) {
-                if (this.files.length == 1) {
-                    console.log("Start")
-                    file_process(this.files[0])
-                }
-            });
+            m.before_submit = function (data, index) {
+			}
             //-------------------------------------
-            var file_process = function (file) {
-                console.log("file_process")
-                var reader = new FileReader();
-                reader.onload = (function (e) {
-                    var contents = e.target.result;
-                    console.log(contents)
-                    var jsn=JSON.parse(contents);
-                    console.log(JSON.stringify(jsn[2].formula))
-                });
-                reader.readAsText(file);
+            m.after_insert = function (data,res){
+                check_formula_input(data);
+                $vm.load_module('home');
+            }
+            //-------------------------------------
+            m.after_update = function (data,res){
+                check_formula_input(data);
+                //$vm.load_module('home');
+            }
+            //-------------------------------------
+            var check_formula_input=function(data){
+                console.log("after insert or update")
+                var input_data=data.scanned_input.split("\n")
+                console.log(JSON.stringify(input_data))
+                var start_line=0; var end_line=0;
+                for (var j=0;j<input_data.length;j++){
+                    input_data[j]=input_data[j].replace('\r','');
+                    if(input_data[j]=="START") start_line=j;
+                    if(input_data[j]=="END") end_line=j;
+                    console.log(start_line+' - '+end_line)
+                    
+                }
+                for(var i=start_line+1;i<end_line;i++){
+                    var line=input_data[i];
+                    switch (line.substring(0,4)){
+                        case 'Prod':
+                            var prod=line.split(',');
+                            console.log(JSON.stringify(prod))
+
+
+                        break;
+                    }
+                }
+
             }
         }
     </script>
