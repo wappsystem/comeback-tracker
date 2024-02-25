@@ -12,7 +12,8 @@
         <button type="button" id=stock_level__ID class="btn">Check Stock Level</button>
         <br>
         <button type="button" id=scanned__ID class="btn">Scanner data input</button>
-        <!--<button type="button" id=data_entry__ID class="btn">Data entry - eCRF</button>
+        <!--<button type="button" id=scanned_view__ID class="btn">View scanned data</button>
+        <button type="button" id=data_entry__ID class="btn">Data entry - eCRF</button>
         <button type="button" id=questionnaire__ID class="btn">Questionnaire - eCRF</button>
         <button type="button" id=data_collection_layout__ID class="btn">Data collection layout</button>-->
         </div>
@@ -39,6 +40,9 @@
     		})
 			$('#scanned__ID').on('click',function(e){
       		  $vm.load_module('scanned-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#scanned_view__ID').on('click',function(e){
+      		  $vm.load_module('scanned-view-data',$vm.root_layout_content_slot,{});
     		})
 		}
     </script>

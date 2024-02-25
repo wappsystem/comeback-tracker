@@ -10,3 +10,16 @@
 ]
 
 https://blog.qr4.nl/QR-Code-Clock.aspx
+START
+cd
+START
+{"ingredient":{"P_ID":"5","Product_Name":"Tomato","Format":"Powder","Tsp_to_grams":"10","Quantity":""}}
+{"qty":{"select_powder":"0.5"}}
+{"ingredient":{"P_ID":"2","Product_Name":"Mushroom","Format":"Tablets","Tsp_to_grams":"","Quantity":""}}
+{"qty":{"Quantity":"1"}}
+{"ingredient":{"P_ID":"4","Product_Name":"Broccoli","Format":"Fluid","Tsp_to_grams":"","Quantity":""}}
+{"qty":{"Quantity":"2"}}
+{"ingredient":{"P_ID":"3","Product_Name":"Pumpkin","Format":"Tablets","Tsp_to_grams":"","Quantity":""}}
+{"qty":{"Quantity":"3"}}
+{"people":{"Name__ID":"3","First_Name":"Mary"}}
+END

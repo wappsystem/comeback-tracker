@@ -27,6 +27,8 @@
             //-------------------------------------
             VmInclude: '__HOST__/assets/js/form.01.js'
             //-------------------------------------
+            var ex_fields="UID,Formula_Name,First_Name";
+            var item_fields="Product,P_ID,Format,Tsp_to_grams,Quantity"
 			var load = m.load;
 			m.load = function () {
 				load();	
@@ -44,7 +46,7 @@
             //-------------------------------------
             m.after_update = function (data,res){
                 check_formula_input(data);
-                //$vm.load_module('home');
+                $vm.load_module('home');
             }
             //-------------------------------------
             var check_formula_input=function(data){
@@ -56,21 +58,58 @@
                     input_data[j]=input_data[j].replace('\r','');
                     if(input_data[j]=="START") start_line=j;
                     if(input_data[j]=="END") end_line=j;
-                    console.log(start_line+' - '+end_line)
+                    //console.log(start_line+' - '+end_line)
                     
                 }
+                var formula=[];
                 for(var i=start_line+1;i<end_line;i++){
-                    var line=input_data[i];
-                    switch (line.substring(0,4)){
-                        case 'Prod':
-                            var prod=line.split(',');
-                            console.log(JSON.stringify(prod))
-
-
-                        break;
+                    //console.log(input_data[i])
+                    formula.push(JSON.parse(input_data[i]));
+                }
+                for(var i=0;i<formula.length;i++){
+                    if(formula[i].qty!=undefined) {
+                            if(formula[i].qty.select_powder!=undefined){
+                                //console.log(formula[i-1].ingredient.Tsp_to_grams*formula[i].qty.select_powder) 
+                                formula[i-1].ingredient.Quantity=(formula[i-1].ingredient.Tsp_to_grams*formula[i].qty.select_powder).toFixed(0);
+                            }
+                            else{
+                                formula[i-1].ingredient.Quantity=formula[i].qty.Quantity;
+                            }
                     }
                 }
-
+                var items_a={};
+                var data={};
+                var index={};
+                var temp=[];
+                //data.push(items_a);
+                //console.log(JSON.stringify(data.items_a))
+                for(var i=0;i<formula.length;i++){
+                    if(formula[i].ingredient!=undefined){
+                        temp.push(formula[i].ingredient);
+                    }
+                    else if(formula[i].people!=undefined){
+                        data=formula[i].people;
+                    }
+                }
+                //data.items_a={};
+                data.Input_type="Scanned"
+                data.items_a=temp;
+				var prod=[];
+				for (var i=0;i<data.items_a.length;i++){
+					prod.push(parseInt(data.items_a[i].P_ID))
+				}
+				prod.sort(function(a, b) {return a - b;});
+				//console.log(JSON.stringify(prod))
+				index.I2=JSON.stringify(prod);
+                $vm.request({cmd:'insert',table:'demo-formula-comeback',data:data,index:index},function(res){
+                    if(res.status=="np"){
+                        alert("No permission to insert a new record in to the database.");
+                        if(m.input!=undefined && m.input.goback!=undefined){
+                            $vm.load_module('home');
+                        }
+                        return;
+                    }
+                });
             }
         }
     </script>

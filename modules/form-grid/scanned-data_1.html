@@ -1,0 +1,48 @@
+<section>
+    VmInclude:__HOST__/assets/html/grid.01.html
+  </section>
+  <script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__HOST__/assets/js/grid.01.js
+        //-------------------------------------
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+            //-------------------------------------
+            var fields="_Formula_ID,Formula_Name,First_Name,_Formula,Input_type";
+            m.fields=fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.load=function(){
+                m.query={"Data.Input_type": {"$eq" : "Scanned"}}
+                today = new Date();
+            }
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+                    case '_Formula_ID':
+                        td.html(records[I].UID);
+                        break;
+                    case '_Formula':
+                        var summary=""
+                        for (var j=0;j<records[I].Data.items_a.length;j++){
+                            summary+=records[I].Data.items_a[j].Product+" - "+records[I].Data.items_a[j].Quantity;
+                            if(j<records[I].Data.items_a.length-1) summary+=', '
+                            //console.log(JSON.stringify(records[I].Data.items_a[j].Product))
+                        }
+                        td.html(summary);
+                        break;
+                    case '_Input_type':
+                      var s=records[I].Data.Input_type
+                            var html="<u style='cursor:pointer;color:black'>"+s+"</u>";
+                            td.html(html);
+                            td.find('u').on('click',function(){
+                             //   $vm.load_module_v2('scanned_input','',{record:records[I]})
+                            })
+
+                      break;
+                }
+            }
+    }
+</script>
+<style>
+  /*VmInclude:__HOST__/assets/css/grid.css*/
+</style>
