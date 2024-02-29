@@ -27,16 +27,24 @@
             //-------------------------------------
             VmInclude: '__HOST__/assets/js/form.01.js'
             //-------------------------------------
+            var scanned_time;
             var ex_fields="UID,Formula_Name,First_Name";
             var item_fields="Product,P_ID,Format,Tsp_to_grams,Quantity"
 			var load = m.load;
 			m.load = function () {
 				load();	
                 document.getElementById("scanned_input__ID").focus();
-
             }
             //-------------------------------------
             m.before_submit = function (data, index) {
+                var date_time=new Date()
+                var tm=date_time.toTimeString().substring(0,8);
+                var mm = date_time.getMonth() + 1; // getMonth() is zero-based
+                var dd = date_time.getDate();
+                var dt=[date_time.getFullYear(),(mm>9 ? '' : '0') + mm,(dd>9 ? '' : '0') + dd].join('-');                
+                console.log(dt+' '+tm); 
+                data.Entry_time=dt+' '+tm
+                scanned_time=dt+' '+tm              
 			}
             //-------------------------------------
             m.after_insert = function (data,res){
@@ -80,20 +88,19 @@
                 var items_a={};
                 var data={};
                 var index={};
-                var temp=[];
-                //data.push(items_a);
-                //console.log(JSON.stringify(data.items_a))
+                var ingr=[];
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].ingredient!=undefined){
-                        temp.push(formula[i].ingredient);
+                        ingr.push(formula[i].ingredient);
                     }
                     else if(formula[i].people!=undefined){
                         data=formula[i].people;
                     }
                 }
-                //data.items_a={};
+                data.Entry_time;
                 data.Input_type="Scanned"
-                data.items_a=temp;
+                data.Scan_Entry_Time=scanned_time;
+                data.items_a=ingr;
 				var prod=[];
 				for (var i=0;i<data.items_a.length;i++){
 					prod.push(parseInt(data.items_a[i].P_ID))
@@ -101,7 +108,11 @@
 				prod.sort(function(a, b) {return a - b;});
 				//console.log(JSON.stringify(prod))
 				index.I2=JSON.stringify(prod);
-                $vm.request({cmd:'insert',table:'demo-formula-comeback',data:data,index:index},function(res){
+                index.I3=data.Entry_time;
+                console.log("Formula insert")
+                console.log(data)
+                console.log(index)
+                $vm.request({cmd:'insert',table:'m.Table2',data:data,index:index},function(res){
                     if(res.status=="np"){
                         alert("No permission to insert a new record in to the database.");
                         if(m.input!=undefined && m.input.goback!=undefined){
@@ -110,8 +121,138 @@
                         return;
                     }
                 });
+                update_stock(ingr)
             }
-        }
+            //---------------------------------------
+            var get_last_transaction=function(product_uid){
+				//jQuery.ajaxSetup({ async: false });
+				//new_batch=false;
+                var trans={};
+				var query={I1:parseInt(product_uid)}
+                    $vm.request({ api:m.api,cmd:'find',table:m.Table4,query:query,skip:0,limit:1}, function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+                            trans=res.result[0].Data;
+							if(res.result[0].I6!=undefined && res.result[0].I6!="" ){
+								trans.Current_Batch=res.result[0].I6.toString();
+							} 
+                        }
+						else{
+							console.log("Nothing in db")
+                            trans.Front_Storage=0;
+                            trans.Back_Storage=0;
+                            trans.Current_Batch=0;
+                            trans.Total_in_storage=0;
+						}
+                    })
+                  //jQuery.ajaxSetup({ async: true }); 
+				  //get_active_batch(product_uid)
+                  return trans;               
+			}
+			//-------------------------------------
+			var set_active_batch=function(product_uid,cn){
+				//jQuery.ajaxSetup({ async: false });
+                var batch={};
+                batch.new=false;
+				console.log("set_active_batch")
+				new_batch=false;
+				var query={$and:[{I1:parseInt(product_uid)},{I3: { "$eq":"Put in"}},{"Data.Active_Batch": { "$eq": "Not Active"}}] }
+                    $vm.request({ cmd:'find',table:m.Table4,query:query}, function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return ;
+                        }        
+                        if (res.result.length > 0) {
+							console.log("get result")
+							batch.new=true;
+							// Save data here, and do the update after submit.
+							batch.rid=res.result[res.result.length-1]._id
+							//$('#F__ID input[name="Active_Batch"]').val("Active");
+							batch.data=res.result[res.result.length-1].Data;
+							batch.data.Active_Batch="Active";						
+                        }
+						else{
+							console.log("Nothing in db")
+						}
+                    })
+                    return batch;
+                  //jQuery.ajaxSetup({ async: true });                
+			}
+			//-------------------------------------
+            var update_stock=function(ingredient){
+                var batch={};
+                for(var i=0;i<ingredient.length;i++){
+                    var last_trans={};
+                    jQuery.ajaxSetup({async:false});
+                    last_trans=get_last_transaction(ingredient[i].P_ID);
+                    jQuery.ajaxSetup({async:true});
+                    console.log(JSON.stringify(last_trans))
+                    var bs=0,fs=0,nq=0,cb=0;
+                    bs=parseFloat(last_trans.Back_Storage);
+                    fs=parseFloat(last_trans.Front_Storage);
+                    nq=parseFloat(ingredient[i].Quantity);
+                    cb=parseFloat(last_trans.Current_Batch);
+                    var data={};
+                    data.Back_Storage=bs.toFixed(0);
+                    data.Front_Storage=(fs-nq).toFixed(0);
+                    data.Total_in_storage=(bs+fs-nq).toFixed(0);
+                    data.Current_Batch=(cb-nq).toFixed(0);
+                    data.Usage_Type=last_trans.Usage_Type;
+                    data.Usage_Date=last_trans.Usage_Date;
+                    data.Format=last_trans.Format;
+                    data.Product_Name=ingredient[i].Product;
+                    data.Product_uid=ingredient[i].P_ID
+                    data.Quantity=ingredient[i].Quantity;
+                    data.Active_Batch="";
+                    data.Transaction_type="Take out";
+                    data.Scan_Entry_Time=scanned_time;
+                    var cn=cb-nq;
+                    if(cb-nq<=0) {
+                        var prod_id=ingredient[i].P_ID;
+                        jQuery.ajaxSetup({async:false});
+                        batch=set_active_batch(prod_id,cn);
+                        jQuery.ajaxSetup({async:true});
+                        if(batch.new){
+                            data.Usage_Type=batch.data.Usage_Type;
+                            data.Usage_Date=batch.data.Usage_Date;
+                            cb=parseFloat(batch.data.Quantity);
+                            data.Current_Batch=(cb+cn).toFixed(0);
+                        }
+                    }
+                    //
+                    var index={};
+                    index.I1=parseInt(ingredient[i].P_ID)
+                    index.I3=data.Transaction_type;
+                    index.I4=fs;
+                    index.I5=bs;
+                    index.I6=parseFloat(data.Current_Batch);
+                    if(batch.new){
+                        console.log(batch.data)
+                        console.log("Update 'Put-in' batch ")
+                        $vm.request({ cmd:'update',id:batch.rid,table:m.Table4,data:batch.data}, function (res) {
+                            if(res.status=="np"){
+                                alert("No permission to update this record.");
+                            return;
+                            }
+                        })
+                    }
+                    console.log("New Stock record")
+                    console.log(JSON.stringify(data))
+                    console.log(JSON.stringify(index))
+                    
+                    $vm.request({cmd:'insert',table:m.Table4,data:data,index:index},function(res){
+                        if(res.status=="np"){
+                            alert("No permission to insert a new record in to the database.");
+                        }
+                    });
+                }
+            }
+
+		}
+
     </script>
     <style>
         /*VmInclude:__HOST__/assets/css/wapp-form.css*/

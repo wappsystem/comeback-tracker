@@ -21,12 +21,6 @@
 					</div>
 					</fieldset>
 				</div>
-				<!--<div class="formgroup">
-					<label><span class="question">Characteristics</span></label><br>
-					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span>Add
-							Characteristic</span></u>
-					<table id=grid_item_a__ID></table>
-				</div>-->
 				<div class="formgroup">
 					<div class="questiongroup ">
 						<fieldset class="">
@@ -93,6 +87,11 @@
 						</div>
 					</fieldset>
 				</div>
+				<div class="formgroup">
+					<label><span class="question">Content</span></label><br>
+					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span>Add Content</span></u>
+					<table id=grid_item_a__ID></table>
+				</div>
 				<!--<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-1">
@@ -114,6 +113,7 @@
 		function F__ID() {
 			//-------------------------------------
 			VmInclude: '__HOST__/assets/js/form.01.js'
+			VmInclude: '__HOST__/assets/js/form-item-a.01.js'
 			//-------------------------------------
 			var load = m.load;
 			m.load = function () {
@@ -124,8 +124,8 @@
 					$('#F__ID input[name=Tsp_to_grams]').val("");
 				}
 				//-------item a part
-//				m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items_a;
-//				m.item_a_render();
+				m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items_a;
+				m.item_a_render();
 				//-------item a part
 			}
 			//----------------------------------
@@ -137,9 +137,9 @@
 				}
 			})
 			//item a part
-			m.item_a_fields = "Characteristic,Comments,_Remove";
+			m.item_a_fields = "Content_ID,Content,Amount,_Remove";
 			//----------------------------------
-			//$('#item_a_add__ID').on('click', function () { m.item_a_add(); })
+			$('#item_a_add__ID').on('click', function () { m.item_a_add(); })
 			//----------------------------------
 			m.item_a_cell_render = function (records, I, field, td, set_value, source) {
 			}
@@ -159,6 +159,18 @@
 				index.I2 = data.Product_Name;
 				index.I3 = data.Format;
 				//index.I4 = data.Stocktake_date;
+				if(m.item_a_records!=undefined) data.items_a = m.item_a_get_data();
+				//console.log(JSON.stringify(data))
+				//Sort Product ID in order for easier search
+				var prod=[];
+				for (var i=0;i<data.items_a.length;i++){
+					prod.push(parseInt(data.items_a[i].Content_ID));
+				}
+				prod.sort(function(a, b) {return a - b;});
+				//console.log(JSON.stringify(prod))
+				index.I5=JSON.stringify(prod);
+				data.Content_IDs=JSON.stringify(prod);
+
 			}
 			//-------------------------------------
 			//auto select client
@@ -191,7 +203,6 @@
 				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }
 				I++; if (I > 50) { clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
 			}, 100);
-
 			//-------------------------------------
 
 		}

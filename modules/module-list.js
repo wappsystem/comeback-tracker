@@ -19,7 +19,7 @@
     m[p+"outcomes-data"] ={url:H+"/form-grid/outcomes-data.html",Table:"outcomes-comeback",form_module:"outcomes-form",task_name:"Outcomes"};                   
     m[p+"outcomes-form"] ={url:H+"/form-grid/outcomes-form.html",Table:"outcomes-comeback",task_name:"Outcomes"};
     m[p+"scanned-data"] ={url:H+"/form-grid/scanned-data.html",Table:"scanned-comeback",form_module:"scanned-form",task_name:"Scanner input"};                   
-    m[p+"scanned-form"] ={url:H+"/form-grid/scanned-form.html",Table:"scanned-comeback",Table2:"formula-comeback",Table3:"people-comeback",task_name:"Scanner input"};
+    m[p+"scanned-form"] ={url:H+"/form-grid/scanned-form.html",Table:"scanned-comeback",Table2:"formula-comeback",Table3:"people-comeback",Table4:"stock-comeback",task_name:"Scanner input"};
 
     m[p+"panel-setup"]=    	        {url:H+"/panels/setup.html"};
     m[p+"supplier-data"] ={url:H+"/form-grid/supplier-data.html",Table:"supplier-comeback",form_module:"supplier-form",task_name:"Supplier"};                   
@@ -36,6 +36,8 @@
         for(p in $vm.module_list){
             $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
             $vm.module_list[p].Table2="demo-"+$vm.module_list[p].Table2;
+            $vm.module_list[p].Table3="demo-"+$vm.module_list[p].Table3;
+            $vm.module_list[p].Table4="demo-"+$vm.module_list[p].Table4;
             $vm.module_list[p].client_table="demo-"+$vm.module_list[p].client_table;
             $vm.module_list[p].client2_table="demo-"+$vm.module_list[p].client2_table;
             $vm.module_list[p].stock_level_table="demo-"+$vm.module_list[p].stock_level_table;
