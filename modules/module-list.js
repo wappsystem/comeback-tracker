@@ -7,7 +7,7 @@
     var api="wapp";
     //-------------------------------------------------------------------------------------
     m[p+"products-data"] ={url:H+"/form-grid/products-data.html",Table:"products-comeback",form_module:"products-form",child_stock:"stock-form",child_process:"process-form",task_name:"Products",};                   
-    m[p+"products-form"] ={url:H+"/form-grid/products-form.html",Table:"products-comeback",client_table:"supplier-comeback",task_name:"Products"};
+    m[p+"products-form"] ={url:H+"/form-grid/products-form.html",Table:"products-comeback",client_table:"supplier-comeback",content_table:"content-comeback",task_name:"Products"};
     m[p+"stock-data"] ={url:H+"/form-grid/stock-data.html",Table:"stock-comeback",form_module:"stock-form",task_name:"Stock Transaction"};                   
     m[p+"stock-form"] ={url:H+"/form-grid/stock-form.html",Table:"stock-comeback",client_table:"products-comeback",stock_level_table:"stock-level-comeback",measurement_table:"measurement-comeback",task_name:"Stock Transaction"};
     m[p+"process-data"] ={url:H+"/form-grid/process-data.html",Table:"process-comeback",form_module:"process-form",task_name:"Process"};                   
@@ -28,11 +28,13 @@
     m[p+"people-form"] ={url:H+"/form-grid/people-form.html",Table:"people-comeback",task_name:"People"};
     m[p+"measurement-data"] ={url:H+"/form-grid/measurement-data.html",Table:"measurement-comeback",form_module:"measurement-form",task_name:"Measurement"};                   
     m[p+"measurement-form"] ={url:H+"/form-grid/measurement-form.html",Table:"measurement-comeback",task_name:"Measurement"};
+    m[p+"content-data"] ={url:H+"/form-grid/content-data.html",Table:"content-comeback",form_module:"content-form",task_name:"Content"};                   
+    m[p+"content-form"] ={url:H+"/form-grid/content-form.html",Table:"content-comeback",task_name:"Content"};
 
     m[p+"panel-main"]=    	        {url:H+"/panels/main.html",router:1};
     m[p+"panel-child"]=              {url:H+"/panels/child.html"};
 
-    //if(window.location.toString().indexOf('tb=demo')!=-1){
+    if(window.location.toString().indexOf('tb=demo')!=-1){
         for(p in $vm.module_list){
             $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
             $vm.module_list[p].Table2="demo-"+$vm.module_list[p].Table2;
@@ -43,7 +45,8 @@
             $vm.module_list[p].stock_level_table="demo-"+$vm.module_list[p].stock_level_table;
             $vm.module_list[p].measurement_table="demo-"+$vm.module_list[p].measurement_table;
             $vm.module_list[p].measurement_table2="demo-"+$vm.module_list[p].measurement_table2;
+            $vm.module_list[p].content_table="demo-"+$vm.module_list[p].content_table;
         }
-    //}
+    }
 
 })();

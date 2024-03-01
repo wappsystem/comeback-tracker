@@ -88,21 +88,44 @@
 					</fieldset>
 				</div>
 				<div class="formgroup">
-					<label><span class="question">Content</span></label><br>
-					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span>Add Content</span></u>
-					<table id=grid_item_a__ID></table>
-				</div>
-				<!--<div class="formgroup">
 					<fieldset class="">
-						<div class="grid-container-1">
-							<div><label><span class="question">Stocktake date (Startpoint for calculating stock) </span>
-									<input type=date name="Stocktake_date" class="formcontrol" />
+						<div class="grid-container-3">
+							<div>
+								<label><span class="question">Content</span>
+									<input type=text id="Content__ID" class="formcontrol threeqwidth" />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Content ID</span>
+									<input type=text id="Content_uid__ID" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+							<div>
+								<label><span class="question" id="amount_label__ID">Amount (%)</span>
+									<input type="text" id="Amount__ID" class="formcontrol" />
 								</label>
 							</div>
 						</div>
+						<div class="grid-container-1">
+							<div>
+								<label><span class="question" >Add Product to  the Formula</span>
+								<span style='cursor:pointer;padding:2px 0' id=item_a_add__ID class="rd_btn width_btn_full textcenter">Add Product</span>
+								</label>
+								<!--<label><span class="question">Ingredients</span></label><br>
+								<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span >Add line per ingredient</span></u>-->
+							</div>
+						</div>
 					</fieldset>
-				</div>-->
+				</div>
+				<div class="formgroup">
+					<table id=grid_item_a__ID></table>
+				</div>
 
+				<!--<div class="formgroup">
+					<label><span class="question">Content</span></label><br>
+					<u style='cursor:pointer;' id=item_a_add__ID><i class="fa fa-plus"></i> <span>Add Content</span></u>
+					<table id=grid_item_a__ID></table>
+				</div>-->
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
 				</div>
@@ -137,9 +160,31 @@
 				}
 			})
 			//item a part
-			m.item_a_fields = "Content_ID,Content,Amount,_Remove";
+			m.item_a_fields = "Content_ID,Content,Amount (%)|Amount,_Remove";
 			//----------------------------------
-			$('#item_a_add__ID').on('click', function () { m.item_a_add(); })
+			$('#item_a_add__ID').on('click', function () { m.item_a_add_content(); })
+            //----------------------------------
+			m.item_a_add_content=function(){
+				console.log("ADD")
+				var new_records;
+				var new_row={}
+				for(var i=0;i<m.item_a_field_id.length;i++){
+					var b=m.item_a_field_id[i];
+					switch (b){
+						case "Content": 
+						new_row['Content']=$("#F__ID #Content__ID").val();
+						break;
+						case "Content_ID": 
+						new_row['Content_ID']=$("#F__ID #Content_uid__ID").val();
+						break;
+						case "Amount": 
+						new_row['Amount']=$("#F__ID #Amount__ID").val();
+						break;
+					}
+				}
+				m.item_a_records.splice(m.item_a_records.length, 0, new_row);
+				m.item_a_render(m.item_a_records.length);
+			};
 			//----------------------------------
 			m.item_a_cell_render = function (records, I, field, td, set_value, source) {
 			}
@@ -204,7 +249,44 @@
 				I++; if (I > 50) { clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
 			}, 100);
 			//-------------------------------------
-
+			//-------------------------------------
+			//auto select content
+			var get_name_4 = function (record) {
+				var name = record.Data.Content;
+				return name;
+			}
+			var get_client_info_4 = function (record) {
+				var name = record.Data.Content
+				return name;
+			}
+			var autocomplete_req_4 = { cmd: "find", field: ".I2", table: m.content_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_callback_4 = function (items) {
+				console.log("autocomplete_callback_4");
+				//console.log(JSON.stringify(items));
+				$("#F__ID #Content_uid__ID").val(items["UID"]);
+				$("#F__ID #Content__ID").val(get_client_info_4(items.record));
+			}
+			var autocomplete_list_4 = function (records) {
+				console.log("auto_4")
+				var items = [];
+				for (var i = 0; i < records.length; i++) {
+					var obj = {};
+					obj.label = get_name_4(records[i]);
+					obj['UID'] = records[i].UID;
+					obj['record'] = records[i];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait4 = function () {
+				console.log("wait_4")
+				$vm.autocomplete($('#Content__ID'), autocomplete_req_4, autocomplete_list_4, autocomplete_callback_4);
+			}
+			var I = 0; var loop_4 = setInterval(function () {
+				console.log("loop");
+				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_4); wait4(); }
+				I++; if (I > 50) { clearInterval(loop_4); alert("jquery-ui.min.js is not installed."); }
+			}, 100);
 		}
 	</script>
 	<style>

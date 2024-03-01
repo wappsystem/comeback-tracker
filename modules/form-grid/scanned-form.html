@@ -112,7 +112,7 @@
                 console.log("Formula insert")
                 console.log(data)
                 console.log(index)
-                $vm.request({cmd:'insert',table:'m.Table2',data:data,index:index},function(res){
+                $vm.request({cmd:'insert',table:m.Table2,data:data,index:index},function(res){
                     if(res.status=="np"){
                         alert("No permission to insert a new record in to the database.");
                         if(m.input!=undefined && m.input.goback!=undefined){

@@ -5,6 +5,7 @@
         <button type="button" id=supplier__ID class="btn" title="Supplier">Supplier</button>
         <button type="button" id=people__ID class="btn" title="People">People</button>
         <button type="button" id=measurements__ID class="btn" title="People">Measurements</button>
+        <button type="button" id=content__ID class="btn" title="Content">Content</button>
         </div>
     </div>
     <script>
@@ -18,8 +19,8 @@
 			$('#measurements__ID').on('click',function(e){
       		  $vm.load_module('measurement-data',$vm.root_layout_content_slot,{});
     		})
-			$('#scanned__ID').on('click',function(e){
-      		  $vm.load_module('scanned-data',$vm.root_layout_content_slot,{});
+			$('#content__ID').on('click',function(e){
+      		  $vm.load_module('content-data',$vm.root_layout_content_slot,{});
     		})
 		}
     </script>

@@ -9,19 +9,9 @@
 				<!-- form-design name and study id -->
 				<div class="formgroup">
 					<fieldset class="">
-						<div class="grid-container-1">
+						<div class="grid-container-2">
 							<div><label><span class="question">Content ID</span>
 									<input type=text id="record__ID" class=formcontrol readonly />
-								</label>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<fieldset class="">
-						<div class="grid-container-2">
-							<div><label><span class="question">Content Name</span>
-									<input type=text name="Content" class="formcontrol width_80" />
 								</label>
 							</div>
 							<div><label><span class="question">Content Name</span>
@@ -29,45 +19,6 @@
 							</label>
 						</div>
 					</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<fieldset class="">
-						<div class="grid-container-1">
-							<div>
-								<label><span id="label_app_type__ID" class="question">Type</span></label><br>
-								<input id="app_type_1__ID" name="app_type" type="radio" value="open label">
-								<label id="app_type_1_label__ID" class="rd_btn" for="app_type_1__ID">Open label/Single blind</label>
-								<input id="app_type_2__ID" name="app_type" type="radio" value="double blinded">
-								<label id="app_type_2_label__ID" class="rd_btn" for="app_type_2__ID">Double blind/Triple blind</label>
-								<input id="app_type_3__ID" name="app_type" type="radio" value="no randomisation">
-								<label id="app_type_3_label__ID" class="rd_btn" for="app_type_3__ID">No randomisation</label>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<fieldset class="">
-						<div class="grid-container-1">
-							<div>
-								<label><span id="label_app_prescreening__ID" class="question">Pre-Screening Application </span></label><br>
-								<input id="app_prescreening_1__ID" name="app_prescreening" type="radio" value="yes">
-								<label id="app_prescreening_1_label__ID" class="rd_btn" for="app_prescreening_1__ID">Yes</label>
-								<input id="app_prescreening_2__ID" name="app_prescreening" type="radio" value="no">
-								<label id="app_prescreening_2_label__ID" class="rd_btn" for="app_prescreening_2__ID">No</label>
-							</div>
-						</div>
-						<fieldset class="">
-							<div id="app_prescreening__ID" class="grid-container-1 hide">
-								<div>
-									<label><span id="label_prescreening_enrollment__ID" class="question">Automatic enrollment to trial after registration </span></label><br>
-									<input id="prescreening_enrollment_1__ID" name="prescreening_enrollment" type="radio" value="yes">
-									<label id="prescreening_enrollment_1_label__ID" class="rd_btn" for="prescreening_enrollment_1__ID">Yes</label>
-									<input id="prescreening_enrollment_2__ID" name="prescreening_enrollment" type="radio" value="no">
-									<label id="prescreening_enrollment_2_label__ID" class="rd_btn" for="prescreening_enrollment_2__ID">No</label>
-								</div>
-							</div>
-						</fieldset>
 					</fieldset>
 				</div>
 				<div class="formgroup right">
@@ -81,45 +32,12 @@
 			//-------------------------------------
 			VmInclude: '__HOST__/assets/js/form.01.js'
 			//-------------------------------------
-			var load = m.load;
-			m.load = function () {
-				load();	
-				//-------------------------------------
-				if($('#F__ID input[name=app_prescreening]:checked').val()=='yes'){
-					$('#app_prescreening__ID').show()
-				}
-				else{
-					$('#app_prescreening__ID').hide()
-				}
-				//-------item a part
-				m.item_a_records=[]; if(m.input.record!=undefined) m.item_a_records=m.input.record.Data.items;
-				m.item_a_render();
-				//-------item a part
-			}
-			//-------------------------------------
-			$('#F__ID input[name=app_prescreening]').change(function(){
-				if($('#F__ID input[name=app_prescreening]:checked').val()=='yes'){
-					document.getElementById("app_prescreening__ID").style.display='block'
-//					$('#app_prescreening__ID').show()
-				}
-				else{
-					console.log("A: "+$('#F__ID input[name=prescreening_enrollment]:checked').val())
-					document.getElementById("app_prescreening__ID").style.display='none'
-//					$('#app_prescreening__ID').hide()
-					document.getElementById("prescreening_enrollment_1__ID").checked = false;
-					document.getElementById("prescreening_enrollment_2__ID").checked = false;
-					console.log("B: "+$('#F__ID input[name=prescreening_enrollment]:checked').val())
-				}
-			})
-            //----------------------------------
-                
 			m.before_submit = function (data, index) {
+				index.I2 = data.Content;
 			}
-			//-------------------------------------
-		}
+	}
 	</script>
 	<style>
-		/*VmInclude: '__HOST__/assets/css/form-item-a.01.css'*/
 		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
 	</style>
 </div>

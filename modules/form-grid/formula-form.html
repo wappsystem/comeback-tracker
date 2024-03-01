@@ -181,31 +181,6 @@
 			};
 			//----------------------------------
             m.item_a_cell_render=function(records,I,field,td,set_value,source){
-                switch (field) {
-                 /*   case "Format":
-                        td.html("<select class='formgroup'><option></option><option value='Tablets'>Tablets</option><option value='Powder'>Powder</option><option value='Fluid'>Fluid</option></select>");
-                        td.find('select').val(records[I][field]);
-                        td.find('select').on('change', function () {
-                            var value = $(this).val();
-                            if (value === "" && records[I][field] === undefined) return;
-                            records[I][field] = value;
-                            m.item_a_after_change(records, I, field, td, set_value, source)
-                        });
-                        break;
-						case "Product":
-						td.html('<input type=text name="Product" id="Product__ID" class="formcontrol threeqwidth" />')
-						td.find('input').val(records[I][field]);
-                        td.find('input').on('click', function () {
-                            var value = $("#Product_Name__ID").val();
-							console.log("value: "+value)
-                            if (value === "" && records[I][field] === undefined) return;
-                            records[I][field] = value;
-							m.item_a_render();
-                            m.item_a_after_change(records, I, field, td, set_value, source)
-                        });
-                        break;
-						*/
-                }
             }
             //----------------------------------
             m.item_a_after_change = function (records, I, field, td, set_value, source) {
@@ -336,7 +311,6 @@
 				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_3); wait3(); }
 				I++; if(I>50){ clearInterval(loop_3); alert("jquery-ui.min.js is not installed."); }
 			},100);
-			//-------------------------------------
 		}
 	</script>
 	<style>
