@@ -25,7 +25,7 @@
 					<div class="questiongroup ">
 						<fieldset class="">
 							<span class="question">Format </span>
-							<div class="grid-container-3">
+							<div class="grid-container-4">
 								<div>
 									<input id="Format_0__ID" name="Format" type="radio" value="Tablets">
 									<label id="Format_button_text_0__ID" class="rd_btn width_80 "
@@ -44,8 +44,8 @@
 								<div id="powder_show__ID">
 									<div class="align-centre">
 										<span> 1 Tsp= &nbsp;</span>
-											<input type="number" min=1 step="1" name="Tsp_to_grams" class="formcontrol" style="width:50px" />
-										<span>&nbsp;grams</span>
+											<input type="number" min=1 step="1" name="Tsp_to_mg" class="formcontrol width_80" style="width:100px" />
+										<span>&nbsp;mg</span>
 									</div>
 								</div>
 							</div>
@@ -91,18 +91,18 @@
 					<fieldset class="">
 						<div class="grid-container-3">
 							<div>
-								<label><span class="question">Content</span>
+								<label><span class="question"><br>Content</span>
 									<input type=text id="Content__ID" class="formcontrol threeqwidth" />
 								</label>
 							</div>
 							<div>
-								<label><span class="question">Content ID</span>
+								<label><span class="question"><br>Content ID</span>
 									<input type=text id="Content_uid__ID" class="formcontrol threeqwidth" readonly />
 								</label>
 							</div>
 							<div>
-								<label><span class="question" id="amount_label__ID">Amount (%)</span>
-									<input type="text" id="Amount__ID" class="formcontrol" />
+								<label><span class="question" id="amount_label__ID">Amount (mg for Tablets,<br> % for Powder and Fluid)</span>
+									<input type="number" id="Amount__ID" class="formcontrol" />
 								</label>
 							</div>
 						</div>
@@ -144,7 +144,7 @@
 				if ($("input[name='Format']:checked").val() == 'Powder') $('#powder_show__ID').show();
 				else {
 					$('#powder_show__ID').hide();
-					$('#F__ID input[name=Tsp_to_grams]').val("");
+					$('#F__ID input[name=Tsp_to_mg]').val("");
 				}
 				//-------item a part
 				m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items_a;
@@ -156,11 +156,11 @@
 				if ($("input[name='Format']:checked").val() == 'Powder') $('#powder_show__ID').show();
 				else {
 					$('#powder_show__ID').hide();
-					$('#F__ID input[name=Tsp_to_grams]').val("");
+					$('#F__ID input[name=Tsp_to_mg]').val("");
 				}
 			})
 			//item a part
-			m.item_a_fields = "Content_ID,Content,Amount (%)|Amount,_Remove";
+			m.item_a_fields = "Content_ID,Content,Amount,_Remove";
 			//----------------------------------
 			$('#item_a_add__ID').on('click', function () { m.item_a_add_content(); })
             //----------------------------------

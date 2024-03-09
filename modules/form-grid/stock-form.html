@@ -210,10 +210,10 @@
 					$("#F__ID input[name=Product_Name]").val(m.input.record.I2);
 					$("#F__ID input[name=Format]").val(m.input.record.I3);
 
-					conversion=parseFloat(m.input.record.Data.Tsp_to_grams);
+					conversion=parseFloat(m.input.record.Data.Tsp_to_mg)/1000;
 					if(m.input.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 					else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);};
-					$("#F__ID #conversion__ID").text("1 tsp = "+m.input.record.Data.Tsp_to_grams+" grams");
+					$("#F__ID #conversion__ID").text("1 tsp = "+m.input.record.Data.Tsp_to_mg+" mg");
 					get_last_transaction(m.input.record.UID);
 					$('#product_selection__ID').show();
 				}
@@ -535,8 +535,8 @@
 				$("#F__ID input[name=Product_uid]").val(items["UID"]);
 				$("#F__ID input[name=Product_Name]").val(get_client_info(items.record));
 				$("#F__ID input[name=Format]").val(items.record.I3);
-				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_grams+" grams");
-				conversion=parseFloat(items.record.Data.Tsp_to_grams);
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_mg+" mg");
+				conversion=parseFloat(items.record.Data.Tsp_to_mg)/1000;
 				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
 				get_last_transaction(items["UID"]);

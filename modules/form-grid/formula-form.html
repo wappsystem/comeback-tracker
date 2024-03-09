@@ -55,7 +55,7 @@
 							</div>
 							<div id="convers__ID" style="display:none">
 								<div style="display:none">
-									<input type=text id="Tsp_to_grams__ID"/>
+									<input type=text id="Tsp_to_mg__ID"/>
 								</div>
 								<div>
 									<label><span class="question">Conversion</span>
@@ -148,7 +148,7 @@
 			}
             //----------------------------------
             //item a part
-            m.item_a_fields="Product,P_ID,Format,Tsp_to_grams,Quantity,_Remove";
+            m.item_a_fields="Product,P_ID,Format,Tsp_to_mg,Quantity,_Remove";
             //----------------------------------
             $('#item_a_add__ID').on('click',function(){ m.item_a_add_product();m.item_a_cell_render(); })
             //----------------------------------
@@ -168,8 +168,8 @@
 						case "Format": 
 						new_row['Format']=$("#F__ID #Format__ID").val();
 						break;
-						case "Tsp_to_grams": 
-						new_row['Tsp_to_grams']=$("#F__ID #Tsp_to_grams__ID").val();
+						case "Tsp_to_mg": 
+						new_row['Tsp_to_mg']=$("#F__ID #Tsp_to_mg__ID").val();
 						break;
 						case "Quantity": 
 						new_row['Quantity']=$("#F__ID #Quantity__ID").val();
@@ -255,9 +255,9 @@
 				$("#F__ID #Product_uid__ID").val(items["UID"]);
 				$("#F__ID #Product_Name__ID").val(get_client_info_2(items.record));
 				$("#F__ID #Format__ID").val(items.record.I3);
-				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_grams+" grams");
-				$("#F__ID #Tsp_to_grams__ID").val(items.record.Data.Tsp_to_grams);
-				conversion=parseFloat(items.record.Data.Tsp_to_grams);
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_mg+" grams");
+				$("#F__ID #Tsp_to_mg__ID").val(items.record.Data.Tsp_to_mg);
+				conversion=parseFloat(items.record.Data.Tsp_to_mg);
 				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
 				//console.log(JSON.stringify(items.record));

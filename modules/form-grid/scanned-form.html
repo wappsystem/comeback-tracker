@@ -29,7 +29,7 @@
             //-------------------------------------
             var scanned_time;
             var ex_fields="UID,Formula_Name,First_Name";
-            var item_fields="Product,P_ID,Format,Tsp_to_grams,Quantity"
+            var item_fields="Product,P_ID,Format,Tsp_to_mg,Quantity"
 			var load = m.load;
 			m.load = function () {
 				load();	
@@ -77,8 +77,8 @@
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].qty!=undefined) {
                             if(formula[i].qty.select_powder!=undefined){
-                                //console.log(formula[i-1].ingredient.Tsp_to_grams*formula[i].qty.select_powder) 
-                                formula[i-1].ingredient.Quantity=(formula[i-1].ingredient.Tsp_to_grams*formula[i].qty.select_powder).toFixed(0);
+                                //console.log(formula[i-1].ingredient.Tsp_to_mg*formula[i].qty.select_powder) 
+                                formula[i-1].ingredient.Quantity=(formula[i-1].ingredient.Tsp_to_mg/1000*formula[i].qty.select_powder).toFixed(0);
                             }
                             else{
                                 formula[i-1].ingredient.Quantity=formula[i].qty.Quantity;

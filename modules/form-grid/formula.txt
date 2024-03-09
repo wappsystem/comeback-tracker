@@ -2,7 +2,7 @@
     {"datetime":{"date":"20/02/2024","time":"10:30"}},
     {"people":{"id":1,"name":"Adam"}},
     {"formula":[
-        {"product":{"product_id":5,"Product":"Tomato","format":"powder","tsp_to_grams":10,"quantity":1.5}},
+        {"product":{"product_id":5,"Product":"Tomato","format":"powder","Tsp_to_mg":10,"quantity":1.5}},
         {"product":{"product_id":4,"Product":"Broccoli","format":"fluid","quantity":10}},
         {"product":{"product_id":2,"Product":"Mushroom","format":"tables","quantity":2}}
         ]
@@ -13,13 +13,13 @@ https://blog.qr4.nl/QR-Code-Clock.aspx
 START
 cd
 START
-{"ingredient":{"P_ID":"5","Product":"Tomato","Format":"Powder","Tsp_to_grams":"10","Quantity":""}}
+{"ingredient":{"P_ID":"5","Product":"Tomato","Format":"Powder","Tsp_to_mg":"10","Quantity":""}}
 {"qty":{"select_powder":"0.5"}}
-{"ingredient":{"P_ID":"2","Product":"Mushroom","Format":"Tablets","Tsp_to_grams":"","Quantity":""}}
+{"ingredient":{"P_ID":"2","Product":"Mushroom","Format":"Tablets","Tsp_to_mg":"","Quantity":""}}
 {"qty":{"Quantity":"1"}}
-{"ingredient":{"P_ID":"4","Product":"Broccoli","Format":"Fluid","Tsp_to_grams":"","Quantity":""}}
+{"ingredient":{"P_ID":"4","Product":"Broccoli","Format":"Fluid","Tsp_to_mg":"","Quantity":""}}
 {"qty":{"Quantity":"2"}}
-{"ingredient":{"P_ID":"3","Product":"Pumpkin","Format":"Tablets","Tsp_to_grams":"","Quantity":""}}
+{"ingredient":{"P_ID":"3","Product":"Pumpkin","Format":"Tablets","Tsp_to_mg":"","Quantity":""}}
 {"qty":{"Quantity":"3"}}
 {"people":{"Name__ID":"3","First_Name":"Mary"}}
 END
