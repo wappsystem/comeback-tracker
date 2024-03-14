@@ -286,6 +286,7 @@ m.handleFileSelect=function(evt){
                     //var import_fields=fields;
                     //if(m.import_fields!=undefined) import_fields=m.import_fields;
                     //var flds=header.split(',');
+                    console.log(JSON.stringify(flds))
                     var fn=$('#Import_f__ID').val().substring($('#Import_f__ID').val().lastIndexOf('\\')+1);
                     if(confirm("Are you sure to import "+fn+"?\n")){
                         open_model__ID();
@@ -294,7 +295,9 @@ m.handleFileSelect=function(evt){
                         var status="ok";
                         (function looper(){
                             if( i<=lines.length && i<=NN && status=='ok') {
+                                //console.log(lines.length+' - '+NN+' - '+i)
                                 var items=lines[i].splitCSV(tab);
+                                //console.log(items)
                                 if(items.length>=1){
                                     var rd={};
                                     var dbv={};
@@ -303,8 +306,15 @@ m.handleFileSelect=function(evt){
                                         var field_id=flds[j];
                                         var index=flds.indexOf(field_id);
                                         var index2=form_fields.indexOf(field_id);
+                                        if(field_id=='items_a') {
+                                            console.log(index+" - "+index2)
+                                            rd[field_id]=items[index];
+                                            console.log(rd[field_id])
+                                        }
                                         
-                                        if(index!=-1 && index2!=-1)  rd[field_id]=items[index];
+                                        if(index!=-1 && index2!=-1) {
+                                            rd[field_id]=items[index];
+                                        }
                                         if($vm.user_name=='builder'){
                                             if(field_id=='UID') builder['UID']=items[index];
                                             if(field_id=='Submit_date') builder['Submit_date']=items[index];
@@ -320,7 +330,16 @@ m.handleFileSelect=function(evt){
                                     }
                                     if( jQuery.isEmptyObject(rd)===false){
                                         if(typeof(before_submit)!='undefined'){
-                                            before_submit(rd,dbv);
+                                            var items_A=[];
+                                            var items_A_str=[];
+                                            rd.items_a=rd.items_a.replace(/'/g,'"')
+                                            items_A_str=rd.items_a.split(';');
+                                            //console.log(items_A_str)
+                                            for (var k=0;k<items_A_str.length;k++){
+                                                items_A.push(JSON.parse(items_A_str[k]))
+                                                //console.log("items_a: "+k+" "+items_A_str[k])
+                                            }
+                                            before_submit(rd,dbv,items_A);
                                         }
                                         jQuery.ajaxSetup({async:false});
                                         $vm.request({api:m.api,cmd:"insert",table:m.Table,data:rd,index:dbv,builder:builder,file:{}},function(res){
@@ -363,6 +382,7 @@ m.handleFileSelect=function(evt){
                 if(nm!=null && nm!=nm0){ if(txt!="") txt+=", "; txt+=nm; nm0=nm;}
             }
             form_fields=txt;
+            console.log("AAA: "+form_fields)
             before_submit=$vm.module_list[m.form_module].before_submit;
             start();
         }
