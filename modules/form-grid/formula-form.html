@@ -70,6 +70,23 @@
 						</div>
 						<div class="grid-container-3">
 							<div>
+								<label><span class="question">Size</span>
+									<input type=text id="Size__ID" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Supplier</span>
+									<input type=text id="Supplier__ID" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Locattion FS</span>
+									<input type=text id="Location_FS__ID" class="formcontrol threeqwidth" readonly />
+								</label>
+							</div>
+						</div>
+						<div class="grid-container-3">
+							<div>
 								<label><span class="question" >Add Product to  the Formula</span>
 								<span style='cursor:pointer;padding:2px 0' id=item_a_add__ID class="rd_btn width_btn_full textcenter">Add Product</span>
 								</label>
@@ -261,6 +278,9 @@
 				$("#F__ID #Format__ID").val(items.record.I3);
 				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_mg+" grams");
 				$("#F__ID #Tsp_to_mg__ID").val(items.record.Data.Tsp_to_mg);
+				$("#F__ID #Size__ID").val(items.record.Data.Size);
+				$("#F__ID #Supplier__ID").val(items.record.Data.Supplier);
+				$("#F__ID #Location_FS__ID").val(items.record.Data.Location_FS);
 				conversion=parseFloat(items.record.Data.Tsp_to_mg);
 				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
 				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
