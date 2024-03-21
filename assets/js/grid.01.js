@@ -332,8 +332,9 @@ m.handleFileSelect=function(evt){
                                             for (var k=0;k<items_A_str.length;k++){
                                                 items_A.push(JSON.parse(items_A_str[k]))
                                                 //console.log("items_a: "+k+" "+items_A_str[k])
-                                            }*/
-                                            before_submit(rd,dbv,items_A);
+                                            }
+                                            before_submit(rd,dbv,items_A);*/
+                                            before_submit(rd,dbv,);
                                         }
                                         jQuery.ajaxSetup({async:false});
                                         $vm.request({api:m.api,cmd:"insert",table:m.Table,data:rd,index:dbv,builder:builder,file:{}},function(res){
