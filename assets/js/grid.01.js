@@ -321,16 +321,10 @@ m.handleFileSelect=function(evt){
                                             if(field_id=='Submitted_by') builder['Submitted_by']=items[index];
                                             if(field_id=='Submitted_from') builder['Submitted_from']=items[index];
                                         }
-                                        /*
-                                        if(field_id=='UID' && j==0) rd['UID']=items[0];
-                                        if(field_id=='Submit_date' && j==1) rd['Submit_date']=items[1];
-                                        if(field_id=='Submitted_by' && j==2) rd['Submitted_by']=items[2];
-                                        if(field_id=='I1' && j==3) dbv['I1']=items[3];
-                                        */
                                     }
                                     if( jQuery.isEmptyObject(rd)===false){
                                         if(typeof(before_submit)!='undefined'){
-                                            var items_A=[];
+                                            /*var items_A=[];
                                             var items_A_str=[];
                                             rd.items_a=rd.items_a.replace(/'/g,'"')
                                             items_A_str=rd.items_a.split(';');
@@ -338,7 +332,7 @@ m.handleFileSelect=function(evt){
                                             for (var k=0;k<items_A_str.length;k++){
                                                 items_A.push(JSON.parse(items_A_str[k]))
                                                 //console.log("items_a: "+k+" "+items_A_str[k])
-                                            }
+                                            }*/
                                             before_submit(rd,dbv,items_A);
                                         }
                                         jQuery.ajaxSetup({async:false});
