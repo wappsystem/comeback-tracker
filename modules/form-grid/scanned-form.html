@@ -74,11 +74,35 @@
                     //console.log(input_data[i])
                     formula.push(JSON.parse(input_data[i]));
                 }
+                //Get Product information
+                for(var i=0;i<formula.length;i++){
+                    if(formula[i].ingredient!=undefined && formula[i].ingredient.Format=="Powder"){
+                        console.log(formula[i].ingredient.Format)
+                        var query={UID:parseInt(formula[i].ingredient.P_ID)}
+                        jQuery.ajaxSetup({async:false});
+                        $vm.request({ api:m.api,cmd:'find',table:m.client_table,query:query,skip:0,limit:1}, function (res) {
+                            if (res.sys.permission == false) {
+                                $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                                return;
+                            }        
+                            if (res.result.length > 0) {
+                                res.result[0].Data;
+                                if(res.result[0].Data!=undefined ){
+                                    formula[i].ingredient.Tsp_to_mg=(res.result[0].Data.Tsp_to_mg).toString();
+                                } 
+                            }
+                            else{
+                                console.log("Nothing in db")  
+                            }
+                        });              
+                        jQuery.ajaxSetup({async:true});
+                    }
+                }
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].qty!=undefined) {
                             if(formula[i].qty.select_powder!=undefined){
                                 //console.log(formula[i-1].ingredient.Tsp_to_mg*formula[i].qty.select_powder) 
-                                formula[i-1].ingredient.Quantity=(formula[i-1].ingredient.Tsp_to_mg/1000*formula[i].qty.select_powder).toFixed(0);
+                                formula[i-1].ingredient.Quantity=(parseFloat(formula[i-1].ingredient.Tsp_to_mg)/1000*formula[i].qty.select_powder).toFixed(3);
                             }
                             else{
                                 formula[i-1].ingredient.Quantity=formula[i].qty.Quantity;
@@ -196,10 +220,10 @@
                     nq=parseFloat(ingredient[i].Quantity);
                     cb=parseFloat(last_trans.Current_Batch);
                     var data={};
-                    data.Back_Storage=bs.toFixed(0);
-                    data.Front_Storage=(fs-nq).toFixed(0);
-                    data.Total_in_storage=(bs+fs-nq).toFixed(0);
-                    data.Current_Batch=(cb-nq).toFixed(0);
+                    data.Back_Storage=bs.toFixed(3);
+                    data.Front_Storage=(fs-nq).toFixed(3);
+                    data.Total_in_storage=(bs+fs-nq).toFixed(3);
+                    data.Current_Batch=(cb-nq).toFixed(3);
                     data.Usage_Type=last_trans.Usage_Type;
                     data.Usage_Date=last_trans.Usage_Date;
                     data.Format=last_trans.Format;
@@ -219,7 +243,7 @@
                             data.Usage_Type=batch.data.Usage_Type;
                             data.Usage_Date=batch.data.Usage_Date;
                             cb=parseFloat(batch.data.Quantity);
-                            data.Current_Batch=(cb+cn).toFixed(0);
+                            data.Current_Batch=(cb+cn).toFixed(3);
                         }
                     }
                     //
