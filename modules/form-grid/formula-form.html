@@ -275,8 +275,8 @@
 				//console.log(JSON.stringify(items));
 				$("#F__ID #Product_uid__ID").val(items["UID"]);
 				$("#F__ID #Product_Name__ID").val(get_client_info_2(items.record));
-				$("#F__ID #Format__ID").val(items.record.I3);
-				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_mg+" grams");
+				$("#F__ID #Format__ID").val(items.record.Data.Format);
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_mg+" mg");
 				$("#F__ID #Tsp_to_mg__ID").val(items.record.Data.Tsp_to_mg);
 				$("#F__ID #Size__ID").val(items.record.Data.Size);
 				$("#F__ID #Supplier__ID").val(items.record.Data.Supplier);
@@ -311,14 +311,21 @@
 			//auto select predefined measurement
 			var autocomplete_req_3={cmd:"find",field:'.I1',table:m.measurement_table2,options:{},skip:0,limit:10}
 			var autocomplete_callback_3=function(items){
-				//console.log(JSON.stringify(items)) 
-				$('#F__ID #Quantity__ID').val((conversion*parseFloat(items.datax.Value)).toFixed(0));
+				console.log(JSON.stringify(items)) 
+				var decimals=0;
+				if($('#F__ID #Format__ID').val()=="Powder"){
+					decimals=3
+					$('#F__ID #Quantity__ID').val((conversion*parseFloat(items.datax.Value)/1000).toFixed(decimals));
+				}
+				else{
+					$('#F__ID #Quantity__ID').val((conversion*parseFloat(items.datax.Value)).toFixed(decimals));
+				}
 				//update_stock();
 			}
 			var autocomplete_list_3=function(records){
 				console.log("auto_3")
 				var items=[];
-				//console.log(JSON.stringify(records))
+				console.log(JSON.stringify(records))
 				for(var i=0;i<records.length;i++){
 					var obj={};
 					obj.datax=records[i].Data;

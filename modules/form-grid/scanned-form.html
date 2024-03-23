@@ -209,6 +209,7 @@
             var update_stock=function(ingredient){
                 var batch={};
                 for(var i=0;i<ingredient.length;i++){
+                    var decimals=0;
                     var last_trans={};
                     jQuery.ajaxSetup({async:false});
                     last_trans=get_last_transaction(ingredient[i].P_ID);
@@ -220,10 +221,11 @@
                     nq=parseFloat(ingredient[i].Quantity);
                     cb=parseFloat(last_trans.Current_Batch);
                     var data={};
-                    data.Back_Storage=bs.toFixed(3);
-                    data.Front_Storage=(fs-nq).toFixed(3);
-                    data.Total_in_storage=(bs+fs-nq).toFixed(3);
-                    data.Current_Batch=(cb-nq).toFixed(3);
+                    if(ingredient[i].Format=="Powder") decimals=3;
+                    data.Back_Storage=bs.toFixed(decimals);
+                    data.Front_Storage=(fs-nq).toFixed(decimals);
+                    data.Total_in_storage=(bs+fs-nq).toFixed(decimals);
+                    data.Current_Batch=(cb-nq).toFixed(decimals);
                     data.Usage_Type=last_trans.Usage_Type;
                     data.Usage_Date=last_trans.Usage_Date;
                     data.Format=last_trans.Format;
@@ -243,7 +245,7 @@
                             data.Usage_Type=batch.data.Usage_Type;
                             data.Usage_Date=batch.data.Usage_Date;
                             cb=parseFloat(batch.data.Quantity);
-                            data.Current_Batch=(cb+cn).toFixed(3);
+                            data.Current_Batch=(cb+cn).toFixed(decimals);
                         }
                     }
                     //
