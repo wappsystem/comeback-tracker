@@ -222,13 +222,13 @@
                     cb=parseFloat(last_trans.Current_Batch);
                     var data={};
                     if(ingredient[i].Format=="Powder") decimals=3;
+                    data.Format=ingredient[i].Format;
                     data.Back_Storage=bs.toFixed(decimals);
                     data.Front_Storage=(fs-nq).toFixed(decimals);
                     data.Total_in_storage=(bs+fs-nq).toFixed(decimals);
                     data.Current_Batch=(cb-nq).toFixed(decimals);
                     data.Usage_Type=last_trans.Usage_Type;
                     data.Usage_Date=last_trans.Usage_Date;
-                    data.Format=last_trans.Format;
                     data.Product_Name=ingredient[i].Product;
                     data.Product_uid=ingredient[i].P_ID
                     data.Quantity=ingredient[i].Quantity;
