@@ -6,6 +6,7 @@
 			<!-- form start -->
 			<form id="F__ID">
 				<span id=title__ID></span>
+				<div class="formgroup" id="QR_code__ID"></div>
 				<!-- form-design name and study id -->
 				<div class="formgroup">
 					<fieldset class="">
@@ -152,6 +153,10 @@
 			//-------------------------------------
 			var load = m.load;
 			m.load = function () {
+				if(m.input!=undefined && m.input.record!=undefined && m.input.record.Data!==undefined) {
+					$('#F__ID #QR_code__ID').text('{"ingredient":{"P_ID":"'+m.input.record.UID+'","Product":"'+m.input.record.I2+'","Format":"'+m.input.record.I3+'"}}')
+				}
+				else{$('#F__ID #QR_code__ID').text('')}
 				load();
 				if ($("input[name='Format']:checked").val() == 'Powder') $('#powder_show__ID').show();
 				else {
