@@ -192,6 +192,7 @@
 			//-------------------------------------
 			var conversion=0;
 			var load = m.load;
+			var decimals = 0;
 			mesurement={};
 			m.load = function () {
 				load();
@@ -260,9 +261,9 @@
 				data.Usage_Date=$('#Usage_Date__ID').val();
 				index.I1=parseInt(data.Product_uid)
 				index.I3=data.Transaction_type;
-				index.I4=parseFloat($('#Front_Storage__ID').val()).toFixed(0);
-				index.I5=parseFloat($('#Back_Storage__ID').val()).toFixed(0);
-				index.I6=parseFloat($('#Current_Batch__ID').val()).toFixed(0);
+				index.I4=parseFloat($('#Front_Storage__ID').val()).toFixed(decimals);
+				index.I5=parseFloat($('#Back_Storage__ID').val()).toFixed(decimals);
+				index.I6=parseFloat($('#Current_Batch__ID').val()).toFixed(decimals);
 				if(new_batch){
 					$vm.request({ cmd:'update',id:batch_rid,table:m.Table,data:batch_data}, function (res) {
 						if(res.status=="np"){
@@ -364,7 +365,10 @@
 			})
 			//-------------------------------------
 			var update_stock=function(){
+				console.log("AA: "+$("#F__ID input[name=Format]").val());
 				console.log("QNTY")
+				if($("#F__ID input[name=Format]").val()=='Powder') decimals=3;
+				else decimals=0;
 				var bs=0;
 				var fs=0;
 				var nq=0;
@@ -381,10 +385,10 @@
 							nq=bs;
 							$('#F__ID input[name="Quantity"]').val(nq.toFixed(0));
 						} */
-						$('#F__ID #Back_Storage__ID').val((bs-nq).toFixed(0));
-						$('#F__ID #Front_Storage__ID').val((fs+nq).toFixed(0));
-						$('#F__ID #Total_in_storage__ID').val((bs+fs).toFixed(0));					
-						$('#F__ID #Current_Batch__ID').val((cb).toFixed(0));					
+						$('#F__ID #Back_Storage__ID').val((bs-nq).toFixed(decimals));
+						$('#F__ID #Front_Storage__ID').val((fs+nq).toFixed(decimals));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs).toFixed(decimals));					
+						$('#F__ID #Current_Batch__ID').val((cb).toFixed(decimals));					
 					break;
 				case 'Take out':
 					console.log("cur: "+cb+ " nq: "+nq)
@@ -394,10 +398,10 @@
 							nq=fs;
 							$('#F__ID input[name="Quantity"]').val(nq.toFixed(0));
 						}*/
-						$('#F__ID #Back_Storage__ID').val((bs).toFixed(0));
-						$('#F__ID #Front_Storage__ID').val((fs-nq).toFixed(0));
-						$('#F__ID #Total_in_storage__ID').val((bs+fs-nq).toFixed(0))					
-						$('#F__ID #Current_Batch__ID').val((cb-nq).toFixed(0));
+						$('#F__ID #Back_Storage__ID').val((bs).toFixed(decimals));
+						$('#F__ID #Front_Storage__ID').val((fs-nq).toFixed(decimals));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs-nq).toFixed(decimals))					
+						$('#F__ID #Current_Batch__ID').val((cb-nq).toFixed(decimals));
 						var cn=cb-nq;
 						if(cb-nq<=0) {
 							var prod_id= $('#F__ID input[name="Product_uid"]').val();
@@ -406,13 +410,13 @@
 					break;
 				case 'Put in':
 						console.log("put in "+cb+ " nq: "+nq)
-						$('#F__ID #Back_Storage__ID').val((nq+bs).toFixed(0));
-						$('#F__ID #Front_Storage__ID').val(fs.toFixed(0));
-						$('#F__ID #Total_in_storage__ID').val((bs+fs+nq).toFixed(0))
-						$('#F__ID #Current_Batch__ID').val((cb).toFixed(0));
+						$('#F__ID #Back_Storage__ID').val((nq+bs).toFixed(decimals));
+						$('#F__ID #Front_Storage__ID').val(fs.toFixed(decimals));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs+nq).toFixed(decimals))
+						$('#F__ID #Current_Batch__ID').val((cb).toFixed(decimals));
 						if(bs+fs==0) {
 							$("#F__ID input[name=Active_Batch]").val('Active');
-							$('#F__ID #Current_Batch__ID').val((nq).toFixed(0));
+							$('#F__ID #Current_Batch__ID').val((nq).toFixed(decimals));
 						}
 					break;
 				/*case 'Stocktake':
@@ -447,7 +451,7 @@
                         if (res.result.length > 0) {
 							console.log("get result")
 							$('#F__ID input[name="Current_Batch"]').val(res.result[res.result.length-1].Data.Quantity);
-							$('#F__ID #Current_Batch__ID').val((parseFloat(res.result[res.result.length-1].Data.Quantity)+cn).toFixed(0));
+							$('#F__ID #Current_Batch__ID').val((parseFloat(res.result[res.result.length-1].Data.Quantity)+cn).toFixed(decimal));
 							console.log($('#F__ID #Current_Batch__ID').val()+' - '+res.result[res.result.length-1].Data.Quantity+' - '+cn)
 							$('#F__ID #Usage_Type__ID').val(res.result[res.result.length-1].Data.Usage_Type);
 							$('#F__ID input[name="Usage_Date"]').val(res.result[res.result.length-1].Data.Usage_Date);
@@ -568,7 +572,7 @@
 			var autocomplete_req_2={cmd:"find",field:'.I1',table:m.measurement_table,options:{},skip:0,limit:10}
 			var autocomplete_callback_2=function(items){
 				console.log(JSON.stringify(items)) 
-				$('#F__ID input[name="Quantity"]').val((conversion*parseFloat(items.datax.Value)).toFixed(0));
+				$('#F__ID input[name="Quantity"]').val((conversion*parseFloat(items.datax.Value)).toFixed(decimals));
 				update_stock();
 			}
 			var autocomplete_list_2=function(records){

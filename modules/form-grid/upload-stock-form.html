@@ -1,0 +1,95 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95">
+		<!-- form container start -->
+		<div class="formbox">
+			<!-- form start -->
+			<form id="F__ID">
+				<span id=title__ID></span>
+				<!-- form-design name and study id -->
+				<div class="formgroup">
+					<fieldset class="">
+						<input type=text name="Product_Name" id="Product_Name__ID" class="formcontrol threeqwidth" />
+						<input type=text name="Product_uid" class="formcontrol threeqwidth"  />
+						<input type=text name="Format" class="formcontrol threeqwidth"  />
+						<input type=text name="Front_Storage" class="formcontrol threeqwidth"  />
+						<input type=text name="Back_Storage" class="formcontrol threeqwidth"  />
+						<input type=text name="Total_in_storage" class="formcontrol threeqwidth"  />
+						<input type=text name="Current_Batch" class="formcontrol threeqwidth"  />
+						<input id="" name="Transaction_type" type="text" class="formcontrol" />
+						<input type="text" name="Quantity" id="Quantity__ID" class="formcontrol" />
+						<input type="text" name="select_powder" id="select_powder__ID" class="formcontrol" />
+						<input type="text" name="Transaction_Date" class="formcontrol"  />
+						<input type="text" name="Usage_Type"  class="formcontrol">
+						<input type="text" name="Usage_Date" id="Usage_Date__ID" class="formcontrol"  />
+						<input type="text" name="Active_Batch" id="Active_Batch__ID" class="formcontrol"  />
+					</fieldset>
+				</div>
+				<div class="formgroup right">
+					<button type="submit" id="submit__ID" class="btn">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: '__HOST__/assets/js/form.01.js'
+			//-------------------------------------
+			var decimals=0;
+			var load = m.load;
+			m.load = function () {
+				load();
+			}
+			//----------------------------------
+			m.before_submit = function (data, index) {
+				index.I1=parseInt(data.Product_uid)
+				index.I3=data.Transaction_type;
+				if(data.Format=="Powder") decimals=3;
+				else decimals=0;
+				index.I4=data.Front_Storage;
+				index.I5=data.Back_Storage;
+				index.I6=data.Current_Batch;
+				//var stock_level_table=$vm.module_list[$vm.vm['__ID'].name].stock_level_table;
+				var query={I1:parseInt(data.Product_uid)} 
+                    $vm.request({ cmd:'find',table:m.stock_level_table,query:query,skip:0,limit:1},function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							console.log("get result")
+							var level_rid=res.result[0]._id
+							index2={};
+							index2.I2=parseFloat(data.Total_in_storage);
+							index2.I1=index.I1
+							$vm.request({ cmd:'update',id:level_rid,table:m.stock_level_table,index:index2}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+
+						}
+						else{
+							console.log("Nothing in db")
+							index2={};
+							index2.I2=parseFloat(data.Total_in_storage);
+							index2.I1=index.I1
+							$vm.request({ cmd:'insert',table:m.stock_level_table,index:index2}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+						}
+                    })
+			}
+		//-------------------------------------
+
+		}
+	</script>
+	<style>
+		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
+	</style>
+</div>

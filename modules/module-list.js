@@ -31,6 +31,9 @@
     m[p+"content-data"] ={url:H+"/form-grid/content-data.html",Table:"content-comeback",form_module:"content-form",task_name:"Content"};                   
     m[p+"content-form"] ={url:H+"/form-grid/content-form.html",Table:"content-comeback",task_name:"Content"};
 
+    m[p+"upload-stock-data"] ={url:H+"/form-grid/stock-data.html",Table:"stock-comeback",form_module:"upload-stock-form",task_name:"Stock Transaction"};                   
+    m[p+"upload-stock-form"] ={url:H+"/form-grid/upload-stock-form.html",Table:"stock-comeback",client_table:"products-comeback",stock_level_table:"stock-level-comeback",measurement_table:"measurement-comeback",task_name:"Stock Transaction"};
+
     m[p+"panel-main"]=    	        {url:H+"/panels/main.html",router:1};
     m[p+"panel-child"]=              {url:H+"/panels/child.html"};
 
