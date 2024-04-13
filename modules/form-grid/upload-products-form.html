@@ -1,0 +1,65 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95">
+		<!-- form container start -->
+		<div class="formbox">
+			<!-- form start -->
+			<form id="F__ID">
+				<span id=title__ID></span>
+				<!-- form-design name and study id -->
+				<div class="formgroup">
+					<fieldset class="">
+					</fieldset>
+				</div>
+				<div class="formgroup right">
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: '__HOST__/assets/js/form.01.js'
+			//-------------------------------------
+			var load = m.load;
+			m.load = function () {
+				console.log("LOAD")
+				load();
+			}
+			//-------------------------------------
+			m.before_submit = function (data, index) {
+				//var stock_level_table=$vm.module_list[$vm.vm['__ID'].name].stock_level_table;
+			/*	console.log("BEFORE")
+				var query={I1:parseInt(uid)} 
+				var tsp=data.Tsp_to_mg;
+                    $vm.request({ cmd:'find',table:m.Table,query:query,skip:0,limit:1},function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							var p_rid=res.result[0]._id
+							var data={};
+							data=result[0].data;
+							data.Tsp_to_mg=tsp;
+							var index={};
+							index.I2 = data.Product_Name;
+							index.I3 = data.Format;
+							$vm.request({ cmd:'update',id:p_rid,table:Table,data:data,index:index}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+
+						}
+                    })*/
+			}
+		//-------------------------------------
+
+		}
+	</script>
+	<style>
+		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
+	</style>
+</div>

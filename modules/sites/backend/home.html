@@ -13,8 +13,10 @@
         <br>
         <button type="button" id=scanned__ID class="btn">Scanner data input</button>
         <br>
-        <button type="button" id=upload_stock__ID class="btn">Upload Stock</button>
-        <!--<button type="button" id=data_entry__ID class="btn">Data entry - eCRF</button>
+        <!--<button type="button" id=upload_stock__ID class="btn">Upload Stock</button>
+        <br>
+        <button type="button" id=upload_products__ID class="btn">Upload Products</button>
+        <button type="button" id=data_entry__ID class="btn">Data entry - eCRF</button>
         <button type="button" id=questionnaire__ID class="btn">Questionnaire - eCRF</button>
         <button type="button" id=data_collection_layout__ID class="btn">Data collection layout</button>-->
         </div>
@@ -42,9 +44,12 @@
 			$('#scanned__ID').on('click',function(e){
       		  $vm.load_module('scanned-data',$vm.root_layout_content_slot,{});
     		})
-			$('#upload_stock__ID').on('click',function(e){
+			/*$('#upload_stock__ID').on('click',function(e){
       		  $vm.load_module('upload-stock-data',$vm.root_layout_content_slot,{});
-    		})
+    		})*/
+			/*$('#upload_products__ID').on('click',function(e){
+      		  $vm.load_module('upload-products-data',$vm.root_layout_content_slot,{});
+    		})*/
 		}
     </script>
     <style>

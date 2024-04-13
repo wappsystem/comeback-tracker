@@ -1,3 +1,2 @@
 Product_Name,Product_uid,Format,Front_Storage,Back_Storage,Total_in_storage,Current_Batch,Transaction_type,Quantity,Transaction_Date,Active_Batch
-Benfotiamine,10,Powder,35,0,35,35,Put in,35,2024-04-04,Active
-Benfotiamine,10,Powder,35,65,100,35,Put in,65,2024-04-04,Not Active
+Qualia Nootropic Energy,586,Fluid,13,0,13,13,Put in,13,5/4/2024,Active
