@@ -452,7 +452,7 @@
                         if (res.result.length > 0) {
 							console.log("get result")
 							$('#F__ID input[name="Current_Batch"]').val(res.result[res.result.length-1].Data.Quantity);
-							$('#F__ID #Current_Batch__ID').val((parseFloat(res.result[res.result.length-1].Data.Quantity)+cn).toFixed(decimal));
+							$('#F__ID #Current_Batch__ID').val((parseFloat(res.result[res.result.length-1].Data.Quantity)+cn).toFixed(decimals));
 							console.log($('#F__ID #Current_Batch__ID').val()+' - '+res.result[res.result.length-1].Data.Quantity+' - '+cn)
 							$('#F__ID #Usage_Type__ID').val(res.result[res.result.length-1].Data.Usage_Type);
 							$('#F__ID input[name="Usage_Date"]').val(res.result[res.result.length-1].Data.Usage_Date);
