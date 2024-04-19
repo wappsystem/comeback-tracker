@@ -6,6 +6,7 @@
 			<!-- form start -->
 			<form id="F__ID">
 				<span id=title__ID></span>
+				<div class="formgroup"><textarea id="QR_code__ID"  class="formcontrol width_80"></textarea></div>
 				<!-- form-design name and study id -->
 				<div class="formgroup">
 					<fieldset class="">
@@ -21,21 +22,10 @@
 								</label>
 							</div>
 						</div>
-					</fieldset>
-				</div>
-				<div class="formgroup">
-					<fieldset class="">
-						<div class="grid-container-2">
-							<div>
-								<label><span class="question">ID</span>
-									<input type=text name="Name_ID" class="formcontrol" readonly />
-								</label>
-							</div>
-							<div>
-								<label><span class="question">Who took the Formula</span>
-									<input type=text id=Name_first__ID name="First_Name" class="formcontrol width_80" />
-								</label>
-							</div>
+						<div class="grid-container-1">
+							<label><span class="question">Aim </span>
+								<textarea name="Formula_Aim" class="formcontrol width_80" ></textarea>
+							</label>
 						</div>
 					</fieldset>
 				</div>
@@ -109,36 +99,6 @@
 				<div class="formgroup">
 					<table id=grid_item_a__ID></table>
 				</div>
-				<!--<div class="formgroup">
-					<fieldset class="">
-						<div class="grid-container-2">
-							<div><label><span class="question">Date</span>
-									<input type=date name="Date" class='formcontrol width_80' />
-								</label>
-							</div>
-								<div><label><span class="question">Time </span>
-										<input type=text name="Time" class="formcontrol width_80" />
-									</label>
-								</div>
-							</div>
-					</fieldset>
-				</div>-->
-				<div class="formgroup" style="display:none">
-					<fieldset class="">
-						<div class="grid-container-1">
-							<div>
-								<label><span class="question">Input Type</span>
-									<select name="Input_type" class="formcontrol">
-										<option></option>
-										<option>Manual</option>
-										<option>Scanned</option>
-									</select>
-								</label>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
 				</div>
@@ -153,6 +113,23 @@
 			//-------------------------------------
 			var load = m.load;
 			m.load = function () {
+				if(m.input!=undefined && m.input.record!=undefined && m.input.record.Data!==undefined) {
+					var fd_text='';
+					fd_text='{"formula_design":{"F_ID":"'+m.input.record.UID+'","Formula":"'+m.input.record.Data.Formula_Name+'"}}\n';
+					//console.log(m.input.record.Data)
+					for( var i=0;i<m.input.record.Data.items_a.length;i++){
+						fd_text+='{"ingredient":{"P_ID":"'+m.input.record.Data.items_a[i].P_ID+'","Product":"'+m.input.record.Data.items_a[i].Product+'","Format":"'+m.input.record.Data.items_a[i].Format+'"}}\n'
+						if(m.input.record.Data.items_a[i].Format=='Powder'){
+							fd_text+='{"qty":{"select_powder":"'+m.input.record.Data.items_a[i].Quantity+'"}} \n';	
+						}
+						else{
+							fd_text+='{"qty":{"Quantity":"'+m.input.record.Data.items_a[i].Quantity+'"}} \n';	
+						}
+					}
+					$('#F__ID #QR_code__ID').text(fd_text)
+				}
+				else{$('#F__ID #QR_code__ID').text('')}
+
 				load();	
 				//-------------------------------------
 				/*if(m.input.record==undefined) {
@@ -214,9 +191,6 @@
             //----------------------------------
                 
 			m.before_submit = function (data, index) {
-				data.Input_type="Manual"
-				//console.log(JSON.stringify(data))
-				//console.log(JSON.stringify(index))
 				if(m.item_a_records!=undefined) data.items_a = m.item_a_get_data();
 				//console.log(JSON.stringify(data))
 				//Sort Product ID in order for easier search
@@ -271,7 +245,6 @@
 			}
 			var autocomplete_req_2 = { cmd: "find", field: ".I2", table: m.client_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_2 = function (items) {
-				//console.log("autocomplete_callback_2");
 				//console.log(JSON.stringify(items));
 				$("#F__ID #Product_uid__ID").val(items["UID"]);
 				$("#F__ID #Product_Name__ID").val(get_client_info_2(items.record));

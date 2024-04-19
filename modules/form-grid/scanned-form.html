@@ -35,6 +35,11 @@
 				load();	
                 document.getElementById("scanned_input__ID").focus();
             }
+            $('#scanned_input__ID').on('blur',function(){
+                if( $('#scanned_input__ID').val().indexOf("END")!=-1){
+                    $('#submit__ID').click();
+                }
+            });
             //-------------------------------------
             m.before_submit = function (data, index) {
                 var date_time=new Date()
@@ -42,7 +47,7 @@
                 var mm = date_time.getMonth() + 1; // getMonth() is zero-based
                 var dd = date_time.getDate();
                 var dt=[date_time.getFullYear(),(mm>9 ? '' : '0') + mm,(dd>9 ? '' : '0') + dd].join('-');                
-                console.log(dt+' '+tm); 
+                //console.log(dt+' '+tm); 
                 data.Entry_time=dt+' '+tm
                 scanned_time=dt+' '+tm              
 			}
@@ -58,14 +63,14 @@
             }
             //-------------------------------------
             var check_formula_input=function(data){
-                console.log("after insert or update")
+                //console.log("after insert or update")
                 var input_data=data.scanned_input.split("\n")
-                console.log(JSON.stringify(input_data))
+                //console.log(JSON.stringify(input_data))
                 var start_line=0; var end_line=0;
                 for (var j=0;j<input_data.length;j++){
                     input_data[j]=input_data[j].replace('\r','');
                     input_data[j]=input_data[j].replaceAll('“','"').replaceAll('”','"');
-                    console.log(JSON.stringify(input_data))
+                    //console.log(JSON.stringify(input_data[j]))
                     if(input_data[j]=="START") start_line=j;
                     if(input_data[j]=="END") end_line=j;
                     //console.log(start_line+' - '+end_line)
@@ -77,9 +82,10 @@
                     formula.push(JSON.parse(input_data[i]));
                 }
                 //Get Product information
+                //console.log('Get Product information')
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].ingredient!=undefined && formula[i].ingredient.Format=="Powder"){
-                        console.log(formula[i].ingredient.Format)
+                        //console.log(formula[i].ingredient.Format)
                         var query={UID:parseInt(formula[i].ingredient.P_ID)}
                         jQuery.ajaxSetup({async:false});
                         $vm.request({ api:m.api,cmd:'find',table:m.client_table,query:query,skip:0,limit:1}, function (res) {
@@ -100,6 +106,7 @@
                         jQuery.ajaxSetup({async:true});
                     }
                 }
+                //console.log('Get quantity')
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].qty!=undefined) {
                             if(formula[i].qty.select_powder!=undefined){
@@ -122,6 +129,9 @@
                     else if(formula[i].people!=undefined){
                         data=formula[i].people;
                     }
+                    if(formula[i].formula_design!=undefined){
+                        data.Formula_Name=formula[i].formula_design.Formula;
+                    }
                 }
                 data.Entry_time;
                 data.Input_type="Scanned"
@@ -135,9 +145,9 @@
 				//console.log(JSON.stringify(prod))
 				index.I2=JSON.stringify(prod);
                 index.I3=data.Entry_time;
-                console.log("Formula insert")
-                console.log(data)
-                console.log(index)
+                //console.log("Formula insert")
+                //console.log(data)
+                //console.log(index)
                 $vm.request({cmd:'insert',table:m.Table2,data:data,index:index},function(res){
                     if(res.status=="np"){
                         alert("No permission to insert a new record in to the database.");
@@ -167,7 +177,7 @@
 							} 
                         }
 						else{
-							console.log("Nothing in db")
+							//console.log("Nothing in db")
                             trans.Front_Storage=0;
                             trans.Back_Storage=0;
                             trans.Current_Batch=0;
@@ -183,7 +193,7 @@
 				//jQuery.ajaxSetup({ async: false });
                 var batch={};
                 batch.new=false;
-				console.log("set_active_batch")
+				//console.log("set_active_batch")
 				new_batch=false;
 				var query={$and:[{I1:parseInt(product_uid)},{I3: { "$eq":"Put in"}},{"Data.Active_Batch": { "$eq": "Not Active"}}] }
                     $vm.request({ cmd:'find',table:m.Table4,query:query}, function (res) {
@@ -192,7 +202,7 @@
                             return ;
                         }        
                         if (res.result.length > 0) {
-							console.log("get result")
+							//console.log("get result")
 							batch.new=true;
 							// Save data here, and do the update after submit.
 							batch.rid=res.result[res.result.length-1]._id
@@ -201,7 +211,7 @@
 							batch.data.Active_Batch="Active";						
                         }
 						else{
-							console.log("Nothing in db")
+							//console.log("Nothing in db")
 						}
                     })
                     return batch;
@@ -216,7 +226,7 @@
                     jQuery.ajaxSetup({async:false});
                     last_trans=get_last_transaction(ingredient[i].P_ID);
                     jQuery.ajaxSetup({async:true});
-                    console.log(JSON.stringify(last_trans))
+                    //console.log(JSON.stringify(last_trans))
                     var bs=0,fs=0,nq=0,cb=0;
                     bs=parseFloat(last_trans.Back_Storage);
                     fs=parseFloat(last_trans.Front_Storage);
@@ -258,8 +268,8 @@
                     index.I5=bs;
                     index.I6=parseFloat(data.Current_Batch);
                     if(batch.new){
-                        console.log(batch.data)
-                        console.log("Update 'Put-in' batch ")
+                        //console.log(batch.data)
+                        //console.log("Update 'Put-in' batch ")
                         $vm.request({ cmd:'update',id:batch.rid,table:m.Table4,data:batch.data}, function (res) {
                             if(res.status=="np"){
                                 alert("No permission to update this record.");
@@ -267,9 +277,9 @@
                             }
                         })
                     }
-                    console.log("New Stock record")
-                    console.log(JSON.stringify(data))
-                    console.log(JSON.stringify(index))
+                    //console.log("New Stock record")
+                    //console.log(JSON.stringify(data))
+                    //console.log(JSON.stringify(index))
                     
                     $vm.request({cmd:'insert',table:m.Table4,data:data,index:index},function(res){
                         if(res.status=="np"){

@@ -16,6 +16,8 @@
 
     m[p+"formula-data"] ={url:H+"/form-grid/formula-data.html",Table:"formula-comeback",form_module:"formula-form",task_name:"Formula"};                   
     m[p+"formula-form"] ={url:H+"/form-grid/formula-form.html",Table:"formula-comeback",client_table:"products-comeback",client2_table:"people-comeback",measurement_table2:"measurement-comeback",task_name:"Formula"};
+    m[p+"formula-design-data"] ={url:H+"/form-grid/formula-design-data.html",Table:"formula-design-comeback",form_module:"formula-design-form",task_name:"Formula"};                   
+    m[p+"formula-design-form"] ={url:H+"/form-grid/formula-design-form.html",Table:"formula-design-comeback",client_table:"products-comeback",measurement_table2:"measurement-comeback",task_name:"Formula Design"};
     m[p+"outcomes-data"] ={url:H+"/form-grid/outcomes-data.html",Table:"outcomes-comeback",form_module:"outcomes-form",task_name:"Outcomes"};                   
     m[p+"outcomes-form"] ={url:H+"/form-grid/outcomes-form.html",Table:"outcomes-comeback",task_name:"Outcomes"};
     m[p+"scanned-data"] ={url:H+"/form-grid/scanned-data.html",Table:"scanned-comeback",form_module:"scanned-form",task_name:"Scanner input"};                   

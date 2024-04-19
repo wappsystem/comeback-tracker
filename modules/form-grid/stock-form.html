@@ -83,7 +83,7 @@
 								<span class="question">
 									Transaction type
 								</span>
-								<div class="grid-container-3">
+								<div class="grid-container-4">
 									<div><input id="Transaction_type_2__ID" name="Transaction_type" type="radio"
 											value="Put in">
 										<label class="rd_btn width_btn_full textcenter" for="Transaction_type_2__ID">Put in</label>
@@ -97,11 +97,10 @@
 											value="Move">
 										<label class="rd_btn width_btn_full textcenter" for="Transaction_type_3__ID">Move</label>
 									</div>
-									<!--<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
-											value="Stocktake">
-										<label class="rd_btn " for="Transaction_type_4__ID">Stocktake
-											Adjustment</label>
-									</div>-->
+									<div><input id="Transaction_type_4__ID" name="Transaction_type" type="radio"
+											value="Clear FS">
+										<label class="rd_btn width_btn_full textcenter" for="Transaction_type_4__ID">Clear FS</label>
+									</div>
 								</div>
 							</fieldset>
 						</div>
@@ -241,6 +240,12 @@
 						document.getElementById('Usage_Date__ID').readOnly=false;
 						document.getElementById('Usage_Type__ID').disabled=false;
 						break;
+					case 'Clear FS':
+						$('#quantity_label__ID').text("Quantity taken from Front Storage");
+						$('#Transaction_type_in__ID').show();
+						document.getElementById('Usage_Date__ID').readOnly=true;
+						document.getElementById('Usage_Type__ID').disabled=true;
+						break;
 					/*case 'Stocktake':
 						$('#quantity_label__ID').text("Set Quantity in Front Storage");
 						$('#Transaction_type_in__ID').hide();
@@ -350,6 +355,18 @@
 					$('#quantity_div__ID').show();	
 					$("#F__ID input[name=Active_Batch]").val('Not Active');					
 					break;
+				case 'Clear FS':
+					$('#quantity_label__ID').text("Quantity taken from Front Storage");
+					$('#select_tbsp__ID').hide();
+					$('#Transaction_type_in__ID').show();
+					//$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);
+					document.getElementById('Usage_Date__ID').readOnly=true;
+					document.getElementById('Usage_Type__ID').disabled=true;
+					$('#quantity_div__ID').show();						
+					console.log("FS: "+$("#F__ID input[name=Front_Storage]").val())
+					$('#F__ID input[name=Quantity').val($("#F__ID input[name=Front_Storage]").val());
+					update_stock();
+					break;
 				/*case 'Stocktake':
 					$('#quantity_label__ID').text("Set Quantity in Front Storage");
 					$('#Transaction_type_in__ID').hide();
@@ -420,6 +437,18 @@
 							$('#F__ID #Current_Batch__ID').val((nq).toFixed(decimals));
 						}
 					break;
+				case 'Clear FS':
+						console.log("claer fs "+cb+ " nq: "+nq)
+						$('#F__ID #Back_Storage__ID').val((bs).toFixed(decimals));
+						$('#F__ID #Front_Storage__ID').val((fs-nq).toFixed(decimals));
+						$('#F__ID #Total_in_storage__ID').val((bs+fs-nq).toFixed(decimals))					
+						$('#F__ID #Current_Batch__ID').val((cb-nq).toFixed(decimals));
+						var cn=cb-nq;
+						if(cb-nq<=0) {
+							var prod_id= $('#F__ID input[name="Product_uid"]').val();
+							set_active_batch(prod_id,cn);
+						}				
+					break;
 				/*case 'Stocktake':
 						$('#Back_Storage__ID').val((bs).toFixed(0));
 						$('#Front_Storage__ID').val((nq).toFixed(0));
@@ -433,6 +462,7 @@
 			}
 			//-------------------------------------
 			$("input[name='Quantity']").change(function () {
+				console.log("Qty change")
 				update_stock();
 			})
 			//-------------------------------------
