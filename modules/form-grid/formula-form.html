@@ -11,7 +11,7 @@
 					<fieldset class="">
 						<div class="grid-container-2">
 							<div>
-								<label><span class="question">Formula ID</span>
+								<label><span class="question">Recoord ID</span>
 									<input type=text id="record__ID" class=formcontrol readonly />
 								</label>
 							</div>
@@ -25,7 +25,7 @@
 				</div>
 				<div class="formgroup">
 					<fieldset class="">
-						<div class="grid-container-2">
+						<div class="grid-container-3">
 							<div>
 								<label><span class="question">ID</span>
 									<input type=text name="Name_ID" class="formcontrol" readonly />
@@ -34,6 +34,11 @@
 							<div>
 								<label><span class="question">Who took the Formula</span>
 									<input type=text id=Name_first__ID name="First_Name" class="formcontrol width_80" />
+								</label>
+							</div>
+							<div>
+								<label><span class="question">Scan Entry Time</span>
+									<input type=text name="Scan_Entry_Time" class=formcontrol />
 								</label>
 							</div>
 						</div>
@@ -81,7 +86,7 @@
 							</div>
 							<div>
 								<label><span class="question">Location FS</span>
-									<input type=text id="Location_FS__ID" class="formcontrol threeqwidth" readonly />
+									<input type=text id="Location_FS__ID" class="formcontrol threeqwidth"  />
 								</label>
 							</div>
 						</div>
@@ -106,9 +111,11 @@
 						</div>
 					</fieldset>
 				</div>
+				<div id="section_to_print">
 				<div class="formgroup">
 					<table id=grid_item_a__ID></table>
 				</div>
+			</div>
 				<!--<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-2">
@@ -169,7 +176,7 @@
 			}
             //----------------------------------
             //item a part
-            m.item_a_fields="Product,P_ID,Format,Tsp_to_mg,Quantity,_Remove";
+            m.item_a_fields="Product,P_ID,FS,Format,Measurement,Quantity,_Remove";
             //----------------------------------
             $('#item_a_add__ID').on('click',function(){ m.item_a_add_product();m.item_a_cell_render(); })
             //----------------------------------
@@ -185,12 +192,17 @@
 						break;
 						case "P_ID": 
 						new_row['P_ID']=$("#F__ID #Product_uid__ID").val();
+						case "FS": 
+						new_row['FS']=$("#F__ID #Location_FS__ID").val();
 						break;
 						case "Format": 
 						new_row['Format']=$("#F__ID #Format__ID").val();
+						if($("#F__ID #Format__ID").val()!='Powder'){
+							$("#F__ID #select_powder__ID").val('');
+						}
 						break;
-						case "Tsp_to_mg": 
-						new_row['Tsp_to_mg']=$("#F__ID #Tsp_to_mg__ID").val();
+						case "Measurement": 
+						new_row['Measurement']=$("#F__ID #select_powder__ID").val();
 						break;
 						case "Quantity": 
 						new_row['Quantity']=$("#F__ID #Quantity__ID").val();
@@ -342,10 +354,71 @@
 				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_3); wait3(); }
 				I++; if(I>50){ clearInterval(loop_3); alert("jquery-ui.min.js is not installed."); }
 			},100);
+			//--------------------------------------------------
+			var get_name_4 = function (record) {
+				var name = record.Data.Location_FS;
+				return name;
+			}
+			var get_client_info_4 = function (record) {
+				var name = record.Data.Location_FS
+				return name;
+			}
+
+			var autocomplete_req_4 = { cmd: "find", field: ".Data.Location_FS", table: m.client_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_callback_4 = function (items) {
+				//console.log("autocomplete_callback_4");
+				//console.log(JSON.stringify(items));
+				$("#F__ID #Product_uid__ID").val(items["UID"]);
+				$("#F__ID #Product_Name__ID").val(items.record.Data.Product_Name);
+				$("#F__ID #Format__ID").val(items.record.Data.Format);
+				$("#F__ID #conversion__ID").text("1 tsp = "+items.record.Data.Tsp_to_mg+" mg");
+				$("#F__ID #Tsp_to_mg__ID").val(items.record.Data.Tsp_to_mg);
+				$("#F__ID #Size__ID").val(items.record.Data.Size);
+				$("#F__ID #Supplier__ID").val(items.record.Data.Supplier);
+				$("#F__ID #Location_FS__ID").val(items.record.Data.Location_FS);
+				conversion=parseFloat(items.record.Data.Tsp_to_mg);
+				if(items.record.I3=="Powder") {$("#F__ID #convers__ID").show();$("#F__ID #select_tbsp__ID").show();$("#F__ID #Quantity__ID").prop('readonly',true);}
+				else {$("#F__ID #convers__ID").hide();$("#F__ID #select_tbsp__ID").hide();$("#F__ID #Quantity__ID").prop('readonly',false);}
+				//console.log(JSON.stringify(items.record));
+			}
+			var autocomplete_list_4 = function (records) {
+				console.log(records)
+				var items = [];
+				for (var i = 0; i < records.length; i++) {
+					var obj = {};
+					obj.label = get_name_4(records[i]);
+					obj['UID'] = records[i].UID;
+					obj['record'] = records[i];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait4 = function () {
+				//console.log("wait_4")
+				$vm.autocomplete($('#Location_FS__ID'), autocomplete_req_4, autocomplete_list_4, autocomplete_callback_4);
+			}
+			var I = 0; var loop_4 = setInterval(function () {
+				//console.log("loop");
+				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_4); wait4(); }
+				I++; if (I > 50) { clearInterval(loop_4); alert("jquery-ui.min.js is not installed."); }
+			}, 100);
+			//-------------------------------------
+
 		}
 	</script>
 	<style>
 		/*VmInclude: '__HOST__/assets/css/form-item-a.01.css'*/
 		/*VmInclude:__HOST__/assets/css/wapp-form.css*/
+		
+		@media print{
+			body * {
+				visibility:hidden;
+			}
+			#section_to_print {
+				visibility: visible;
+				position: absolute;
+				top: 0;
+			}
+		}
 	</style>
 </div>

@@ -20,8 +20,8 @@
                     case '_Formula':
                         var summary=""
                         for (var j=0;j<records[I].Data.items_a.length;j++){
-                            summary+=records[I].Data.items_a[j].Product+" - "+records[I].Data.items_a[j].Quantity;
-                            if(j<records[I].Data.items_a.length-1) summary+=', '
+                            summary+=records[I].Data.items_a[j].Product.substring(0,10); //+" - "+records[I].Data.items_a[j].Quantity;
+                            if(j<records[I].Data.items_a.length-1) summary+=' / '
                             //console.log(JSON.stringify(records[I].Data.items_a[j].Product))
                         }
                         td.html(summary);
@@ -29,7 +29,7 @@
                 }
             }
             //-------------------------------------
-            console.log("AAA"+JSON.stringify(m.input))
+           // console.log("AAA"+JSON.stringify(m.input))
         }
     </script>
     <style>

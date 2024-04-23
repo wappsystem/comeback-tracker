@@ -1,6 +1,6 @@
 <div id=D__ID>
     <div>
-            <!--VmInclude:__HOST__/assets/html/grid.01.html-->
+            <!--VmInclude:__HOST__/assets/html/grid.01.stock.html-->
         </div>
     <script>
         function F__ID(){
@@ -16,6 +16,7 @@
             var tb=$vm.module_list['stock-level-data'].Table2;
             var stock_res={}
             m.load=function(){
+                jQuery.ajaxSetup({ async: false });
                 $vm.request({cmd:"find",table:tb,options:{}},function(res){
                     if (res.sys.permission == false) {
                         $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
@@ -25,6 +26,7 @@
                         stock_res=res.result;
                     }
                 })
+                jQuery.ajaxSetup({ async: true });
             }
             //-------------------------------------
             m.data_process=function(res){
