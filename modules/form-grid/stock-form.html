@@ -521,7 +521,7 @@
 			}
 			//-------------------------------------
 			var get_last_transaction=function(product_uid){
-				//jQuery.ajaxSetup({ async: false });
+				jQuery.ajaxSetup({ async: false });
 				new_batch=false;
 				var query={I1:parseInt(product_uid)}
                     $vm.request({ cmd:'find',table:m.Table,query:query,skip:0,limit:1}, function (res) {
@@ -548,9 +548,9 @@
 							$('#F__ID input[name="Current_Batch"]').val("0");
 						}
                     })
-                  //jQuery.ajaxSetup({ async: true }); 
 				  get_active_batch(product_uid)               
-			}
+                  jQuery.ajaxSetup({ async: true }); 
+				}
 			//-------------------------------------
 			//auto select client
 			var get_name = function (record) {
