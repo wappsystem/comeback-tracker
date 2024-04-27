@@ -289,9 +289,12 @@
 							console.log("get result")
 							var level_rid=res.result[0]._id
 							index2={};
+							data2={};
 							index2.I2=parseFloat(data.Total_in_storage);
 							index2.I1=index.I1
-							$vm.request({ cmd:'update',id:level_rid,table:m.stock_level_table,index:index2}, function (res) {
+							data2.Total_in_storage=data.Total_in_storage;
+							data2.Product_ID=(index.I1).toString();
+							$vm.request({ cmd:'update',id:level_rid,table:m.stock_level_table,data:data2,index:index2}, function (res) {
 								if(res.status=="np"){
 									alert("No permission to update this record.");
 									return;
@@ -302,9 +305,11 @@
 						else{
 							console.log("Nothing in db")
 							index2={};
+							data2={};
 							index2.I2=parseFloat(data.Total_in_storage);
 							index2.I1=index.I1
-							$vm.request({ cmd:'insert',table:m.stock_level_table,index:index2}, function (res) {
+							data2.Total_in_storage=data.Total_in_storage;
+							$vm.request({ cmd:'insert',table:m.stock_level_table,data:data2,index:index2}, function (res) {
 								if(res.status=="np"){
 									alert("No permission to update this record.");
 									return;
