@@ -83,11 +83,11 @@
                 }
                 //Get Product information
                 //console.log('Get Product information')
+                jQuery.ajaxSetup({async:false});
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].ingredient!=undefined && formula[i].ingredient.Format=="Powder"){
                         //console.log(formula[i].ingredient.Format)
                         var query={UID:parseInt(formula[i].ingredient.P_ID)}
-                        jQuery.ajaxSetup({async:false});
                         $vm.request({ api:m.api,cmd:'find',table:m.client_table,query:query,skip:0,limit:1}, function (res) {
                             if (res.sys.permission == false) {
                                 $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
@@ -103,9 +103,9 @@
                                 console.log("Nothing in db")  
                             }
                         });              
-                        jQuery.ajaxSetup({async:true});
                     }
                 }
+                jQuery.ajaxSetup({async:true});
                 //console.log('Get quantity')
                 for(var i=0;i<formula.length;i++){
                     if(formula[i].qty!=undefined) {
@@ -161,7 +161,7 @@
             }
             //---------------------------------------
             var get_last_transaction=function(product_uid){
-				//jQuery.ajaxSetup({ async: false });
+				jQuery.ajaxSetup({ async: false });
 				//new_batch=false;
                 var trans={};
 				var query={I1:parseInt(product_uid)}
@@ -178,13 +178,13 @@
                         }
 						else{
 							//console.log("Nothing in db")
-                            trans.Front_Storage=0;
-                            trans.Back_Storage=0;
-                            trans.Current_Batch=0;
-                            trans.Total_in_storage=0;
+                            trans.Front_Storage="0";
+                            trans.Back_Storage="0";
+                            trans.Current_Batch="0";
+                            trans.Total_in_storage="0";
 						}
                     })
-                  //jQuery.ajaxSetup({ async: true }); 
+                  jQuery.ajaxSetup({ async: true }); 
 				  //get_active_batch(product_uid)
                   return trans;               
 			}
@@ -220,18 +220,20 @@
 			//-------------------------------------
             var update_stock=function(ingredient){
                 var batch={};
+                jQuery.ajaxSetup({async:false});
                 for(var i=0;i<ingredient.length;i++){
                     var decimals=0;
                     var last_trans={};
-                    jQuery.ajaxSetup({async:false});
                     last_trans=get_last_transaction(ingredient[i].P_ID);
-                    jQuery.ajaxSetup({async:true});
-                    //console.log(JSON.stringify(last_trans))
                     var bs=0,fs=0,nq=0,cb=0;
-                    bs=parseFloat(last_trans.Back_Storage);
-                    fs=parseFloat(last_trans.Front_Storage);
-                    nq=parseFloat(ingredient[i].Quantity);
-                    cb=parseFloat(last_trans.Current_Batch);
+                    if (isNaN(last_trans.Back_Storage)) bs=last_trans.Back_Storage;
+                    else bs=parseFloat(last_trans.Back_Storage);
+                    if(isNaN(parseFloat(last_trans.Front_Storage))) fs=last_trans.Front_Storage;
+                    else fs=parseFloat(last_trans.Front_Storage);
+                    if(isNaN(parseFloat(ingredient[i].Quantity))) nq=ingredient[i].Quantity;
+                    else nq=parseFloat(ingredient[i].Quantity);
+                    if(isNaN(parseFloat(last_trans.Current_Batch))) cb=last_trans.Current_Batch;
+                    else cb=parseFloat(last_trans.Current_Batch);
                     var data={};
                     if(ingredient[i].Format=="Powder") decimals=3;
                     data.Format=ingredient[i].Format;
@@ -250,9 +252,8 @@
                     var cn=cb-nq;
                     if(cb-nq<=0) {
                         var prod_id=ingredient[i].P_ID;
-                        jQuery.ajaxSetup({async:false});
                         batch=set_active_batch(prod_id,cn);
-                        jQuery.ajaxSetup({async:true});
+                        console.log("cn: "+cn);
                         if(batch.new){
                             data.Usage_Type=batch.data.Usage_Type;
                             data.Usage_Date=batch.data.Usage_Date;
@@ -264,9 +265,9 @@
                     var index={};
                     index.I1=parseInt(ingredient[i].P_ID)
                     index.I3=data.Transaction_type;
-                    index.I4=fs-nq;
-                    index.I5=bs;
-                    index.I6=parseFloat(data.Current_Batch);
+                    index.I4=data.Front_Storage;
+    				index.I5=data.Back_Storage;
+                    index.I6=data.Current_Batch;
                     if(batch.new){
                         //console.log(batch.data)
                         //console.log("Update 'Put-in' batch ")
@@ -286,7 +287,49 @@
                             alert("No permission to insert a new record in to the database.");
                         }
                     });
+                    //Update stock level table
+                    var query={I1:parseInt(ingredient[i].P_ID)} 
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({ cmd:'find',table:m.stock_level_table,query:query,skip:0,limit:1},function (res) {
+                        if (res.sys.permission == false) {
+                            $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            return;
+                        }        
+                        if (res.result.length > 0) {
+							console.log("get result")
+							var level_rid=res.result[0]._id
+							index2={};
+							data2={};
+							index2.I2=parseFloat(data.Total_in_storage);
+							index2.I1=index.I1
+							data2.Total_in_storage=data.Total_in_storage;
+							data2.Product_ID=(index.I1).toString();
+							$vm.request({ cmd:'update',id:level_rid,table:m.stock_level_table,data:data2,index:index2}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+
+						}
+						else{
+							console.log("Nothing in db")
+							index2={};
+							data2={};
+							index2.I2=parseFloat(data.Total_in_storage);
+							index2.I1=index.I1
+							data2.Total_in_storage=data.Total_in_storage;
+							$vm.request({ cmd:'insert',table:m.stock_level_table,data:data2,index:index2}, function (res) {
+								if(res.status=="np"){
+									alert("No permission to update this record.");
+									return;
+								}
+							})
+						}
+                    })
+                    jQuery.ajaxSetup({async:true});
                 }
+                jQuery.ajaxSetup({async:true});
             }
 
 		}

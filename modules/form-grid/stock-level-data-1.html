@@ -195,6 +195,7 @@
             }
             //--------------------------------------------------------
             var add_records=function(tb){
+                /*
                 for (var i=0;i<table_check.length;i++){
                     if(table_check[i].table.name==tb){
                         table_check[i].table.order=NN
@@ -202,18 +203,18 @@
                     }
                 }
                 NN++
+                */
                 var o=JSON.parse(localStorage.getItem("export."+tb+".data"));
                 all_data.push(o)
-                console.log("NN: "+NN+" bi.length: "+bi_txt.length)
-                if(NN==bi_txt.length){
+                //console.log("NN: "+NN+" bi.length: "+bi_txt.length)
+                //if(NN==bi_txt.length){
                     console.log("Prepare: "+JSON.stringify(all_data))
-                    console.log("Table check: "+JSON.stringify(table_check))
-                    console.log("Bi_txt: "+JSON.stringify(bi_txt))
                     prepare_output(all_data);
-                }						
+                //}						
             }
             //--------------------------------------------------------
-            var prepare_output=function(data){            
+            var prepare_output=function(data){  
+                console.log(JSON.stringify(data[1]))          
 
             }
 
