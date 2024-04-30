@@ -2,72 +2,75 @@
     <div>
             <!--VmInclude:__HOST__/assets/html/grid.01.stock.html-->
         </div>
+        <!--VmInclude:__COMPONENT__/m/model.01.html-->
     <script>
         function F__ID(){
             //-------------------------------------
-            VmInclude:'__HOST__/assets/js/grid.01.js'
+            VmInclude:'__HOST__/assets/js/grid.01.stock.js'
             //-------------------------------------
             $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
             //-------------------------------------
-            var fields="_System_ID,Product_Name,Size,Supplier,Location_FS,Location_BS,Stock_level,Warning_Level";
-            m.fields=""+fields+",Submit_date,Submitted_by,_Delete";
-            //m.sort={_id:1}
+            var fields="ID,Product_Name,Size,Supplier,Location_FS,Location_BS,Total_in_storage,Warning_Level";
+            m.fields=""+fields+"";
             //-------------------------------------
-            var tb=$vm.module_list['stock-level-data'].Table2;
-            var stock_res={}
-            m.load=function(){
-                jQuery.ajaxSetup({ async: false });
-                $vm.request({cmd:"find",table:tb,options:{}},function(res){
-                    if (res.sys.permission == false) {
-                        $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
-                        return;
-                    }
-                    if (res.result.length > 0) {
-                        stock_res=res.result;
-                    }
-                })
-                jQuery.ajaxSetup({ async: true });
+            var tb1=$vm.module_list['stock-level-data'].Table;
+            var tb2=$vm.module_list['stock-level-data'].Table2;
+            //-------------------------------------
+            var table_check=[];
+            var all_data=[];
+            var bi_txt=[];
+            var tb=[];
+            var NN=0;
+            var N;
+            var AllProducts=[];
+            var StorageLow=[];
+            var StorageOK=[];
+            var StorageFail=[];
+            //-------------------------------------
+            $("input[name='filter']").change(function () {
+                if($("input[name='filter']").val()=="1") {m.records=[];m.records=AllProducts;}
+                if($("input[name='filter']:checked").val()=="2") {;m.records=[]; m.records=StorageLow;}
+                if($("input[name='filter']:checked").val()=="3") {;m.records=[]; m.records=StorageOK;}
+                if($("input[name='filter']:checked").val()=="4") {;m.records=[]; m.records=StorageFail;}
+                m.create_header();
+                m.render();
+            })
+            //-------------------------------------            
+            m.show=function(){
             }
-            //-------------------------------------
-            m.data_process=function(res){
-                //console.log(JSON.stringify(res.result))
-                //console.log(JSON.stringify(stock_res))
-                for(var i=0;i<res.result.length;i++){
-                    for(var j=0;j<stock_res.length;j++){
-                        //console.log(res.result[i].UID+' '+stock_res[j].I1)
-                        if(res.result[i].UID==stock_res[j].I1){
-                            res.result[i].Data.Stock_level=stock_res[j].I2;
-                            break;
-                        }
-                    }
+            //-------------------------------------            
+            m.load=function(){
+                m.input.silence=1;
+                tb.push(tb1);
+                tb.push(tb2);
+                for (var i=0;i<tb.length;i++){
+                    N=i+1;
+                    check_local_storage(tb[i],N)
                 }
             }
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
-                    case '_System_ID':
-                        td.html(records[I].UID);
-                        break;
-                        case 'Stock_level':
-                        if(records[I].Data['Stock_level']!=undefined && records[I].Data[field]!=undefined){
-                            if(parseFloat(records[I].Data[field])>parseFloat(records[I].Data['Warning_Level'])){
-                                td.html(records[I].Data[field]);
-                                td.css('background-color','lightgreen')
+                    case 'Total_in_storage':
+                        if(records[I]['Total_in_storage']!=undefined && records[I]['Warning_Level']!=undefined){
+                            if(parseFloat(records[I]['Total_in_storage'])>=parseFloat(records[I]['Warning_Level'])){
+                                td.html(records[I]['Total_in_storage']);
+                                td.css({'background-color':'lightgreen'})
                             }
-                            else{
-                                td.html(records[I].Data[field]);
-                                td.css('background-color','red')                        
+                            else if(parseFloat(records[I]['Total_in_storage'])<parseFloat(records[I]['Warning_Level'])) {
+                                td.html(records[I]['Total_in_storage']);
+                                td.css({'background-color':'red'})                        
                             }
                         }
                     break;
                     case 'Warning_Level':
-                        if(records[I].Data['Stock_level']!=undefined && records[I].Data[field]!=undefined){
-                            if(parseFloat(records[I].Data['Stock_level'])>parseFloat(records[I].Data[field])){
-                                td.html(records[I].Data[field]);
-                                td.css('background-color','lightgreen')
+                        if(records[I]['Warning_Level']!=undefined && records[I]['Total_in_storage']!=undefined){
+                            if(parseFloat(records[I]['Total_in_storage'])>=parseFloat(records[I]['Warning_Level'])){
+                                td.html(records[I]['Warning_Level']);
+                                td.css({'background-color':'lightgreen'})
                             }
-                            else{
-                                td.html(records[I].Data[field]);
+                            else if(parseFloat(records[I]['Total_in_storage'])<parseFloat(records[I]['Warning_Level'])) {
+                                td.html(records[I]['Warning_Level']);
                                 td.css('background-color','red')                        
                             }
                         }
@@ -75,6 +78,212 @@
                 }
             }
             //-------------------------------------
+            var check_local_storage=function(tb,N){
+                NN=0;
+                var submit_t
+                var update_t
+                var count_t
+                var tb_list={"table":{"name":undefined,"count":undefined,"submit":undefined,"update":undefined,"order":undefined}};
+                //check if something is in local storage.
+                if(tb!=undefined){
+                    //jQuery.ajaxSetup({async:false});
+                    //console.log($a.attr('href')+" - "+N+" - "+tb);
+                    //Check if changes have been made since last download
+                    setTimeout(function(){
+                        tb_list.table.name=tb;
+                        //Number of records
+                        get_count(tb,tb_list);
+                        //Latest submit time
+                        get_submit_date(tb,tb_list);
+                        //Latest update time
+                        get_update_date(tb,tb_list);
+                        /**/
+                    }, N*1000);
+                    //jQuery.ajaxSetup({async:true});
+                }
+            }
+            //--------------------------------------------------------
+            var get_submit_date=function(tb,tb_list){
+                var b=Date.parse('01 Jan 2000');
+                $vm.request({cmd:'find',table:tb,sort:{"Submit_date":-1},skip:0,limit:1},function(res){
+                    if(res.status=='np'){
+                        $vm.alert("No access permissions")
+                    }
+                    if(res.result.length==1){
+                        //console.log("Submit_date: "+JSON.stringify(res.result[0].Submit_date))
+                        tb_list.table.submit=res.result[0].Submit_date;
+                    }
+                    else{
+                        tb_list.table.submit="";
+                    }
+                    console.log("update: "+tb_list.table.update+" - submit: "+tb_list.table.submit+" - count: "+tb_list.table.count )
+                    if(tb_list.table.update!=undefined && tb_list.table.count!=undefined) {
+                        //NN++
+                        table_check.push(tb_list)
+                        check_export(tb,tb_list)
+                    }
+                    //console.log(JSON.stringify(table_check)+"- "+NN)
+                });
+            }
+            //--------------------------------------------------------			
+            var get_update_date=function(tb,tb_list){
+                var b=Date.parse('01 Jan 2000');
+                $vm.request({cmd:'find',table:tb,sort:{"Update_date":-1},skip:0,limit:1},function(res){
+                    if(res.status=='np'){
+                        $vm.alert("No access permissions")
+                    }
+                    if(res.result.length==1){
+                        //console.log("Update_date: "+JSON.stringify(res.result[0].Update_date))
+                        if(res.result[0].Update_date!=undefined){
+                            tb_list.table.update=res.result[0].Update_date;
+                        }
+                        else{
+                            tb_list.table.update="";	
+                        }
+                    }
+                    else{
+                        tb_list.table.update="";
+                    }	
+                    console.log("update: "+tb_list.table.update+" - submit: "+tb_list.table.submit+" - count: "+tb_list.table.count )
+                    if(tb_list.table.submit!=undefined && tb_list.table.count!=undefined){
+                        //NN++
+                        table_check.push(tb_list)
+                        check_export(tb,tb_list)
+                    }
+                    //console.log(JSON.stringify(table_check)+"- "+NN)
+                });
+            }
+            //--------------------------------------------------------			
+            var get_count=function(tb,tb_list){
+                var b=0;
+                $vm.request({cmd:'count',table:tb},function(res){
+                    if(res.status=='np'){
+                        $vm.alert("No access permissions")
+                    }
+                    console.log(res.result)
+                    if(res.result!=undefined){
+                        //console.log("Update_date: "+JSON.stringify(res.result[0].Update_date))
+                        tb_list.table.count=res.result;
+                    }
+                    console.log("update: "+tb_list.table.update+" - submit: "+tb_list.table.submit+" - count: "+tb_list.table.count )
+                    if(tb_list.table.submit!=undefined && tb_list.table.update!=undefined) {
+                        //NN++
+                        table_check.push(tb_list)
+                        check_export(tb,tb_list)
+                    }
+                });
+            }
+            //--------------------------------------------------------
+            var check_export=function(tb,tb_list){
+                if(tb_list.table.submit<tb_list.table.update) tb_list.table.submit=tb_list.table.update
+                //Last number count
+                var count=localStorage.getItem("export."+tb+".count");
+                //Last storage time
+                var storetime=localStorage.getItem("export."+tb+".storageTime");
+                var sub_time=new Date(tb_list.table.submit);
+                var store_time=new Date(storetime);
+                if(count!=undefined && count==tb_list.table.count){
+                    if(store_time>sub_time){
+                        if(localStorage.getItem("export."+tb+".data")==undefined){
+                            //Export records
+                            move_to_local_storage(tb,true,tb_list.table.count)
+                        }
+                        else{
+                            //Read from memory
+                            move_to_local_storage(tb,false,tb_list.table.count)
+                        }
+                    }
+                    else{
+                        //Export records
+                        move_to_local_storage(tb,true,tb_list.table.count)
+                    }
+                }
+                else{
+                        //Export records
+                        move_to_local_storage(tb,true,tb_list.table.count)
+                }
+            }
+            //--------------------------------------------------------
+            var move_to_local_storage=function(tb,exp,count){
+                console.log("table: "+tb+ " - "+exp)
+                if(tb!=undefined){
+                    if(exp){
+                        //Export and store in local memory
+                        var req={cmd:"export",table:tb,query:""}
+                        open_model__ID();
+                        $vm.request(req,function(N,i,txt){
+                            //console.log(i+"/"+N);
+                            $('#msg__ID').text((100*i/N).toFixed(0)+"%");
+                            console.log((100*i/N).toFixed(0)+"%")  
+                            $('#percent1__ID').text((100*i/N).toFixed(0)+"%")                       
+                            console.log("TXT length: "+txt.length)
+                            if(i==-1){
+                                var len=txt.length;
+                                console.log("Data:"+txt);
+                                var n_txt="["+txt.substring(5,len-9)+"]";
+                                localStorage.setItem("export."+tb+".data",n_txt);
+                                var d = new Date();
+                                var now=d.toISOString();
+                                localStorage.setItem("export."+tb+".storageTime",now);
+                                localStorage.setItem("export."+tb+".count",count);
+                                NN++;
+                                add_records(tb);
+                            }
+                        });
+                        close_model__ID();
+                    }
+                    else{
+                        NN++;
+                        add_records(tb);
+                    }
+                }
+                else{console.log("ERRRRRRRRRRRRRRRRRRRROR")}
+            }
+            //--------------------------------------------------------
+            var add_records=function(tb){
+                /*
+                for (var i=0;i<table_check.length;i++){
+                    if(table_check[i].table.name==tb){
+                        table_check[i].table.order=NN
+                        break;
+                    }
+                }
+                NN++
+                */
+                var o=JSON.parse(localStorage.getItem("export."+tb+".data"));
+                all_data.push(o)
+                //console.log("NN: "+NN+" bi.length: "+bi_txt.length)
+                console.log("NN: "+NN)
+                if(NN==2){
+                    //console.log("Prepare: "+JSON.stringify(all_data))
+                    prepare_output(all_data);
+                }
+            }
+            //--------------------------------------------------------
+            var prepare_output=function(data){ 
+                AllProducts=data[0];
+                var ts=data[1];
+                var empty_item={}
+                var output_data=[];
+                for (var i=0;i<AllProducts.length;i++){
+                    for (var k=0;k<ts.length;k++){
+                        if(AllProducts[i].ID==ts[k].Product_ID){
+                            //if(ts[i].hasOwnProperty("Total_in_storage"[k])){
+                            AllProducts[i].Total_in_storage=ts[k].Total_in_storage
+                        }
+                    }
+                }
+                for (var i=0;i<AllProducts.length;i++){
+                    if(parseFloat(AllProducts[i].Total_in_storage)< parseFloat(AllProducts[i].Warning_Level)) StorageLow.push(AllProducts[i])
+                    else if(parseFloat(AllProducts[i].Total_in_storage)>= parseFloat(AllProducts[i].Warning_Level)) StorageOK.push(AllProducts[i])
+                    else StorageFail.push(AllProducts[i]);
+                }
+                //console.log(JSON.stringify(AllProducts));
+                $('#select_filter__ID').show();
+                $('#nav_title__ID').text("Ready. Select data set.")
+            }
+
+
     }
     </script>
     <style>
