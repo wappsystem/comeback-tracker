@@ -400,6 +400,7 @@
 				fs=parseFloat($('#F__ID input[name="Front_Storage"]').val());
 				nq=parseFloat($('#F__ID input[name="Quantity"]').val());
 				cb=parseFloat($('#F__ID input[name="Current_Batch"]').val());
+				console.log(bs+" - "+fs+ " - "+nq+" - "+cb )
 				switch($("#F__ID input[name='Transaction_type']:checked").val()){
             	case 'Move': 
 						/* Let it go negative
@@ -443,7 +444,7 @@
 						}
 					break;
 				case 'Clear FS':
-						console.log("claer fs "+cb+ " nq: "+nq)
+						console.log("clear fs "+cb+ " nq: "+nq)
 						$('#F__ID #Back_Storage__ID').val((bs).toFixed(decimals));
 						$('#F__ID #Front_Storage__ID').val((fs-nq).toFixed(decimals));
 						$('#F__ID #Total_in_storage__ID').val((bs+fs-nq).toFixed(decimals))					
@@ -452,7 +453,8 @@
 						if(cb-nq<=0) {
 							var prod_id= $('#F__ID input[name="Product_uid"]').val();
 							set_active_batch(prod_id,cn);
-						}				
+						}
+						if(bs==0 && (fs-nq==0))	$('#F__ID #Current_Batch__ID').val("0")			
 					break;
 				/*case 'Stocktake':
 						$('#Back_Storage__ID').val((bs).toFixed(0));
