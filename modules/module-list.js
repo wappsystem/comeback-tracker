@@ -17,7 +17,7 @@
     m[p+"formula-data"] ={url:H+"/form-grid/formula-data.html",Table:"formula-comeback",form_module:"formula-form",task_name:"Formula"};                   
     m[p+"formula-form"] ={url:H+"/form-grid/formula-form.html",Table:"formula-comeback",client_table:"products-comeback",client2_table:"people-comeback",measurement_table2:"measurement-comeback",task_name:"Formula"};
     m[p+"formula-design-data"] ={url:H+"/form-grid/formula-design-data.html",Table:"formula-design-comeback",form_module:"formula-design-form",task_name:"Formula"};                   
-    m[p+"formula-design-form"] ={url:H+"/form-grid/formula-design-form.html",Table:"formula-design-comeback",client_table:"products-comeback",measurement_table2:"measurement-comeback",classification_table:"classification-comeback",subgroup_table:"subgroup-comeback",task_name:"Formula Design"};
+    m[p+"formula-design-form"] ={url:H+"/form-grid/formula-design-form.html",Table:"formula-design-comeback",client_table:"products-comeback",measurement_table2:"measurement-comeback",testing_table:"testing-comeback",version_table:"version-comeback",task_name:"Formula Design"};
     m[p+"outcomes-data"] ={url:H+"/form-grid/outcomes-data.html",Table:"outcomes-comeback",form_module:"outcomes-form",task_name:"Outcomes"};                   
     m[p+"outcomes-form"] ={url:H+"/form-grid/outcomes-form.html",Table:"outcomes-comeback",task_name:"Outcomes"};
     m[p+"scanned-data"] ={url:H+"/form-grid/scanned-data.html",Table:"scanned-comeback",form_module:"scanned-form",task_name:"Scanner input"};                   
@@ -32,10 +32,10 @@
     m[p+"measurement-form"] ={url:H+"/form-grid/measurement-form.html",Table:"measurement-comeback",task_name:"Measurement"};
     m[p+"content-data"] ={url:H+"/form-grid/content-data.html",Table:"content-comeback",form_module:"content-form",task_name:"Content"};                   
     m[p+"content-form"] ={url:H+"/form-grid/content-form.html",Table:"content-comeback",task_name:"Content"};
-    m[p+"subgroup-data"] ={url:H+"/form-grid/subgroup-data.html",Table:"subgroup-comeback",form_module:"subgroup-form",task_name:"Subgroup"};                   
-    m[p+"subgroup-form"] ={url:H+"/form-grid/subgroup-form.html",Table:"subgroup-comeback",task_name:"subgroup"};
-    m[p+"classification-data"] ={url:H+"/form-grid/classification-data.html",Table:"classification-comeback",form_module:"classification-form",task_name:"Classification"};                   
-    m[p+"classification-form"] ={url:H+"/form-grid/classification-form.html",Table:"classification-comeback",task_name:"Classification"};
+    m[p+"version-data"] ={url:H+"/form-grid/version-data.html",Table:"version-comeback",form_module:"version-form",task_name:"Version"};                   
+    m[p+"version-form"] ={url:H+"/form-grid/version-form.html",Table:"version-comeback",task_name:"version"};
+    m[p+"testing-data"] ={url:H+"/form-grid/testing-data.html",Table:"testing-comeback",form_module:"testing-form",task_name:"Testing Area"};                   
+    m[p+"testing-form"] ={url:H+"/form-grid/testing-form.html",Table:"testing-comeback",task_name:"Testing Area"};
 
     m[p+"upload-stock-data"] ={url:H+"/form-grid/stock-data.html",Table:"stock-comeback",form_module:"upload-stock-form",task_name:"Stock Transaction"};                   
     m[p+"upload-stock-form"] ={url:H+"/form-grid/upload-stock-form.html",Table:"stock-comeback",client_table:"products-comeback",stock_level_table:"stock-level-comeback",measurement_table:"measurement-comeback",task_name:"Stock Transaction"};
@@ -57,8 +57,8 @@
             $vm.module_list[p].measurement_table="demo-"+$vm.module_list[p].measurement_table;
             $vm.module_list[p].measurement_table2="demo-"+$vm.module_list[p].measurement_table2;
             $vm.module_list[p].content_table="demo-"+$vm.module_list[p].content_table;
-            $vm.module_list[p].subgroup_table="demo-"+$vm.module_list[p].subgroup_table;
-            $vm.module_list[p].classification_table="demo-"+$vm.module_list[p].classification_table;
+            $vm.module_list[p].version_table="demo-"+$vm.module_list[p].version_table;
+            $vm.module_list[p].testing_table="demo-"+$vm.module_list[p].testing_table;
         }
     }
 

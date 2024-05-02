@@ -9,12 +9,12 @@
             //-------------------------------------
             $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
             //-------------------------------------
-            var fields="_Classification_ID,Classification";
+            var fields="_Testing_Area_ID,Testing_Area";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
-                    case '_Classification_ID':
+                    case '_Testing_Area_ID':
                         td.html(records[I].UID);
                         break;
                 }

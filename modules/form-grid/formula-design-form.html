@@ -29,13 +29,13 @@
 						</div>
 						<div class="grid-container-2">
 							<div>
-								<label><span class="question">Classification</span>
-									<input type=text name="Formula_Classification" id="Classification__ID" class="formcontrol width_80" />
+								<label><span class="question">Testing Area</span>
+									<input type=text name="Formula_Testing_Area" id="Testing_Area__ID" class="formcontrol width_80" />
 								</label>
 							</div>
 							<div>
-								<label><span class="question">Subgroup</span>
-									<input type=text name="Formula_Subgroup" id=Subgroup__ID class="formcontrol width_80" />
+								<label><span class="question">Version</span>
+									<input type=text name="Formula_Version" id=Version__ID class="formcontrol width_80" />
 								</label>
 							</div>
 						</div>
@@ -127,7 +127,7 @@
 			//-------------------------------------
 			var load = m.load;
 			m.load = function () {
-				console.log(JSON.stringify(m.classification_table))
+				console.log(JSON.stringify(m.testing_table))
 				if(m.input!=undefined && m.input.record!=undefined && m.input.record.Data!==undefined) {
 					var fd_text='';
 					fd_text='{"formula_design":{"F_ID":"'+m.input.record.UID+'","Formula":"'+m.input.record.Data.Formula_Name+'"}}\n';
@@ -385,21 +385,21 @@
 				I++; if (I > 50) { clearInterval(loop_4); alert("jquery-ui.min.js is not installed."); }
 			}, 100);
 			//-------------------------------------
-			//auto select Classification
+			//auto select Testing_Area
 			var get_name_5 = function (record) {
-				var name = record.Data.Classification;
+				var name = record.Data.Testing_Area;
 				return name;
 			}
 			var get_client_info_5 = function (record) {
-				var name = record.Data.Classification
+				var name = record.Data.Testing_Area
 				return name;
 			}
-			var autocomplete_req_5 = { cmd: "find", field: ".I2", table: m.classification_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_req_5 = { cmd: "find", field: ".I2", table: m.testing_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_5 = function (items) {
 				console.log("autocomplete_callback_5");
 				//console.log(JSON.stringify(items));
-				$("#F__ID #Classification_uid__ID").val(items["UID"]);
-				$("#F__ID #Classification__ID").val(get_client_info_5(items.record));
+				$("#F__ID #Testing_Area_uid__ID").val(items["UID"]);
+				$("#F__ID #Testing_Area__ID").val(get_client_info_5(items.record));
 			}
 			var autocomplete_list_5 = function (records) {
 				console.log("auto_5")
@@ -415,7 +415,7 @@
 			}
 			var wait5 = function () {
 				console.log("wait_5")
-				$vm.autocomplete($('#Classification__ID'), autocomplete_req_5, autocomplete_list_5, autocomplete_callback_5);
+				$vm.autocomplete($('#Testing_Area__ID'), autocomplete_req_5, autocomplete_list_5, autocomplete_callback_5);
 			}
 			var I = 0; var loop_5 = setInterval(function () {
 				console.log("loop");
@@ -423,21 +423,21 @@
 				I++; if (I > 50) { clearInterval(loop_5); alert("jquery-ui.min.js is not installed."); }
 			}, 100);
 			//-------------------------------------
-			//auto select Subgroup
+			//auto select Version
 			var get_name_6 = function (record) {
-				var name = record.Data.Subgroup;
+				var name = record.Data.Version;
 				return name;
 			}
 			var get_client_info_6 = function (record) {
-				var name = record.Data.Subgroup
+				var name = record.Data.Version
 				return name;
 			}
-			var autocomplete_req_6 = { cmd: "find", field: ".I2", table: m.subgroup_table, options: {}, skip: 0, limit: 10 }
+			var autocomplete_req_6 = { cmd: "find", field: ".I2", table: m.version_table, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback_6 = function (items) {
 				console.log("autocomplete_callback_6");
 				//console.log(JSON.stringify(items));
-				$("#F__ID #Subgroup_uid__ID").val(items["UID"]);
-				$("#F__ID #Subgroup__ID").val(get_client_info_6(items.record));
+				$("#F__ID #Version_uid__ID").val(items["UID"]);
+				$("#F__ID #Version__ID").val(get_client_info_6(items.record));
 			}
 			var autocomplete_list_6 = function (records) {
 				console.log("auto_6")
@@ -453,7 +453,7 @@
 			}
 			var wait6 = function () {
 				console.log("wait_6")
-				$vm.autocomplete($('#Subgroup__ID'), autocomplete_req_6, autocomplete_list_6, autocomplete_callback_6);
+				$vm.autocomplete($('#Version__ID'), autocomplete_req_6, autocomplete_list_6, autocomplete_callback_6);
 			}
 			var I = 0; var loop_6 = setInterval(function () {
 				console.log("loop");

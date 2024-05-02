@@ -6,8 +6,8 @@
         <button type="button" id=people__ID class="btn" title="People">People</button>
         <button type="button" id=measurements__ID class="btn" title="People">Measurements</button>
         <button type="button" id=content__ID class="btn" title="Content">Content</button>
-        <button type="button" id=classification__ID class="btn" title="Classification">Classification</button>
-        <button type="button" id=subgroup__ID class="btn" title="Subgroup">Subgroup</button>
+        <button type="button" id=testing__ID class="btn" title="Classification">Testing Area</button>
+        <button type="button" id=version__ID class="btn" title="Version">Version</button>
         </div>
     </div>
     <script>
@@ -24,11 +24,11 @@
 			$('#content__ID').on('click',function(e){
       		  $vm.load_module('content-data',$vm.root_layout_content_slot,{});
     		})
-			$('#classification__ID').on('click',function(e){
-      		  $vm.load_module('classification-data',$vm.root_layout_content_slot,{});
+			$('#testing__ID').on('click',function(e){
+      		  $vm.load_module('testing-data',$vm.root_layout_content_slot,{});
     		})
-			$('#subgroup__ID').on('click',function(e){
-      		  $vm.load_module('subgroup-data',$vm.root_layout_content_slot,{});
+			$('#version__ID').on('click',function(e){
+      		  $vm.load_module('version-data',$vm.root_layout_content_slot,{});
     		})
 		}
     </script>

@@ -10,12 +10,12 @@
 				<div class="formgroup">
 					<fieldset class="">
 						<div class="grid-container-2">
-							<div><label><span class="question">Subgroup ID</span>
+							<div><label><span class="question">Version ID</span>
 									<input type=text id="record__ID" class=formcontrol readonly />
 								</label>
 							</div>
-							<div><label><span class="question">Subgroup</span>
-								<input type=text name="Subgroup" class="formcontrol width_80" />
+							<div><label><span class="question">Version</span>
+								<input type=text name="Version" class="formcontrol width_80" />
 							</label>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
 			VmInclude: '__HOST__/assets/js/form.01.js'
 			//-------------------------------------
 			m.before_submit = function (data, index) {
-				index.I2 = data.Subgroup;
+				index.I2 = data.Version;
 			}
 	}
 	</script>
