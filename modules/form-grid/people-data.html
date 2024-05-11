@@ -9,7 +9,7 @@
             //-------------------------------------
             $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
             //-------------------------------------
-            var fields="ID|UID,First_Name,Last_Name";
+            var fields="ID|UID,First_Name,Last_Name,_Login_ID,_Password,_Link_to_Questionnaire";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
@@ -32,6 +32,23 @@
     						window.open(q_url);*/
                         });
                         break;
+                    case '_Login_ID':
+                        td.html(records[I].UID);
+                        break;
+                    case '_Link_to_Questionnaire':
+                        //MongoDB
+                        td.html("<u style='cursor:pointer'>Link to Questionnaire</u>");
+                        td.find('u').on('click',function(){
+                            var db=""; if(window.location.toString().indexOf('tb=demo')!=-1) db="&tb=demo";
+                            var d="";  if(window.location.toString().indexOf('_d=1')!=-1) d="&_d=1";
+                            var p="";  if(window.location.toString().indexOf('_p=1')!=-1) p="&_p=1";
+                            var u="?username="+records[I].UID+"&password="+records[I].Data._Password;
+                            var q_url=$vm.module_list[m.online_questionnaire].url+u+db+d+p;
+    						window.open(q_url);
+                        });
+                        break;
+
+
                 }
             }
             //-------------------------------------

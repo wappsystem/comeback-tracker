@@ -32,6 +32,16 @@
 						</div>
 					</fieldset>
 				</div>
+				<div class="formgroup">
+					<fieldset class="">
+						<div class="grid-container-1">
+							<div><label><span class="question">Password</span>
+									<input type=text name="_Password" class="formcontrol width_80" />
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
 				<div class="formgroup right">
 					<button type="submit" id="submit__ID" class="btn">Submit</button>
 				</div>
@@ -45,14 +55,18 @@
 			//-------------------------------------
 			var load = m.load;
 			m.load = function () {
+				load();
 				if(m.input!=undefined && m.input.record!=undefined && m.input.record.Data!==undefined) {
 					$('#F__ID #QR_code__ID').text('{"people":{"Name_ID":"'+m.input.record.UID+'","First_Name":"'+m.input.record.I1+'"}}')
 				}
-				else $('#F__ID #QR_code__ID').text('');
-				load();
+				else {
+					$('#F__ID input[name=_Password').val($vm.vm_password(8, false));
+					$('#F__ID #QR_code__ID').text('');
+				}
 			}
 			//-------------------------------------
 			m.before_submit = function (data, index) {
+				console.log(JSON.stringify(data))
 				index.I1=data.First_Name;
 			}
 			//-------------------------------------

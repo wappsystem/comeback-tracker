@@ -1,0 +1,39 @@
+<div id=D__ID>
+    <div>
+            <!--VmInclude:__HOST__/assets/html/grid.01.html-->
+        </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__HOST__/assets/js/grid.01.js'
+            //-------------------------------------
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
+            //-------------------------------------
+            var fields="_ID,First_Name,Entry_time,"
+            fields+="ENERGY,FEELINGS_Mood_swings,FEELINGS_Not_in_control,FEELINGS_Happy,FEELINGS_Sad,FEELINGS_Sensitive,FEELINGS_Angry,FEELINGS_Confident,FEELINGS_Excited,FEELINGS_Irritable,FEELINGS_Anxious,FEELINGS_Insecure,FEELINGS_Grateful,FEELINGS_Indifferent,";
+            fields+="PAIN_Pain_free,PAIN_Headache,PAIN_Migrane,PAIN_Migrane_with_aura,PAIN_Lower_back,PAIN_Leg,PAIN_Joint,";
+            fields+="SLEEP_Trouble_falling_asleep,SLEEP_Woke_up_refreshed,SLEEP_Woke_up_tired,SLEEP_Restless_sleep,SLEEP_Vivid_dreams,SLEEP_Night_sweats,";
+            fields+="MIND_Forgetful,MIND_Brainfog,MIND_Calm,MIND_Stressed,MIND_Focussed,MIND_Distracted,MIND_Motivated,MIND_Unmotivated,MIND_Creative,MIND_Productive,MIND_Unproductive,";
+            fields+="SOCIAL_Sociable,SOCIAL_Withdrawn,SOCIAL_Supportive,SOCIAL_Argumentative,";
+            fields+="CRAVINGS_Sweets,CRAVINGS_Salty,CRAVINGS_Greasy,CRAVINGS_Spicy,CRAVINGS_Carbs,";
+            fields+="SKIN_OK,SKIN_Good,SKIN_Dry,SKIN_Oily,SKIN_Itchy,";
+            fields+="HAIR_OK,HAIR_Good,HAIR_Bad,HAIR_Oily,HAIR_Dry,HAIR_Loss,";
+            fields+="DIGESTION_OK,DIGESTION_Bloated,DIGESTION_Gassy,DIGESTION_Heartburn,DIGESTION_Nauseous,DIGESTION_Vomiting,";
+            fields+="STOOL";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+                    case '_ID':
+                        td.html(records[I].UID);
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        /*VmInclude:__HOST__/assets/css/grid.css*/
+        /*VmInclude:__HOST__/assets/css/wapp-form.css*/
+    </style>
+</div>

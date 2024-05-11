@@ -26,8 +26,12 @@
     m[p+"panel-setup"]=    	        {url:H+"/panels/setup.html"};
     m[p+"supplier-data"] ={url:H+"/form-grid/supplier-data.html",Table:"supplier-comeback",form_module:"supplier-form",task_name:"Supplier"};                   
     m[p+"supplier-form"] ={url:H+"/form-grid/supplier-form.html",Table:"supplier-comeback",Table2:"formula-comeback",Table3:"people-comeback",task_name:"Supplier"};
-    m[p+"people-data"] ={url:H+"/form-grid/people-data.html",Table:"people-comeback",form_module:"people-form",task_name:"People"};                   
+    m[p+"people-data"] ={url:H+"/form-grid/people-data.html",Table:"people-comeback",form_module:"people-form",task_name:"People",online_questionnaire:"oq"};                   
     m[p+"people-form"] ={url:H+"/form-grid/people-form.html",Table:"people-comeback",task_name:"People"};
+    m[p+"oq"] ={url:I+"/questionnaire.html",task_name:"Questionnaires"},
+    m[p+"questionnaire-data"] ={url:H+"/form-grid/questionnaire-data.html",Table:"questionnaire-comeback",form_module:"questionnaire-form",task_name:"Questionnaire"};                   
+    m[p+"questionnaire-form"] ={url:H+"/form-grid/questionnaire-form.html",Table:"questionnaire-comeback",task_name:"Questionnaire"};
+    m[p+"panel-oq"]=              {url:H+"/panels/oq.html"}  ,  
     m[p+"measurement-data"] ={url:H+"/form-grid/measurement-data.html",Table:"measurement-comeback",form_module:"measurement-form",task_name:"Measurement"};                   
     m[p+"measurement-form"] ={url:H+"/form-grid/measurement-form.html",Table:"measurement-comeback",task_name:"Measurement"};
     m[p+"content-data"] ={url:H+"/form-grid/content-data.html",Table:"content-comeback",form_module:"content-form",task_name:"Content"};                   
