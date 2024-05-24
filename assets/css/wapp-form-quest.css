@@ -192,6 +192,9 @@ padding:10px
   #D__ID .width_65 {
     width: 65%;
   }
+  #D__ID .width_44 {
+    width: 44%;
+  }
   #D__ID .width_btn_130 {
     width: 130px;
   }
@@ -201,14 +204,14 @@ padding:10px
 
   #D__ID input[type="radio"]:hover+label,
   #D__ID input[type="checkbox"]:hover+label {
-    background-color: #ddffe7;
+    background-color: #dddeff;
     cursor: pointer;
     color: #000000;
   }
 
   #D__ID input[type="radio"]:checked+label,
   #D__ID input[type="checkbox"]:checked+label {
-    background-color: #98d7c2;
+    background-color: #9998d7;
     cursor: default;
     color: #000000;
   }
@@ -382,3 +385,17 @@ padding:10px
     cursor: pointer;
     /* Cursor on hover */
   }
+  /* Tooltip container */
+
+/* Tooltip text */
+#D__ID .tooltiptext {
+  /*visibility: hidden;*/
+  background-color: rgb(86 59 121);
+  color: #fff;
+  text-align: left;
+  padding: 5px 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
