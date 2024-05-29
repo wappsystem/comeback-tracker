@@ -19,7 +19,7 @@
             fields+="MIND_NEGATIVE_Stuck,MIND_NEGATIVE_Antisocial,MIND_NEGATIVE_Stressed,MIND_NEGATIVE_Unfocussed,MIND_NEGATIVE_Forgetful,MIND_NEGATIVE_Unmotivated,MIND_NEGATIVE_Distracted,MIND_NEGATIVE_Unproductive,";
             fields+="BODY_PAIN_Headache,BODY_PAIN_Chest,BODY_PAIN_Joint,BODY_PAIN_Upper_Back,BODY_PAIN_Lower_Back,BODY_PAIN_Hip,BODY_PAIN_Knee,BODY_PAIN_Ankle,BODY_PAIN_Feet,";
             fields+="AILMENTS_Nauseous,AILMENTS_Vomiting,AILMENTS_Heartburn,AILMENTS_Ache,AILMENTS_Cold,AILMENTS_Fever,AILMENTS_Flu,AILMENTS_Hot_flushes,AILMENTS_UTI,";
-            fields+="ALLERGY_SKIN_HAIR,ALLERGY_SKIN_HAIR_Runny_Nose,ALLERGY_SKIN_HAIR_Coughing,ALLERGY_SKIN_HAIR_Itchy,ALLERGY_SKIN_HAIR_Dry_skin,ALLERGY_SKIN_HAIR_Dry_scalp,ALLERGY_SKIN_HAIR_Hair_loss,";
+            fields+="ALLERGY_SKIN_HAIR_Runny_Nose,ALLERGY_SKIN_HAIR_Coughing,ALLERGY_SKIN_HAIR_Itchy,ALLERGY_SKIN_HAIR_Dry_skin,ALLERGY_SKIN_HAIR_Dry_scalp,ALLERGY_SKIN_HAIR_Hair_loss,";
             fields+="DIGESTION_Bloated,DIGESTION_Gassy,DIGESTION_Diarrhea,DIGESTION_Constipation";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
@@ -28,17 +28,6 @@
                     case '_ID':
                         td.html(records[I].UID);
                         break;
-                    case 'LIFESTYLE':
-                    var s=parseInt(records[I].Data.LIFESTYLE);
-                    if(s<0) {
-                        td.css('background-color','red');
-                    }
-                    if(I<records.length-1){
-                        var ss=parseInt(records[I+1].Data.LIFESTYLE);
-                        if(s>ss){
-                            td.css('background-color','green');
-                        }
-                    }
                 }
             }
             //-------------------------------------
