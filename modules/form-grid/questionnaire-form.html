@@ -38,7 +38,7 @@
                     <div class="questiongroup ">
                         <fieldset>
                             <span class="question">
-                                ENERGY - LEVEL
+                                ENERGY LEVEL - Current
                             </span>
                             <div class="grid-container-1">
                                 <div>
@@ -68,7 +68,7 @@
                 <div class="formgroup">
                     <fieldset>
                         <div class="grid-container-1">
-                            <div><span class="question">SLEEP - QUALITY</span></div>
+                            <div><span class="question">SLEEP QUALITY - Previous night</span></div>
                             <div>
                                 <input type="checkbox" id="SLEEP_Trouble_falling_asleep__ID" name="SLEEP_Trouble_falling_asleep" value="-1">
                                 <label class="rd_btn width_88" for="SLEEP_Trouble_falling_asleep__ID"><span class="ticked">&check;</span>Trouble falling asleep</label>
@@ -104,20 +104,24 @@
                     <div class="questiongroup ">
                         <fieldset>
                             <span class="question">
-                                EXERCISE - MOVEMENT
+                                ACTIVITY - Earlier during day
                             </span>
                             <div class="grid-container-1">
                                 <div>
-                                    <input id="EXERCISE_MOVEMENT_1__ID" name="EXERCISE_MOVEMENT" type="radio" value="0">
-                                    <label class="rd_btn width_88" for="EXERCISE_MOVEMENT_1__ID">Sitting - Low activity (no sweating)</label>
+                                    <input id="ACTIVITY_1__ID" name="ACTIVITY" type="radio" value="0">
+                                    <label class="rd_btn width_88" for="ACTIVITY_1__ID">No activity yet - Just woke up</label>
                                 </div>
                                 <div>
-                                    <input id="EXERCISE_MOVEMENT_2__ID" name="EXERCISE_MOVEMENT" type="radio" value="1">
-                                    <label class="rd_btn width_88" for="EXERCISE_MOVEMENT_2__ID">Walking - Medium activity (light sweat - not exhausting)</label>
+                                    <input id="ACTIVITY_2__ID" name="ACTIVITY" type="radio" value="1">
+                                    <label class="rd_btn width_88" for="ACTIVITY_2__ID">Sitting - Low activity (no sweating)</label>
                                 </div>
                                 <div>
-                                    <input id="EXERCISE_MOVEMENT_3__ID" name="EXERCISE_MOVEMENT" type="radio" value="2">
-                                    <label class="rd_btn width_88" for="EXERCISE_MOVEMENT_3__ID">Running - High activity (heavy sweating - exchausting)
+                                    <input id="ACTIVITY_3__ID" name="ACTIVITY" type="radio" value="2">
+                                    <label class="rd_btn width_88" for="ACTIVITY_3__ID">Walking - Medium activity (light sweat - not exhausting)</label>
+                                </div>
+                                <div>
+                                    <input id="ACTIVITY_4__ID" name="ACTIVITY" type="radio" value="3">
+                                    <label class="rd_btn width_88" for="ACTIVITY_4__ID">Running - High activity (heavy sweating - exchausting)
                                     </label>
                                 </div>
                             </div>
@@ -179,24 +183,104 @@
                         <div class="grid-container-1">
                             <div><span class="question">FEELINGS - GOOD</span></div>
                             <div>
-                                <input type="checkbox" id="FEELINGS_Happy__ID" name="FEELINGS_Happy" value="1">
+                                <input type="checkbox" id="FEELINGS_Happy__ID" >
                                 <label class="rd_btn width_88" for="FEELINGS_Happy__ID"><span class="ticked">&check;</span>Happy</label>
                             </div>
+                            <div id="Happy_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of feeling</span>
+                                    <div>
+                                        <input id="Happy_1__ID" name="FEELINGS_Happy" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Happy_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Happy_2__ID" name="FEELINGS_Happy" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Happy_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Happy_3__ID" name="FEELINGS_Happy" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Happy_3__ID">extremely</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div>
-                                <input type="checkbox" id="FEELINGS_Confident__ID" name="FEELINGS_Confident" value="1">
+                                <input type="checkbox" id="FEELINGS_Confident__ID">
                                 <label class="rd_btn width_88" for="FEELINGS_Confident__ID"><span class="ticked">&check;</span>Confident</label>
                             </div>
+                            <div id="Confident_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of feeling</span>
+                                    <div>
+                                        <input id="Confident_1__ID" name="FEELINGS_Confident" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Confident_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Confident_2__ID" name="FEELINGS_Confident" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Confident_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Confident_3__ID" name="FEELINGS_Confident" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Confident_3__ID">extremely</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div>
-                                <input type="checkbox" id="FEELINGS_Excited__ID" name="FEELINGS_Excited" value="1">
+                                <input type="checkbox" id="FEELINGS_Excited__ID">
                                 <label class="rd_btn width_88" for="FEELINGS_Excited__ID"><span class="ticked">&check;</span>Excited</label>
                             </div>
-                            <div>
-                                <input type="checkbox" id="FEELINGS_Fulfilled__ID" name="FEELINGS_Fulfilled" value="1">
-                                <label class="rd_btn width_88" for="FEELINGS_Fulfilled__ID"><span class="ticked">&check;</span>Fulfilled</label>
+                            <div id="Excited_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of feeling</span>
+                                    <div>
+                                        <input id="Excited_1__ID" name="FEELINGS_Excited" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Excited_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Excited_2__ID" name="FEELINGS_Excited" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Excited_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Excited_3__ID" name="FEELINGS_Excited" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Excited_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="FEELINGS_Grateful__ID" name="FEELINGS_Grateful" value="1">
+                                <input type="checkbox" id="FEELINGS_Fulfilled__ID">
+                                <label class="rd_btn width_88" for="FEELINGS_Fulfilled__ID"><span class="ticked">&check;</span>Fulfilled</label>
+                            </div>
+                            <div id="Fulfilled_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of feeling</span>
+                                    <div>
+                                        <input id="Fulfilled_1__ID" name="FEELINGS_Fulfilled" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Fulfilled_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Fulfilled_2__ID" name="FEELINGS_Fulfilled" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Fulfilled_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Fulfilled_3__ID" name="FEELINGS_Fulfilled" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Fulfilled_3__ID">extremely</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="FEELINGS_Grateful__ID">
                                 <label class="rd_btn width_88" for="FEELINGS_Grateful__ID"><span class="ticked">&check;</span>Grateful</label>
+                            </div>
+                            <div id="Grateful_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of feeling</span>
+                                    <div>
+                                        <input id="Grateful_1__ID" name="FEELINGS_Grateful" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Grateful_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Grateful_2__ID" name="FEELINGS_Grateful" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Grateful_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Grateful_3__ID" name="FEELINGS_Grateful" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Grateful_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
@@ -221,26 +305,22 @@
                                 </div>
                             </div>
                             <div id="Helpless_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of feeling</span>
                                     <div>
                                         <input id="Helpless_1__ID" name="FEELINGS_Helpless" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Helpless_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Helpless_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Helpless_2__ID" name="FEELINGS_Helpless" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Helpless_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Helpless_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Helpless_3__ID" name="FEELINGS_Helpless" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Helpless_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Helpless_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Helpless_4__ID" name="FEELINGS_Helpless" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Helpless_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Helpless_5__ID" name="FEELINGS_Helpless" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Helpless_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Helpless_4__ID">severely</label>
                                     </div>
                                 </div>
                             </div>
@@ -261,26 +341,22 @@
                                     </span>
                                 </div>
                                 <div id="Frustrated_div__ID" class="formgroup" style="display: none;">
-                                    <div class="grid-container-1">
+                                    <div class="grid-container-1"><span class="question">Intensity of feeling</span>
                                         <div>
                                             <input id="Frustrated_1__ID" name="FEELINGS_Frustrated" type="radio" value="0">
-                                            <label class="rd_btn width_88" for="Frustrated_1__ID">val 0</label>
+                                            <label class="rd_btn width_88" for="Frustrated_1__ID">not at all</label>
                                         </div>
                                         <div>
                                             <input id="Frustrated_2__ID" name="FEELINGS_Frustrated" type="radio" value="1">
-                                            <label class="rd_btn width_88" for="Frustrated_2__ID">val 1</label>
+                                            <label class="rd_btn width_88" for="Frustrated_2__ID">slightly</label>
                                         </div>
                                         <div>
                                             <input id="Frustrated_3__ID" name="FEELINGS_Frustrated" type="radio" value="2">
-                                            <label class="rd_btn width_88" for="Frustrated_3__ID">val 2</label>
+                                            <label class="rd_btn width_88" for="Frustrated_3__ID">moderately</label>
                                         </div>
                                         <div>
                                             <input id="Frustrated_4__ID" name="FEELINGS_Frustrated" type="radio" value="3">
-                                            <label class="rd_btn width_88" for="Frustrated_4__ID">val 3</label>
-                                        </div>
-                                        <div>
-                                            <input id="Frustrated_5__ID" name="FEELINGS_Frustrated" type="radio" value="4">
-                                            <label class="rd_btn width_88" for="Frustrated_5__ID">val 4</label>
+                                            <label class="rd_btn width_88" for="Frustrated_4__ID">serverely</label>
                                         </div>
                                     </div>
                                 </div>
@@ -302,26 +378,22 @@
                                     </span>
                                 </div>
                                 <div id="Anxious_div__ID" class="formgroup" style="display: none;">
-                                    <div class="grid-container-1">
+                                    <div class="grid-container-1"><span class="question">Intensity of feeling</span>
                                         <div>
                                             <input id="Anxious_1__ID" name="FEELINGS_Anxious" type="radio" value="0">
-                                            <label class="rd_btn width_88" for="Anxious_1__ID">val 0</label>
+                                            <label class="rd_btn width_88" for="Anxious_1__ID">not at all</label>
                                         </div>
                                         <div>
                                             <input id="Anxious_2__ID" name="FEELINGS_Anxious" type="radio" value="1">
-                                            <label class="rd_btn width_88" for="Anxious_2__ID">val 1</label>
+                                            <label class="rd_btn width_88" for="Anxious_2__ID">slightly</label>
                                         </div>
                                         <div>
                                             <input id="Anxious_3__ID" name="FEELINGS_Anxious" type="radio" value="2">
-                                            <label class="rd_btn width_88" for="Anxious_3__ID">val 2</label>
+                                            <label class="rd_btn width_88" for="Anxious_3__ID">moderately</label>
                                         </div>
                                         <div>
-                                            <input id="Anxious_4__ID" name="FEELINGS_Anxious" type="radio" value="4">
-                                            <label class="rd_btn width_88" for="Anxious_4__ID">val 3</label>
-                                        </div>
-                                        <div>
-                                            <input id="Anxious_5__ID" name="FEELINGS_Anxious" type="radio" value="4">
-                                            <label class="rd_btn width_88" for="Anxious_5__ID">val 4</label>
+                                            <input id="Anxious_4__ID" name="FEELINGS_Anxious" type="radio" value="3">
+                                            <label class="rd_btn width_88" for="Anxious_4__ID">serverely</label>
                                         </div>
                                     </div>
                                 </div>
@@ -332,38 +404,166 @@
                 <div class="formgroup">
                     <fieldset>
                         <div class="grid-container-1">
-                            <div><span class="question">MIND - BALANCE</span></div>
+                            <div><span class="question">MIND STATE - POSITIVE</span></div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Creative__ID" name="MIND_BALANCE_Creative" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Creative__ID"><span class="ticked">&check;</span>Creative</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Creative__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Creative__ID"><span class="ticked">&check;</span>Creative</label>
+                            </div>
+                            <div id="Creative_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Creative_1__ID" name="MIND_POSITIVE_Creative" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Creative_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Creative_2__ID" name="MIND_POSITIVE_Creative" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Creative_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Creative_3__ID" name="MIND_POSITIVE_Creative" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Creative_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Sociable_Supportive__ID" name="MIND_BALANCE_Sociable_Supportive" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Sociable_Supportive__ID"><span class="ticked">&check;</span>Sociable - Supportive</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Sociable_Supportive__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Sociable_Supportive__ID"><span class="ticked">&check;</span>Sociable - Supportive</label>
+                            </div>
+                            <div id="Sociable_Supportive_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Sociable_Supportive_1__ID" name="MIND_POSITIVE_Sociable_Supportive" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Sociable_Supportive_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Sociable_Supportive_2__ID" name="MIND_POSITIVE_Sociable_Supportive" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Sociable_Supportive_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Sociable_Supportive_3__ID" name="MIND_POSITIVE_Sociable_Supportive" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Sociable_Supportive_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Calm__ID" name="MIND_BALANCE_Calm" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Calm__ID"><span class="ticked">&check;</span>Calm</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Calm__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Calm__ID"><span class="ticked">&check;</span>Calm</label>
+                            </div>
+                            <div id="Calm_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Calm_1__ID" name="MIND_POSITIVE_Calm" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Calm_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Calm_2__ID" name="MIND_POSITIVE_Calm" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Calm_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Calm_3__ID" name="MIND_POSITIVE_Calm" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Calm_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Focussed__ID" name="MIND_BALANCE_Focussed" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Focussed__ID"><span class="ticked">&check;</span>Focussed</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Focussed__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Focussed__ID"><span class="ticked">&check;</span>Focussed</label>
+                            </div>
+                            <div id="Focussed_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Focussed_1__ID" name="MIND_POSITIVE_Focussed" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Focussed_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Focussed_2__ID" name="MIND_POSITIVE_Focussed" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Focussed_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Focussed_3__ID" name="MIND_POSITIVE_Focussed" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Focussed_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Good_memory__ID" name="MIND_BALANCE_Good_memory" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Good_memory__ID"><span class="ticked">&check;</span>Good memory - Switch On</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Good_memory__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Good_memory__ID"><span class="ticked">&check;</span>Good memory - Switch On</label>
+                            </div>
+                            <div id="Good_memory_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Good_memory_1__ID" name="MIND_POSITIVE_Good_memory" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Good_memory_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Good_memory_2__ID" name="MIND_POSITIVE_Good_memory" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Good_memory_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Good_memory_3__ID" name="MIND_POSITIVE_Good_memory" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Good_memory_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Motivated__ID" name="MIND_BALANCE_Motivated" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Motivated__ID"><span class="ticked">&check;</span>Motivated</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Motivated__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Motivated__ID"><span class="ticked">&check;</span>Motivated</label>
+                            </div>
+                            <div id="Motivated_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Motivated_1__ID" name="MIND_POSITIVE_Motivated" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Motivated_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Motivated_2__ID" name="MIND_POSITIVE_Motivated" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Motivated_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Motivated_3__ID" name="MIND_POSITIVE_Motivated" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Motivated_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Organized__ID" name="MIND_BALANCE_Organized" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Organized__ID"><span class="ticked">&check;</span>Organized</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Organized__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Organized__ID"><span class="ticked">&check;</span>Organized</label>
+                            </div>
+                            <div id="Organized_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Organized_1__ID" name="MIND_POSITIVE_Organized" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Organized_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Organized_2__ID" name="MIND_POSITIVE_Organized" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Organized_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Organized_3__ID" name="MIND_POSITIVE_Organized" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Organized_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                             <div>
-                                <input type="checkbox" id="MIND_BALANCE_Productive__ID" name="MIND_BALANCE_Productive" value="1">
-                                <label class="rd_btn width_88" for="MIND_BALANCE_Productive__ID"><span class="ticked">&check;</span>Productive</label>
+                                <input type="checkbox" id="MIND_POSITIVE_Productive__ID">
+                                <label class="rd_btn width_88" for="MIND_POSITIVE_Productive__ID"><span class="ticked">&check;</span>Productive</label>
+                            </div>
+                            <div id="Productive_div__ID" class="formgroup" style="display: none;">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
+                                    <div>
+                                        <input id="Productive_1__ID" name="MIND_POSITIVE_Productive" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Productive_1__ID">normal level</label>
+                                    </div>
+                                    <div>
+                                        <input id="Productive_2__ID" name="MIND_POSITIVE_Productive" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Productive_2__ID">more</label>
+                                    </div>
+                                    <div>
+                                        <input id="Productive_3__ID" name="MIND_POSITIVE_Productive" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Productive_3__ID">extremely</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
@@ -371,228 +571,196 @@
                 <div class="formgroup">
                     <fieldset>
                         <div class="grid-container-1">
-                            <div><span class="question">MIND - IMBALANCE</span></div>
+                            <div><span class="question">MIND STATE - NEGATIVE</span></div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Stuck__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Stuck__ID"><span class="ticked">&check;</span>Stuck</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Stuck__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Stuck__ID"><span class="ticked">&check;</span>Stuck</label>
                             </div>
                             <div id="Stuck_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Stuck_1__ID" name="MIND_IMBALANCE_Stuck" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Stuck_1__ID">val 0</label>
+                                        <input id="Stuck_1__ID" name="MIND_NEGATIVE_Stuck" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Stuck_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Stuck_2__ID" name="MIND_IMBALANCE_Stuck" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Stuck_2__ID">val 1</label>
+                                        <input id="Stuck_2__ID" name="MIND_NEGATIVE_Stuck" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Stuck_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Stuck_3__ID" name="MIND_IMBALANCE_Stuck" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Stuck_3__ID">val 2</label>
+                                        <input id="Stuck_3__ID" name="MIND_NEGATIVE_Stuck" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Stuck_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Stuck_4__ID" name="MIND_IMBALANCE_Stuck" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Stuck_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Stuck_5__ID" name="MIND_IMBALANCE_Stuck" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Stuck_5__ID">val 4</label>
+                                        <input id="Stuck_4__ID" name="MIND_NEGATIVE_Stuck" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Stuck_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Antisocial__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Antisocial__ID"><span class="ticked">&check;</span>Antisocial (Social Anxiety - Withdrawn - Arumentative)</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Antisocial__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Antisocial__ID"><span class="ticked">&check;</span>Antisocial (Social Anxiety - Withdrawn - Arumentative)</label>
                             </div>
                             <div id="Antisocial_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Antisocial_1__ID" name="MIND_IMBALANCE_Antisocial" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Antisocial_1__ID">val 0</label>
+                                        <input id="Antisocial_1__ID" name="MIND_NEGATIVE_Antisocial" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Antisocial_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Antisocial_2__ID" name="MIND_IMBALANCE_Antisocial" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Antisocial_2__ID">val 1</label>
+                                        <input id="Antisocial_2__ID" name="MIND_NEGATIVE_Antisocial" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Antisocial_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Antisocial_3__ID" name="MIND_IMBALANCE_Antisocial" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Antisocial_3__ID">val 2</label>
+                                        <input id="Antisocial_3__ID" name="MIND_NEGATIVE_Antisocial" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Antisocial_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Antisocial_4__ID" name="MIND_IMBALANCE_Antisocial" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Antisocial_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Antisocial_5__ID" name="MIND_IMBALANCE_Antisocial" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Antisocial_5__ID">val 4</label>
+                                        <input id="Antisocial_4__ID" name="MIND_NEGATIVE_Antisocial" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Antisocial_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Stressed__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Stressed__ID"><span class="ticked">&check;</span>Stressed</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Stressed__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Stressed__ID"><span class="ticked">&check;</span>Stressed</label>
                             </div>
                             <div id="Stressed_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Stressed_1__ID" name="MIND_IMBALANCE_Stressed" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Stressed_1__ID">val 0</label>
+                                        <input id="Stressed_1__ID" name="MIND_NEGATIVE_Stressed" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Stressed_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Stressed_2__ID" name="MIND_IMBALANCE_Stressed" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Stressed_2__ID">val 1</label>
+                                        <input id="Stressed_2__ID" name="MIND_NEGATIVE_Stressed" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Stressed_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Stressed_3__ID" name="MIND_IMBALANCE_Stressed" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Stressed_3__ID">val 2</label>
+                                        <input id="Stressed_3__ID" name="MIND_NEGATIVE_Stressed" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Stressed_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Stressed_4__ID" name="MIND_IMBALANCE_Stressed" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Stressed_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Stressed_5__ID" name="MIND_IMBALANCE_Stressed" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Stressed_5__ID">val 4</label>
+                                        <input id="Stressed_4__ID" name="MIND_NEGATIVE_Stressed" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Stressed_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Unfocussed__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Unfocussed__ID"><span class="ticked">&check;</span>Unfocussed - Brainfog</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Unfocussed__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Unfocussed__ID"><span class="ticked">&check;</span>Unfocussed - Brainfog</label>
                             </div>
                             <div id="Unfocussed_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Unfocussed_1__ID" name="MIND_IMBALANCE_Unfocussed" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Unfocussed_1__ID">val 0</label>
+                                        <input id="Unfocussed_1__ID" name="MIND_NEGATIVE_Unfocussed" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Unfocussed_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Unfocussed_2__ID" name="MIND_IMBALANCE_Unfocussed" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Unfocussed_2__ID">val 1</label>
+                                        <input id="Unfocussed_2__ID" name="MIND_NEGATIVE_Unfocussed" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Unfocussed_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Unfocussed_3__ID" name="MIND_IMBALANCE_Unfocussed" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Unfocussed_3__ID">val 2</label>
+                                        <input id="Unfocussed_3__ID" name="MIND_NEGATIVE_Unfocussed" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Unfocussed_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Unfocussed_4__ID" name="MIND_IMBALANCE_Unfocussed" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Unfocussed_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Unfocussed_5__ID" name="MIND_IMBALANCE_Unfocussed" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Unfocussed_5__ID">val 4</label>
+                                        <input id="Unfocussed_4__ID" name="MIND_NEGATIVE_Unfocussed" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Unfocussed_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Forgetful__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Forgetful__ID"><span class="ticked">&check;</span>Forgetful - Bad Memory</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Forgetful__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Forgetful__ID"><span class="ticked">&check;</span>Forgetful - Bad Memory</label>
                             </div>
                             <div id="Forgetful_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Forgetful_1__ID" name="MIND_IMBALANCE_Forgetful" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Forgetful_1__ID">val 0</label>
+                                        <input id="Forgetful_1__ID" name="MIND_NEGATIVE_Forgetful" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Forgetful_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Forgetful_2__ID" name="MIND_IMBALANCE_Forgetful" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Forgetful_2__ID">val 1</label>
+                                        <input id="Forgetful_2__ID" name="MIND_NEGATIVE_Forgetful" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Forgetful_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Forgetful_3__ID" name="MIND_IMBALANCE_Forgetful" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Forgetful_3__ID">val 2</label>
+                                        <input id="Forgetful_3__ID" name="MIND_NEGATIVE_Forgetful" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Forgetful_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Forgetful_4__ID" name="MIND_IMBALANCE_Forgetful" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Forgetful_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Forgetful_5__ID" name="MIND_IMBALANCE_Forgetful" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Forgetful_5__ID">val 4</label>
+                                        <input id="Forgetful_4__ID" name="MIND_NEGATIVE_Forgetful" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Forgetful_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Unmotivated__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Unmotivated__ID"><span class="ticked">&check;</span>Unmotivated</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Unmotivated__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Unmotivated__ID"><span class="ticked">&check;</span>Unmotivated</label>
                             </div>
                             <div id="Unmotivated_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Unmotivated_1__ID" name="MIND_IMBALANCE_Unmotivated" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Unmotivated_1__ID">val 0</label>
+                                        <input id="Unmotivated_1__ID" name="MIND_NEGATIVE_Unmotivated" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Unmotivated_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Unmotivated_2__ID" name="MIND_IMBALANCE_Unmotivated" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Unmotivated_2__ID">val 1</label>
+                                        <input id="Unmotivated_2__ID" name="MIND_NEGATIVE_Unmotivated" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Unmotivated_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Unmotivated_3__ID" name="MIND_IMBALANCE_Unmotivated" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Unmotivated_3__ID">val 2</label>
+                                        <input id="Unmotivated_3__ID" name="MIND_NEGATIVE_Unmotivated" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Unmotivated_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Unmotivated_4__ID" name="MIND_IMBALANCE_Unmotivated" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Unmotivated_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Unmotivated_5__ID" name="MIND_IMBALANCE_Unmotivated" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Unmotivated_5__ID">val 4</label>
+                                        <input id="Unmotivated_4__ID" name="MIND_NEGATIVE_Unmotivated" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Unmotivated_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Distracted__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Distracted__ID"><span class="ticked">&check;</span>Distracted</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Distracted__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Distracted__ID"><span class="ticked">&check;</span>Distracted</label>
                             </div>
                             <div id="Distracted_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Distracted_1__ID" name="MIND_IMBALANCE_Distracted" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Distracted_1__ID">val 0</label>
+                                        <input id="Distracted_1__ID" name="MIND_NEGATIVE_Distracted" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Distracted_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Distracted_2__ID" name="MIND_IMBALANCE_Distracted" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Distracted_2__ID">val 1</label>
+                                        <input id="Distracted_2__ID" name="MIND_NEGATIVE_Distracted" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Distracted_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Distracted_3__ID" name="MIND_IMBALANCE_Distracted" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Distracted_3__ID">val 2</label>
+                                        <input id="Distracted_3__ID" name="MIND_NEGATIVE_Distracted" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Distracted_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Distracted_4__ID" name="MIND_IMBALANCE_Distracted" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Distracted_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Distracted_5__ID" name="MIND_IMBALANCE_Distracted" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Distracted_5__ID">val 4</label>
+                                        <input id="Distracted_4__ID" name="MIND_NEGATIVE_Distracted" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Distracted_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
                             <div >
-                                <input type="checkbox" id="MIND_IMBALANCE_Unproductive__ID" >
-                                <label class="rd_btn width_88" for="MIND_IMBALANCE_Unproductive__ID"><span class="ticked">&check;</span>Unproductive</label>
+                                <input type="checkbox" id="MIND_NEGATIVE_Unproductive__ID" >
+                                <label class="rd_btn width_88" for="MIND_NEGATIVE_Unproductive__ID"><span class="ticked">&check;</span>Unproductive</label>
                             </div>
                             <div id="Unproductive_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Intensity of mind state</span>
                                     <div>
-                                        <input id="Unproductive_1__ID" name="MIND_IMBALANCE_Unproductive" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Unproductive_1__ID">val 0</label>
+                                        <input id="Unproductive_1__ID" name="MIND_NEGATIVE_Unproductive" type="radio" value="0">
+                                        <label class="rd_btn width_88" for="Unproductive_1__ID">not at all</label>
                                     </div>
                                     <div>
-                                        <input id="Unproductive_2__ID" name="MIND_IMBALANCE_Unproductive" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Unproductive_2__ID">val 1</label>
+                                        <input id="Unproductive_2__ID" name="MIND_NEGATIVE_Unproductive" type="radio" value="1">
+                                        <label class="rd_btn width_88" for="Unproductive_2__ID">slightly</label>
                                     </div>
                                     <div>
-                                        <input id="Unproductive_3__ID" name="MIND_IMBALANCE_Unproductive" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Unproductive_3__ID">val 2</label>
+                                        <input id="Unproductive_3__ID" name="MIND_NEGATIVE_Unproductive" type="radio" value="2">
+                                        <label class="rd_btn width_88" for="Unproductive_3__ID">moderately</label>
                                     </div>
                                     <div>
-                                        <input id="Unproductive_4__ID" name="MIND_IMBALANCE_Unproductive" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Unproductive_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Unproductive_5__ID" name="MIND_IMBALANCE_Unproductive" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Unproductive_5__ID">val 4</label>
+                                        <input id="Unproductive_4__ID" name="MIND_NEGATIVE_Unproductive" type="radio" value="3">
+                                        <label class="rd_btn width_88" for="Unproductive_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -608,26 +776,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Headache__ID"><span class="ticked">&check;</span>Headache / Migraine</label>
                             </div>
                             <div id="Headache_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Headache_1__ID" name="BODY_PAIN_Headache" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Headache_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Headache_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Headache_2__ID" name="BODY_PAIN_Headache" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Headache_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Headache_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Headache_3__ID" name="BODY_PAIN_Headache" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Headache_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Headache_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Headache_4__ID" name="BODY_PAIN_Headache" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Headache_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Headache_5__ID" name="BODY_PAIN_Headache" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Headache_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Headache_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -636,26 +800,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Chest__ID"><span class="ticked">&check;</span>Chest / Breathing</label>
                             </div>
                             <div id="Chest_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Chest_1__ID" name="BODY_PAIN_Chest" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Chest_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Chest_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Chest_2__ID" name="BODY_PAIN_Chest" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Chest_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Chest_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Chest_3__ID" name="BODY_PAIN_Chest" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Chest_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Chest_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Chest_4__ID" name="BODY_PAIN_Chest" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Chest_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Chest_5__ID" name="BODY_PAIN_Chest" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Chest_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Chest_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -664,26 +824,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Joint__ID"><span class="ticked">&check;</span>Joint</label>
                             </div>
                             <div id="Joint_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Joint_1__ID" name="BODY_PAIN_Joint" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Joint_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Joint_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Joint_2__ID" name="BODY_PAIN_Joint" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Joint_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Joint_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Joint_3__ID" name="BODY_PAIN_Joint" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Joint_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Joint_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Joint_4__ID" name="BODY_PAIN_Joint" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Joint_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Joint_5__ID" name="BODY_PAIN_Joint" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Joint_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Joint_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -692,26 +848,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Upper_Back__ID"><span class="ticked">&check;</span>Upper Back</label>
                             </div>
                             <div id="Upper_Back_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Upper_Back_1__ID" name="BODY_PAIN_Upper_Back" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Upper_Back_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Upper_Back_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Upper_Back_2__ID" name="BODY_PAIN_Upper_Back" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Upper_Back_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Upper_Back_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Upper_Back_3__ID" name="BODY_PAIN_Upper_Back" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Upper_Back_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Upper_Back_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Upper_Back_4__ID" name="BODY_PAIN_Upper_Back" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Upper_Back_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Upper_Back_5__ID" name="BODY_PAIN_Upper_Back" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Upper_Back_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Upper_Back_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -720,26 +872,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Lower_Back__ID"><span class="ticked">&check;</span>Lower Back</label>
                             </div>
                             <div id="Lower_Back_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Lower_Back_1__ID" name="BODY_PAIN_Lower_Back" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Lower_Back_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Lower_Back_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Lower_Back_2__ID" name="BODY_PAIN_Lower_Back" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Lower_Back_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Lower_Back_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Lower_Back_3__ID" name="BODY_PAIN_Lower_Back" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Lower_Back_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Lower_Back_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Lower_Back_4__ID" name="BODY_PAIN_Lower_Back" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Lower_Back_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Lower_Back_5__ID" name="BODY_PAIN_Lower_Back" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Lower_Back_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Lower_Back_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -748,26 +896,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Hip__ID"><span class="ticked">&check;</span>Hip</label>
                             </div>
                             <div id="Hip_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Hip_1__ID" name="BODY_PAIN_Hip" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Hip_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Hip_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Hip_2__ID" name="BODY_PAIN_Hip" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Hip_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Hip_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Hip_3__ID" name="BODY_PAIN_Hip" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Hip_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Hip_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Hip_4__ID" name="BODY_PAIN_Hip" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Hip_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Hip_5__ID" name="BODY_PAIN_Hip" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Hip_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Hip_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -776,26 +920,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Knee__ID"><span class="ticked">&check;</span>Knee</label>
                             </div>
                             <div id="Knee_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Knee_1__ID" name="BODY_PAIN_Knee" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Knee_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Knee_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Knee_2__ID" name="BODY_PAIN_Knee" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Knee_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Knee_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Knee_3__ID" name="BODY_PAIN_Knee" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Knee_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Knee_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Knee_4__ID" name="BODY_PAIN_Knee" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Knee_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Knee_5__ID" name="BODY_PAIN_Knee" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Knee_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Knee_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -804,26 +944,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Ankle__ID"><span class="ticked">&check;</span>Ankle</label>
                             </div>
                             <div id="Ankle_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Ankle_1__ID" name="BODY_PAIN_Ankle" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Ankle_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Ankle_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Ankle_2__ID" name="BODY_PAIN_Ankle" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Ankle_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Ankle_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Ankle_3__ID" name="BODY_PAIN_Ankle" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Ankle_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Ankle_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Ankle_4__ID" name="BODY_PAIN_Ankle" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Ankle_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Ankle_5__ID" name="BODY_PAIN_Ankle" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Ankle_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Ankle_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -832,26 +968,22 @@
                                 <label class="rd_btn width_88" for="BODY_PAIN_Feet__ID"><span class="ticked">&check;</span>Feet</label>
                             </div>
                             <div id="Feet_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Feet_1__ID" name="BODY_PAIN_Feet" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Feet_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Feet_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Feet_2__ID" name="BODY_PAIN_Feet" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Feet_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Feet_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Feet_3__ID" name="BODY_PAIN_Feet" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Feet_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Feet_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Feet_4__ID" name="BODY_PAIN_Feet" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Feet_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Feet_5__ID" name="BODY_PAIN_Feet" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Feet_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Feet_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -867,26 +999,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Nauseous__ID"><span class="ticked">&check;</span>Nauseous</label>
                             </div>
                             <div id="Nauseous_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Nauseous_1__ID" name="AILMENTS_Nauseous" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Nauseous_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Nauseous_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Nauseous_2__ID" name="AILMENTS_Nauseous" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Nauseous_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Nauseous_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Nauseous_3__ID" name="AILMENTS_Nauseous" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Nauseous_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Nauseous_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Nauseous_4__ID" name="AILMENTS_Nauseous" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Nauseous_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Nauseous_5__ID" name="AILMENTS_Nauseous" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Nauseous_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Nauseous_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -895,26 +1023,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Vomiting__ID"><span class="ticked">&check;</span>Vomiting</label>
                             </div>
                             <div id="Vomiting_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Vomiting_1__ID" name="AILMENTS_Vomiting" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Vomiting_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Vomiting_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Vomiting_2__ID" name="AILMENTS_Vomiting" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Vomiting_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Vomiting_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Vomiting_3__ID" name="AILMENTS_Vomiting" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Vomiting_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Vomiting_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Vomiting_4__ID" name="AILMENTS_Vomiting" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Vomiting_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Vomiting_5__ID" name="AILMENTS_Vomiting" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Vomiting_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Vomiting_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -923,26 +1047,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Heartburn__ID"><span class="ticked">&check;</span>Heartburn</label>
                             </div>
                             <div id="Heartburn_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Heartburn_1__ID" name="AILMENTS_Heartburn" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Heartburn_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Heartburn_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Heartburn_2__ID" name="AILMENTS_Heartburn" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Heartburn_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Heartburn_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Heartburn_3__ID" name="AILMENTS_Heartburn" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Heartburn_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Heartburn_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Heartburn_4__ID" name="AILMENTS_Heartburn" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Heartburn_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Heartburn_5__ID" name="AILMENTS_Heartburn" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Heartburn_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Heartburn_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -951,26 +1071,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Ache__ID"><span class="ticked">&check;</span>Ache</label>
                             </div>
                             <div id="Ache_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Ache_1__ID" name="AILMENTS_Ache" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Ache_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Ache_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Ache_2__ID" name="AILMENTS_Ache" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Ache_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Ache_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Ache_3__ID" name="AILMENTS_Ache" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Ache_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Ache_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Ache_4__ID" name="AILMENTS_Ache" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Ache_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Ache_5__ID" name="AILMENTS_Ache" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Ache_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Ache_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -979,26 +1095,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Cold__ID"><span class="ticked">&check;</span>Cold</label>
                             </div>
                             <div id="Cold_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Cold_1__ID" name="AILMENTS_Cold" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Cold_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Cold_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Cold_2__ID" name="AILMENTS_Cold" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Cold_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Cold_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Cold_3__ID" name="AILMENTS_Cold" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Cold_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Cold_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Cold_4__ID" name="AILMENTS_Cold" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Cold_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Cold_5__ID" name="AILMENTS_Cold" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Cold_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Cold_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1007,26 +1119,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Fever__ID"><span class="ticked">&check;</span>Fever</label>
                             </div>
                             <div id="Fever_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Fever_1__ID" name="AILMENTS_Fever" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Fever_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Fever_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Fever_2__ID" name="AILMENTS_Fever" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Fever_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Fever_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Fever_3__ID" name="AILMENTS_Fever" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Fever_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Fever_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Fever_4__ID" name="AILMENTS_Fever" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Fever_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Fever_5__ID" name="AILMENTS_Fever" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Fever_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Fever_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1035,26 +1143,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Flu__ID"><span class="ticked">&check;</span>Flu</label>
                             </div>
                             <div id="Flu_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Flu_1__ID" name="AILMENTS_Flu" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Flu_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Flu_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Flu_2__ID" name="AILMENTS_Flu" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Flu_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Flu_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Flu_3__ID" name="AILMENTS_Flu" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Flu_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Flu_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Flu_4__ID" name="AILMENTS_Flu" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Flu_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Flu_5__ID" name="AILMENTS_Flu" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Flu_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Flu_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1063,26 +1167,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_Hot_flushes__ID"><span class="ticked">&check;</span>Hot flushes</label>
                             </div>
                             <div id="Hot_flushes_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Hot_flushes_1__ID" name="AILMENTS_Hot_flushes" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Hot_flushes_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Hot_flushes_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Hot_flushes_2__ID" name="AILMENTS_Hot_flushes" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Hot_flushes_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Hot_flushes_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Hot_flushes_3__ID" name="AILMENTS_Hot_flushes" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Hot_flushes_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Hot_flushes_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Hot_flushes_4__ID" name="AILMENTS_Hot_flushes" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Hot_flushes_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Hot_flushes_5__ID" name="AILMENTS_Hot_flushes" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Hot_flushes_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Hot_flushes_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1091,26 +1191,22 @@
                                 <label class="rd_btn width_88" for="AILMENTS_UTI__ID"><span class="ticked">&check;</span>UTI</label>
                             </div>
                             <div id="UTI_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="UTI_1__ID" name="AILMENTS_UTI" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="UTI_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="UTI_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="UTI_2__ID" name="AILMENTS_UTI" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="UTI_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="UTI_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="UTI_3__ID" name="AILMENTS_UTI" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="UTI_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="UTI_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="UTI_4__ID" name="AILMENTS_UTI" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="UTI_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="UTI_5__ID" name="AILMENTS_UTI" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="UTI_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="UTI_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1126,26 +1222,22 @@
                                 <label class="rd_btn width_88" for="ALLERGY_SKIN_HAIR_Runny_Nose__ID"><span class="ticked">&check;</span>Runny Nose</label>
                             </div>
                             <div id="Runny_Nose_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Runny_Nose_1__ID" name="ALLERGY_SKIN_HAIR_Runny_Nose" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Runny_Nose_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Runny_Nose_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Runny_Nose_2__ID" name="ALLERGY_SKIN_HAIR_Runny_Nose" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Runny_Nose_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Runny_Nose_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Runny_Nose_3__ID" name="ALLERGY_SKIN_HAIR_Runny_Nose" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Runny_Nose_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Runny_Nose_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Runny_Nose_4__ID" name="ALLERGY_SKIN_HAIR_Runny_Nose" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Runny_Nose_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Runny_Nose_5__ID" name="ALLERGY_SKIN_HAIR_Runny_Nose" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Runny_Nose_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Runny_Nose_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1154,26 +1246,22 @@
                                 <label class="rd_btn width_88" for="ALLERGY_SKIN_HAIR_Coughing__ID"><span class="ticked">&check;</span>Coughing</label>
                             </div>
                             <div id="Coughing_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Coughing_1__ID" name="ALLERGY_SKIN_HAIR_Coughing" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Coughing_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Coughing_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Coughing_2__ID" name="ALLERGY_SKIN_HAIR_Coughing" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Coughing_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Coughing_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Coughing_3__ID" name="ALLERGY_SKIN_HAIR_Coughing" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Coughing_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Coughing_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Coughing_4__ID" name="ALLERGY_SKIN_HAIR_Coughing" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Coughing_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Coughing_5__ID" name="ALLERGY_SKIN_HAIR_Coughing" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Coughing_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Coughing_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1182,26 +1270,22 @@
                                 <label class="rd_btn width_88" for="ALLERGY_SKIN_HAIR_Itchy__ID"><span class="ticked">&check;</span>Itchy</label>
                             </div>
                             <div id="Itchy_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Itchy_1__ID" name="ALLERGY_SKIN_HAIR_Itchy" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Itchy_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Itchy_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Itchy_2__ID" name="ALLERGY_SKIN_HAIR_Itchy" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Itchy_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Itchy_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Itchy_3__ID" name="ALLERGY_SKIN_HAIR_Itchy" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Itchy_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Itchy_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Itchy_4__ID" name="ALLERGY_SKIN_HAIR_Itchy" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Itchy_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Itchy_5__ID" name="ALLERGY_SKIN_HAIR_Itchy" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Itchy_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Itchy_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1210,26 +1294,22 @@
                                 <label class="rd_btn width_88" for="ALLERGY_SKIN_HAIR_Dry_skin__ID"><span class="ticked">&check;</span>Dry skin</label>
                             </div>
                             <div id="Dry_skin_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Dry_skin_1__ID" name="ALLERGY_SKIN_HAIR_Dry_skin" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Dry_skin_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Dry_skin_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Dry_skin_2__ID" name="ALLERGY_SKIN_HAIR_Dry_skin" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Dry_skin_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Dry_skin_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Dry_skin_3__ID" name="ALLERGY_SKIN_HAIR_Dry_skin" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Dry_skin_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Dry_skin_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Dry_skin_4__ID" name="ALLERGY_SKIN_HAIR_Dry_skin" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Dry_skin_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Dry_skin_5__ID" name="ALLERGY_SKIN_HAIR_Dry_skin" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Dry_skin_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Dry_skin_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1238,26 +1318,22 @@
                                 <label class="rd_btn width_88" for="ALLERGY_SKIN_HAIR_Dry_scalp__ID"><span class="ticked">&check;</span>Dry scalp</label>
                             </div>
                             <div id="Dry_scalp_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Dry_scalp_1__ID" name="ALLERGY_SKIN_HAIR_Dry_scalp" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Dry_scalp_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Dry_scalp_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Dry_scalp_2__ID" name="ALLERGY_SKIN_HAIR_Dry_scalp" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Dry_scalp_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Dry_scalp_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Dry_scalp_3__ID" name="ALLERGY_SKIN_HAIR_Dry_scalp" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Dry_scalp_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Dry_scalp_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Dry_scalp_4__ID" name="ALLERGY_SKIN_HAIR_Dry_scalp" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Dry_scalp_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Dry_scalp_5__ID" name="ALLERGY_SKIN_HAIR_Dry_scalp" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Dry_scalp_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Dry_scalp_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1266,26 +1342,22 @@
                                 <label class="rd_btn width_88" for="ALLERGY_SKIN_HAIR_Hair_loss__ID"><span class="ticked">&check;</span>Hair loss</label>
                             </div>
                             <div id="Hair_loss_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Hair_loss_1__ID" name="ALLERGY_SKIN_HAIR_Hair_loss" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Hair_loss_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Hair_loss_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Hair_loss_2__ID" name="ALLERGY_SKIN_HAIR_Hair_loss" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Hair_loss_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Hair_loss_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Hair_loss_3__ID" name="ALLERGY_SKIN_HAIR_Hair_loss" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Hair_loss_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Hair_loss_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Hair_loss_4__ID" name="ALLERGY_SKIN_HAIR_Hair_loss" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Hair_loss_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Hair_loss_5__ID" name="ALLERGY_SKIN_HAIR_Hair_loss" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Hair_loss_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Hair_loss_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1301,26 +1373,22 @@
                                 <label class="rd_btn width_88" for="DIGESTION_Bloated__ID"><span class="ticked">&check;</span>Bloated</label>
                             </div>
                             <div id="Bloated_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Bloated_1__ID" name="DIGESTION_Bloated" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Bloated_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Bloated_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Bloated_2__ID" name="DIGESTION_Bloated" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Bloated_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Bloated_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Bloated_3__ID" name="DIGESTION_Bloated" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Bloated_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Bloated_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Bloated_4__ID" name="DIGESTION_Bloated" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Bloated_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Bloated_5__ID" name="DIGESTION_Bloated" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Bloated_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Bloated_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1329,26 +1397,22 @@
                                 <label class="rd_btn width_88" for="DIGESTION_Gassy__ID"><span class="ticked">&check;</span>Gassy</label>
                             </div>
                             <div id="Gassy_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Gassy_1__ID" name="DIGESTION_Gassy" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Gassy_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Gassy_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Gassy_2__ID" name="DIGESTION_Gassy" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Gassy_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Gassy_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Gassy_3__ID" name="DIGESTION_Gassy" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Gassy_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Gassy_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Gassy_4__ID" name="DIGESTION_Gassy" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Gassy_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Gassy_5__ID" name="DIGESTION_Gassy" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Gassy_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Gassy_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1357,26 +1421,22 @@
                                 <label class="rd_btn width_88" for="DIGESTION_Diarrhea__ID"><span class="ticked">&check;</span>Diarrhea</label>
                             </div>
                             <div id="Diarrhea_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Diarrhea_1__ID" name="DIGESTION_Diarrhea" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Diarrhea_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Diarrhea_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Diarrhea_2__ID" name="DIGESTION_Diarrhea" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Diarrhea_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Diarrhea_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Diarrhea_3__ID" name="DIGESTION_Diarrhea" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Diarrhea_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Diarrhea_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Diarrhea_4__ID" name="DIGESTION_Diarrhea" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Diarrhea_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Diarrhea_5__ID" name="DIGESTION_Diarrhea" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Diarrhea_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Diarrhea_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1385,26 +1445,22 @@
                                 <label class="rd_btn width_88" for="DIGESTION_Constipation__ID"><span class="ticked">&check;</span>Constipation</label>
                             </div>
                             <div id="Constipation_div__ID" class="formgroup" style="display: none;">
-                                <div class="grid-container-1">
+                                <div class="grid-container-1"><span class="question">Symptoms level</span>
                                     <div>
                                         <input id="Constipation_1__ID" name="DIGESTION_Constipation" type="radio" value="0">
-                                        <label class="rd_btn width_88" for="Constipation_1__ID">val 0</label>
+                                        <label class="rd_btn width_88" for="Constipation_1__ID">not at all</label>
                                     </div>
                                     <div>
                                         <input id="Constipation_2__ID" name="DIGESTION_Constipation" type="radio" value="1">
-                                        <label class="rd_btn width_88" for="Constipation_2__ID">val 1</label>
+                                        <label class="rd_btn width_88" for="Constipation_2__ID">slightly</label>
                                     </div>
                                     <div>
                                         <input id="Constipation_3__ID" name="DIGESTION_Constipation" type="radio" value="2">
-                                        <label class="rd_btn width_88" for="Constipation_3__ID">val 2</label>
+                                        <label class="rd_btn width_88" for="Constipation_3__ID">moderately</label>
                                     </div>
                                     <div>
                                         <input id="Constipation_4__ID" name="DIGESTION_Constipation" type="radio" value="3">
-                                        <label class="rd_btn width_88" for="Constipation_4__ID">val 3</label>
-                                    </div>
-                                    <div>
-                                        <input id="Constipation_5__ID" name="DIGESTION_Constipation" type="radio" value="4">
-                                        <label class="rd_btn width_88" for="Constipation_5__ID">val 4</label>
+                                        <label class="rd_btn width_88" for="Constipation_4__ID">serverely</label>
                                     </div>
                                 </div>
                             </div>
@@ -1479,6 +1535,106 @@
                 }
             })
             //-------------------------------------
+            $('#FEELINGS_Happy__ID').on('change',function(){
+                if($('#FEELINGS_Happy__ID').is(":checked")){
+                    $('#Happy_div__ID').show();
+                    if($('#FEELINGS_Happy__ID').val()=="0"){
+                        $('#FEELINGS_Happy__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Happy_div__ID').hide();
+                    $('#F__ID input[name=FEELINGS_Happy]').prop('checked', false);                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=FEELINGS_Happy]').on('change',function(){
+                if($('#F__ID input[name=FEELINGS_Happy]:checked').val()=="0"){
+                    $('#F__ID input[name=FEELINGS_Happy]').prop('checked', false);
+                    $('#FEELINGS_Happy__ID').prop('checked',false);
+                    $('#Happy_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#FEELINGS_Confident__ID').on('change',function(){
+                if($('#FEELINGS_Confident__ID').is(":checked")){
+                    $('#Confident_div__ID').show();
+                    if($('#FEELINGS_Confident__ID').val()=="0"){
+                        $('#FEELINGS_Confident__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Confident_div__ID').hide();
+                    $('#F__ID input[name=FEELINGS_Confident]').prop('checked', false);                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=FEELINGS_Confident]').on('change',function(){
+                if($('#F__ID input[name=FEELINGS_Confident]:checked').val()=="0"){
+                    $('#F__ID input[name=FEELINGS_Confident]').prop('checked', false);
+                    $('#FEELINGS_Confident__ID').prop('checked',false);
+                    $('#Confident_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#FEELINGS_Excited__ID').on('change',function(){
+                if($('#FEELINGS_Excited__ID').is(":checked")){
+                    $('#Excited_div__ID').show();
+                    if($('#FEELINGS_Excited__ID').val()=="0"){
+                        $('#FEELINGS_Excited__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Excited_div__ID').hide();
+                    $('#F__ID input[name=FEELINGS_Excited]').prop('checked', false);                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=FEELINGS_Excited]').on('change',function(){
+                if($('#F__ID input[name=FEELINGS_Excited]:checked').val()=="0"){
+                    $('#F__ID input[name=FEELINGS_Excited]').prop('checked', false);
+                    $('#FEELINGS_Excited__ID').prop('checked',false);
+                    $('#Excited_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#FEELINGS_Fulfilled__ID').on('change',function(){
+                if($('#FEELINGS_Fulfilled__ID').is(":checked")){
+                    $('#Fulfilled_div__ID').show();
+                    if($('#FEELINGS_Fulfilled__ID').val()=="0"){
+                        $('#FEELINGS_Fulfilled__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Fulfilled_div__ID').hide();
+                    $('#F__ID input[name=FEELINGS_Fulfilled]').prop('checked', false);                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=FEELINGS_Fulfilled]').on('change',function(){
+                if($('#F__ID input[name=FEELINGS_Fulfilled]:checked').val()=="0"){
+                    $('#F__ID input[name=FEELINGS_Fulfilled]').prop('checked', false);
+                    $('#FEELINGS_Fulfilled__ID').prop('checked',false);
+                    $('#Fulfilled_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#FEELINGS_Grateful__ID').on('change',function(){
+                if($('#FEELINGS_Grateful__ID').is(":checked")){
+                    $('#Grateful_div__ID').show();
+                    if($('#FEELINGS_Grateful__ID').val()=="0"){
+                        $('#FEELINGS_Grateful__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Grateful_div__ID').hide();
+                    $('#F__ID input[name=FEELINGS_Grateful]').prop('checked', false);                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=FEELINGS_Grateful]').on('change',function(){
+                if($('#F__ID input[name=FEELINGS_Grateful]:checked').val()=="0"){
+                    $('#F__ID input[name=FEELINGS_Grateful]').prop('checked', false);
+                    $('#FEELINGS_Grateful__ID').prop('checked',false);
+                    $('#Grateful_div__ID').hide();
+                }
+            })
+            //-------------------------------------
             $('#FEELINGS_Helpless__ID').on('change',function(){
                 if($('#FEELINGS_Helpless__ID').is(":checked")){
                     $('#Helpless_div__ID').show();
@@ -1542,170 +1698,338 @@
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Stuck__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Stuck__ID').is(":checked")){
+            $('#MIND_POSITIVE_Creative__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Creative__ID').is(":checked")){
+                    $('#Creative_div__ID').show();
+                    if($('#MIND_POSITIVE_Creative__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Creative__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Creative_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Creative]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Creative]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Creative]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Creative]').prop('checked', false);
+                    $('#MIND_POSITIVE_Creative__ID').prop('checked',false);
+                    $('#Creative_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Sociable_Supportive__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Sociable_Supportive__ID').is(":checked")){
+                    $('#Sociable_Supportive_div__ID').show();
+                    if($('#MIND_POSITIVE_Sociable_Supportive__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Sociable_Supportive__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Sociable_Supportive_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Sociable_Supportive]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Sociable_Supportive]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Sociable_Supportive]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Sociable_Supportive]').prop('checked', false);
+                    $('#MIND_POSITIVE_Sociable_Supportive__ID').prop('checked',false);
+                    $('#Sociable_Supportive_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Calm__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Calm__ID').is(":checked")){
+                    $('#Calm_div__ID').show();
+                    if($('#MIND_POSITIVE_Calm__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Calm__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Calm_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Calm]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Calm]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Calm]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Calm]').prop('checked', false);
+                    $('#MIND_POSITIVE_Calm__ID').prop('checked',false);
+                    $('#Calm_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Focussed__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Focussed__ID').is(":checked")){
+                    $('#Focussed_div__ID').show();
+                    if($('#MIND_POSITIVE_Focussed__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Focussed__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Focussed_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Focussed]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Focussed]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Focussed]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Focussed]').prop('checked', false);
+                    $('#MIND_POSITIVE_Focussed__ID').prop('checked',false);
+                    $('#Focussed_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Good_memory__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Good_memory__ID').is(":checked")){
+                    $('#Good_memory_div__ID').show();
+                    if($('#MIND_POSITIVE_Good_memory__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Good_memory__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Good_memory_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Good_memory]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Good_memory]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Good_memory]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Good_memory]').prop('checked', false);
+                    $('#MIND_POSITIVE_Good_memory__ID').prop('checked',false);
+                    $('#Good_memory_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Motivated__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Motivated__ID').is(":checked")){
+                    $('#Motivated_div__ID').show();
+                    if($('#MIND_POSITIVE_Motivated__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Motivated__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Motivated_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Motivated]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Motivated]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Motivated]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Motivated]').prop('checked', false);
+                    $('#MIND_POSITIVE_Motivated__ID').prop('checked',false);
+                    $('#Motivated_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Organized__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Organized__ID').is(":checked")){
+                    $('#Organized_div__ID').show();
+                    if($('#MIND_POSITIVE_Organized__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Organized__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Organized_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Organized]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Organized]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Organized]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Organized]').prop('checked', false);
+                    $('#MIND_POSITIVE_Organized__ID').prop('checked',false);
+                    $('#Organized_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_POSITIVE_Productive__ID').on('change',function(){
+                if($('#MIND_POSITIVE_Productive__ID').is(":checked")){
+                    $('#Productive_div__ID').show();
+                    if($('#MIND_POSITIVE_Productive__ID').val()=="0"){
+                        $('#MIND_POSITIVE_Productive__ID').prop('checked', false);
+                    }
+                }
+                else{
+                    $('#Productive_div__ID').hide();
+                    $('#F__ID input[name=MIND_POSITIVE_Productive]').prop('checked', false);
+                }
+            })
+            //-------------------------------------
+            $('#F__ID input[name=MIND_POSITIVE_Productive]').on('change',function(){
+                if($('#F__ID input[name=MIND_POSITIVE_Productive]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_POSITIVE_Productive]').prop('checked', false);
+                    $('#MIND_POSITIVE_Productive__ID').prop('checked',false);
+                    $('#Productive_div__ID').hide();
+                }
+            })
+            //-------------------------------------
+            $('#MIND_NEGATIVE_Stuck__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Stuck__ID').is(":checked")){
                     $('#Stuck_div__ID').show();
-                    if($('#MIND_IMBALANCE_Stuck__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Stuck__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Stuck__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Stuck__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Stuck_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Stuck]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Stuck]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Stuck]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Stuck]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Stuck]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Stuck__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Stuck]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Stuck]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Stuck]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Stuck__ID').prop('checked',false);
                     $('#Stuck_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Antisocial__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Antisocial__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Antisocial__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Antisocial__ID').is(":checked")){
                     $('#Antisocial_div__ID').show();
-                    if($('#MIND_IMBALANCE_Antisocial__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Antisocial__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Antisocial__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Antisocial__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Antisocial_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Antisocial]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Antisocial]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Antisocial]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Antisocial]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Antisocial]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Antisocial__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Antisocial]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Antisocial]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Antisocial]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Antisocial__ID').prop('checked',false);
                     $('#Antisocial_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Stressed__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Stressed__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Stressed__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Stressed__ID').is(":checked")){
                     $('#Stressed_div__ID').show();
-                    if($('#MIND_IMBALANCE_Stressed__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Stressed__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Stressed__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Stressed__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Stressed_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Stressed]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Stressed]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Stressed]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Stressed]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Stressed]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Stressed__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Stressed]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Stressed]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Stressed]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Stressed__ID').prop('checked',false);
                     $('#Stressed_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Unfocussed__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Unfocussed__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Unfocussed__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Unfocussed__ID').is(":checked")){
                     $('#Unfocussed_div__ID').show();
-                    if($('#MIND_IMBALANCE_Unfocussed__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Unfocussed__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Unfocussed__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Unfocussed__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Unfocussed_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Unfocussed]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Unfocussed]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Unfocussed]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Unfocussed]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Unfocussed]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Unfocussed__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Unfocussed]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Unfocussed]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Unfocussed]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Unfocussed__ID').prop('checked',false);
                     $('#Unfocussed_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Forgetful__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Forgetful__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Forgetful__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Forgetful__ID').is(":checked")){
                     $('#Forgetful_div__ID').show();
-                    if($('#MIND_IMBALANCE_Forgetful__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Forgetful__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Forgetful__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Forgetful__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Forgetful_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Forgetful]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Forgetful]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Forgetful]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Forgetful]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Forgetful]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Forgetful__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Forgetful]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Forgetful]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Forgetful]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Forgetful__ID').prop('checked',false);
                     $('#Forgetful_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Unmotivated__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Unmotivated__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Unmotivated__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Unmotivated__ID').is(":checked")){
                     $('#Unmotivated_div__ID').show();
-                    if($('#MIND_IMBALANCE_Unmotivated__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Unmotivated__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Unmotivated__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Unmotivated__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Unmotivated_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Unmotivated]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Unmotivated]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Unmotivated]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Unmotivated]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Unmotivated]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Unmotivated__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Unmotivated]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Unmotivated]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Unmotivated]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Unmotivated__ID').prop('checked',false);
                     $('#Unmotivated_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Distracted__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Distracted__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Distracted__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Distracted__ID').is(":checked")){
                     $('#Distracted_div__ID').show();
-                    if($('#MIND_IMBALANCE_Distracted__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Distracted__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Distracted__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Distracted__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Distracted_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Distracted]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Distracted]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Distracted]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Distracted]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Distracted]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Distracted__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Distracted]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Distracted]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Distracted]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Distracted__ID').prop('checked',false);
                     $('#Distracted_div__ID').hide();
                 }
             })
             //-------------------------------------
-            $('#MIND_IMBALANCE_Unproductive__ID').on('change',function(){
-                if($('#MIND_IMBALANCE_Unproductive__ID').is(":checked")){
+            $('#MIND_NEGATIVE_Unproductive__ID').on('change',function(){
+                if($('#MIND_NEGATIVE_Unproductive__ID').is(":checked")){
                     $('#Unproductive_div__ID').show();
-                    if($('#MIND_IMBALANCE_Unproductive__ID').val()=="0"){
-                        $('#MIND_IMBALANCE_Unproductive__ID').prop('checked', false);
+                    if($('#MIND_NEGATIVE_Unproductive__ID').val()=="0"){
+                        $('#MIND_NEGATIVE_Unproductive__ID').prop('checked', false);
                     }
                 }
                 else{
                     $('#Unproductive_div__ID').hide();
-                    $('#F__ID input[name=MIND_IMBALANCE_Unproductive]').prop('checked', false);
+                    $('#F__ID input[name=MIND_NEGATIVE_Unproductive]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_IMBALANCE_Unproductive]').on('change',function(){
-                if($('#F__ID input[name=MIND_IMBALANCE_Unproductive]:checked').val()=="0"){
-                    $('#F__ID input[name=MIND_IMBALANCE_Unproductive]').prop('checked', false);
-                    $('#MIND_IMBALANCE_Unproductive__ID').prop('checked',false);
+            $('#F__ID input[name=MIND_NEGATIVE_Unproductive]').on('change',function(){
+                if($('#F__ID input[name=MIND_NEGATIVE_Unproductive]:checked').val()=="0"){
+                    $('#F__ID input[name=MIND_NEGATIVE_Unproductive]').prop('checked', false);
+                    $('#MIND_NEGATIVE_Unproductive__ID').prop('checked',false);
                     $('#Unproductive_div__ID').hide();
                 }
             })
@@ -2337,24 +2661,24 @@
                 if(data.FEELINGS_Frustrated==undefined) data.FEELINGS_Frustrated="0";
                 if(data.FEELINGS_Anxious==undefined) data.FEELINGS_Anxious="0";
                 data.FEELINGS_BAD=parseInt(data.FEELINGS_Helpless)+parseInt(data.FEELINGS_Frustrated)+parseInt(data.FEELINGS_Anxious);
-                if(data.MIND_BALANCE_Creative=="off") data.MIND_BALANCE_Creative="0";
-                if(data.MIND_BALANCE_Sociable_Supportive=="off") data.MIND_BALANCE_Sociable_Supportive="0";
-                if(data.MIND_BALANCE_Calm=="off") data.MIND_BALANCE_Calm="0";
-                if(data.MIND_BALANCE_Focussed=="off") data.MIND_BALANCE_Focussed="0";
-                if(data.MIND_BALANCE_Good_memory=="off") data.MIND_BALANCE_Good_memory="0";
-                if(data.MIND_BALANCE_Motivated=="off") data.MIND_BALANCE_Motivated="0";
-                if(data.MIND_BALANCE_Organized=="off") data.MIND_BALANCE_Organized="0";
-                if(data.MIND_BALANCE_Productive=="off") data.MIND_BALANCE_Productive="0";
-                data.MIND_BALANCE=parseInt(data.MIND_BALANCE_Creative)+parseInt(data.MIND_BALANCE_Sociable_Supportive)+parseInt(data.MIND_BALANCE_Calm)+parseInt(data.MIND_BALANCE_Focussed)+parseInt(data.MIND_BALANCE_Good_memory)+parseInt(data.MIND_BALANCE_Motivated)+parseInt(data.MIND_BALANCE_Organized)+parseInt(data.MIND_BALANCE_Productive);
-                if(data.MIND_IMBALANCE_Stuck==undefined) data.MIND_IMBALANCE_Stuck="0";
-                if(data.MIND_IMBALANCE_Antisocial==undefined) data.MIND_IMBALANCE_Antisocial="0";
-                if(data.MIND_IMBALANCE_Stressed==undefined) data.MIND_IMBALANCE_Stressed="0";
-                if(data.MIND_IMBALANCE_Unfocussed==undefined) data.MIND_IMBALANCE_Unfocussed="0";
-                if(data.MIND_IMBALANCE_Forgetful==undefined) data.MIND_IMBALANCE_Forgetful="0";
-                if(data.MIND_IMBALANCE_Unmotivated==undefined) data.MIND_IMBALANCE_Unmotivated="0";
-                if(data.MIND_IMBALANCE_Distracted==undefined) data.MIND_IMBALANCE_Distracted="0";
-                if(data.MIND_IMBALANCE_Unproductive==undefined) data.MIND_IMBALANCE_Unproductive="0";
-                data.MIND_IMBALANCE=parseInt(data.MIND_IMBALANCE_Stuck)+parseInt(data.MIND_IMBALANCE_Antisocial)+parseInt(data.MIND_IMBALANCE_Stressed)+parseInt(data.MIND_IMBALANCE_Unfocussed)+parseInt(data.MIND_IMBALANCE_Forgetful)+parseInt(data.MIND_IMBALANCE_Unmotivated)+parseInt(data.MIND_IMBALANCE_Distracted)+parseInt(data.MIND_IMBALANCE_Unproductive);
+                if(data.MIND_POSITIVE_Creative=="off") data.MIND_POSITIVE_Creative="0";
+                if(data.MIND_POSITIVE_Sociable_Supportive=="off") data.MIND_POSITIVE_Sociable_Supportive="0";
+                if(data.MIND_POSITIVE_Calm=="off") data.MIND_POSITIVE_Calm="0";
+                if(data.MIND_POSITIVE_Focussed=="off") data.MIND_POSITIVE_Focussed="0";
+                if(data.MIND_POSITIVE_Good_memory=="off") data.MIND_POSITIVE_Good_memory="0";
+                if(data.MIND_POSITIVE_Motivated=="off") data.MIND_POSITIVE_Motivated="0";
+                if(data.MIND_POSITIVE_Organized=="off") data.MIND_POSITIVE_Organized="0";
+                if(data.MIND_POSITIVE_Productive=="off") data.MIND_POSITIVE_Productive="0";
+                data.MIND_POSITIVE=parseInt(data.MIND_POSITIVE_Creative)+parseInt(data.MIND_POSITIVE_Sociable_Supportive)+parseInt(data.MIND_POSITIVE_Calm)+parseInt(data.MIND_POSITIVE_Focussed)+parseInt(data.MIND_POSITIVE_Good_memory)+parseInt(data.MIND_POSITIVE_Motivated)+parseInt(data.MIND_POSITIVE_Organized)+parseInt(data.MIND_POSITIVE_Productive);
+                if(data.MIND_NEGATIVE_Stuck==undefined) data.MIND_NEGATIVE_Stuck="0";
+                if(data.MIND_NEGATIVE_Antisocial==undefined) data.MIND_NEGATIVE_Antisocial="0";
+                if(data.MIND_NEGATIVE_Stressed==undefined) data.MIND_NEGATIVE_Stressed="0";
+                if(data.MIND_NEGATIVE_Unfocussed==undefined) data.MIND_NEGATIVE_Unfocussed="0";
+                if(data.MIND_NEGATIVE_Forgetful==undefined) data.MIND_NEGATIVE_Forgetful="0";
+                if(data.MIND_NEGATIVE_Unmotivated==undefined) data.MIND_NEGATIVE_Unmotivated="0";
+                if(data.MIND_NEGATIVE_Distracted==undefined) data.MIND_NEGATIVE_Distracted="0";
+                if(data.MIND_NEGATIVE_Unproductive==undefined) data.MIND_NEGATIVE_Unproductive="0";
+                data.MIND_NEGATIVE=parseInt(data.MIND_NEGATIVE_Stuck)+parseInt(data.MIND_NEGATIVE_Antisocial)+parseInt(data.MIND_NEGATIVE_Stressed)+parseInt(data.MIND_NEGATIVE_Unfocussed)+parseInt(data.MIND_NEGATIVE_Forgetful)+parseInt(data.MIND_NEGATIVE_Unmotivated)+parseInt(data.MIND_NEGATIVE_Distracted)+parseInt(data.MIND_NEGATIVE_Unproductive);
                 if(data.BODY_PAIN_Headache==undefined) data.BODY_PAIN_Headache="0";
                 if(data.BODY_PAIN_Chest==undefined) data.BODY_PAIN_Chest="0";
                 if(data.BODY_PAIN_Joint==undefined) data.BODY_PAIN_Joint="0";

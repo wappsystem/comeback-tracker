@@ -10,13 +10,13 @@
             $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
             //-------------------------------------
             var fields="_ID,First_Name,Entry_time,"
-            fields+="ENERGY_LEVEL,SLEEP_QUALITY,LIFESTYLE,FOOD_CRAVINGS,FEELINGS_GOOD,FEELINGS_BAD,MIND_BALANCE,MIND_IMBALANCE,BODY_PAIN,AILMENTS,ALLERGY_SKIN_HAIR,DIGESTION,"
+            fields+="ENERGY_LEVEL,SLEEP_QUALITY,LIFESTYLE,FOOD_CRAVINGS,FEELINGS_GOOD,FEELINGS_BAD,MIND_POSITIVE,MIND_NEGATIVE,BODY_PAIN,AILMENTS,ALLERGY_SKIN_HAIR,DIGESTION,"
             fields+="SLEEP_Trouble_falling_asleep,SLEEP_Restless_sleep,SLEEP_Woke_up_tired,SLEEP_OK,SLEEP_Fell_asleep_quickly,SLEEP_Stayed_asleep,SLEEP_Woke_up_refreshed,";
             fields+="LIFESTYLE_Alcohol,LIFESTYLE_Cigaretts,LIFESTYLE_Big_nights,LIFESTYLE_Hangover,";
             fields+="FOOD_CRAVINGS_Sweets,FOOD_CRAVINGS_Salty,FOOD_CRAVINGS_Fried,FOOD_CRAVINGS_Spicy,FOOD_CRAVINGS_Carbs,";
             fields+="FEELINGS_Happy,FEELINGS_Confident,FEELINGS_Excited,FEELINGS_Fulfilled,FEELINGS_Grateful,FEELINGS_Helpless,FEELINGS_Frustrated,FEELINGS_Anxious,";
-            fields+="MIND_BALANCE_Creative,MIND_BALANCE_Sociable_Supportive,MIND_BALANCE_Calm,MIND_BALANCE_Focussed,MIND_BALANCE_Good_memory,MIND_BALANCE_Motivated,MIND_BALANCE_Organized,MIND_BALANCE_Productive,";
-            fields+="MIND_IMBALANCE_Stuck,MIND_IMBALANCE_Antisocial,MIND_IMBALANCE_Stressed,MIND_IMBALANCE_Unfocussed,MIND_IMBALANCE_Forgetful,MIND_IMBALANCE_Unmotivated,MIND_IMBALANCE_Distracted,MIND_IMBALANCE_Unproductive,";
+            fields+="MIND_POSITIVE_Creative,MIND_POSITIVE_Sociable_Supportive,MIND_POSITIVE_Calm,MIND_POSITIVE_Focussed,MIND_POSITIVE_Good_memory,MIND_POSITIVE_Motivated,MIND_POSITIVE_Organized,MIND_POSITIVE_Productive,";
+            fields+="MIND_NEGATIVE_Stuck,MIND_NEGATIVE_Antisocial,MIND_NEGATIVE_Stressed,MIND_NEGATIVE_Unfocussed,MIND_NEGATIVE_Forgetful,MIND_NEGATIVE_Unmotivated,MIND_NEGATIVE_Distracted,MIND_NEGATIVE_Unproductive,";
             fields+="BODY_PAIN_Headache,BODY_PAIN_Chest,BODY_PAIN_Joint,BODY_PAIN_Upper_Back,BODY_PAIN_Lower_Back,BODY_PAIN_Hip,BODY_PAIN_Knee,BODY_PAIN_Ankle,BODY_PAIN_Feet,";
             fields+="AILMENTS_Nauseous,AILMENTS_Vomiting,AILMENTS_Heartburn,AILMENTS_Ache,AILMENTS_Cold,AILMENTS_Fever,AILMENTS_Flu,AILMENTS_Hot_flushes,AILMENTS_UTI,";
             fields+="ALLERGY_SKIN_HAIR,ALLERGY_SKIN_HAIR_Runny_Nose,ALLERGY_SKIN_HAIR_Coughing,ALLERGY_SKIN_HAIR_Itchy,ALLERGY_SKIN_HAIR_Dry_skin,ALLERGY_SKIN_HAIR_Dry_scalp,ALLERGY_SKIN_HAIR_Hair_loss,";
@@ -28,6 +28,17 @@
                     case '_ID':
                         td.html(records[I].UID);
                         break;
+                    case 'LIFESTYLE':
+                    var s=parseInt(records[I].Data.LIFESTYLE);
+                    if(s<0) {
+                        td.css('background-color','red');
+                    }
+                    if(I<records.length-1){
+                        var ss=parseInt(records[I+1].Data.LIFESTYLE);
+                        if(s>ss){
+                            td.css('background-color','green');
+                        }
+                    }
                 }
             }
             //-------------------------------------
