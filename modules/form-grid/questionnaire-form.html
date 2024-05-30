@@ -1484,18 +1484,6 @@
                 load2();
                 //console.log("AAA: "+$vm.module_list[m].Table)
                 //console.log(JSON.stringify(m.Table));
-                var date_time = new Date()
-                var tm = date_time.toTimeString().substring(0, 8);
-                var mm = date_time.getMonth() + 1; // getMonth() is zero-based
-                var dd = date_time.getDate();
-                var dt = [date_time.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-');
-                //console.log(dt+' '+tm); 
-                $('#F__ID input[name=Entry_time]').val(dt + ' ' + tm);
-                var who=$('#F__ID input[name=First_Name]').val();
-                $("#title__ID").text($("#title__ID").text()+ ' for '+who)
-                $('#FEELINGS_Helpless_info').css('visibility','hidden');
-                $('#FEELINGS_Frustrated_info').css('visibility','hidden');
-                $('#FEELINGS_Anxious_info').css('visibility','hidden');
                 if(m.input.record==undefined){
                     jQuery.ajaxSetup({async:false});
 						$vm.request({cmd:"find-s",table:m.Table,skip:0,limit:1},function(res){
@@ -1517,8 +1505,19 @@
                 else{
                     show_previous_value()
                 }
+                var date_time = new Date()
+                var tm = date_time.toTimeString().substring(0, 8);
+                var mm = date_time.getMonth() + 1; // getMonth() is zero-based
+                var dd = date_time.getDate();
+                var dt = [date_time.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-');
+                //console.log(dt+' '+tm); 
+                $('#F__ID input[name=Entry_time]').val(dt + ' ' + tm);
+                var who=$('#F__ID input[name=First_Name]').val();
+                $("#title__ID").text($("#title__ID").text()+ ' for '+who)
+                $('#FEELINGS_Helpless_info').css('visibility','hidden');
+                $('#FEELINGS_Frustrated_info').css('visibility','hidden');
+                $('#FEELINGS_Anxious_info').css('visibility','hidden');
             }
-
             //-------------------------------------
             var show_previous_value=function(){
                 //-------------------------------------
