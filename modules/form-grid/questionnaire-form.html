@@ -1482,6 +1482,8 @@
             var load2 = m.load;
             m.load = function () {
                 load2();
+                //console.log("AAA: "+$vm.module_list[m].Table)
+                //console.log(JSON.stringify(m.Table));
                 var date_time = new Date()
                 var tm = date_time.toTimeString().substring(0, 8);
                 var mm = date_time.getMonth() + 1; // getMonth() is zero-based
@@ -1494,7 +1496,27 @@
                 $('#FEELINGS_Helpless_info').css('visibility','hidden');
                 $('#FEELINGS_Frustrated_info').css('visibility','hidden');
                 $('#FEELINGS_Anxious_info').css('visibility','hidden');
-                show_previous_value();
+                if(m.input.record==undefined){
+                    jQuery.ajaxSetup({async:false});
+						$vm.request({cmd:"find-s",table:m.Table,skip:0,limit:1},function(res){
+							if(res.permission==false){
+								alert("No permission");
+								return;
+							}
+							if(res.result.length==0){
+							}
+							else{
+                                //console.log("Query")
+								//console.log(JSON.stringify(res.result[0]))
+                                $vm.deserialize(res.result[0],'#F__ID');
+                                show_previous_value()
+							}
+						})
+						jQuery.ajaxSetup({async:true});
+                }
+                else{
+                    show_previous_value()
+                }
             }
 
             //-------------------------------------
