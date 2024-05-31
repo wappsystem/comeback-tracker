@@ -1503,7 +1503,7 @@
             VmInclude: '__HOST__/assets/js/form.01.js'
             VmInclude: '__HOST__/assets/js/shared-form.js'
             //-------------------------------------
-            var entry_time;
+            var entry_date;
             var load2 = m.load;
             m.load = function () {
                 load2();
@@ -1531,11 +1531,11 @@
                     show_previous_value()
                 }
                 var date_time = new Date()
-                entry_time=date_time;
                 var tm = date_time.toTimeString().substring(0, 8);
                 var mm = date_time.getMonth() + 1; // getMonth() is zero-based
                 var dd = date_time.getDate();
                 var dt = [date_time.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-');
+                entry_date=dt;
                 //console.log(dt+' '+tm); 
                 $('#F__ID input[name=Entry_time]').val(dt + ' ' + tm);
                 var who=$('#F__ID input[name=First_Name]').val();
@@ -3063,7 +3063,7 @@
                 if(data.DIGESTION_Constipation==undefined) data.DIGESTION_Constipation="0";
                 data.DIGESTION=(parseFloat(data.DIGESTION_Bloated)+parseFloat(data.DIGESTION_Gassy)+parseFloat(data.DIGESTION_Diarrhea)+parseFloat(data.DIGESTION_Constipation)).toFixed(2);
                 console.log(JSON.stringify(data))
-                index.I2=entry_time;
+                index.I2=entry_date;
                 return before_submit(data,index);
             }
 

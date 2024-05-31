@@ -31,20 +31,20 @@
                 }
             }
             //-------------------------------------
-/*            $('#part__ID').on('click',function(){
+            $('#part__ID').on('click',function(){
                 console.log($('#start_date__ID').val())
                 var start=$('#start_date__ID').val().split('-')
                 var end=$('#end_date__ID').val().split('-')
 				var sy=start[0];
-				var smm=start[1];
+				var smm=start[1]-1;
                 var sdd=start[2];
 				var ey=end[0];
-				var emm=end[1];
+				var emm=end[1]-1;
                 var edd=end[2];
 				var t1=new Date(sy,smm,sdd,0,0,0,0).toJSON();
 				var t2=new Date(ey,emm,edd,0,0,0,0).toJSON();
-				var query={I1:{"$gte":t1,"$lt":t2}}
-                var req={api:m.api,cmd:"export",table:m.Table,query:m.query,search:$('#keyword__ID').val()}
+				var query={I2:{"$gte":t1,"$lt":t2}}
+                var req={api:m.api,cmd:"export",table:m.Table,query:query,search:$('#keyword__ID').val()}
                 open_model__ID();
                 $vm.request(req,function(N,i,txt){
                     console.log(i+"/"+N);
@@ -58,7 +58,7 @@
                     }
                 });
                 
-            })  */         
+            })           
         }
     </script>
     <style>
