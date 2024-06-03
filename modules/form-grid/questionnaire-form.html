@@ -412,10 +412,6 @@
                             <div id="Creative_div__ID" class="formgroup" style="display: none;">
                                 <div class="grid-container-1"><!--<span class="question tab">Intensity of mind state</span>-->
                                     <div>
-                                        <input id="Creative_1__ID" name="MIND_POSITIVE_Creative" type="radio" value="0">
-                                        <label class="rd_btn width_44" for="Creative_1__ID">normal</label>
-                                    </div>
-                                    <div>
                                         <input id="Creative_2__ID" name="MIND_POSITIVE_Creative" type="radio" value="0.5">
                                         <label class="rd_btn width_44" for="Creative_2__ID">more</label>
                                     </div>
@@ -2030,23 +2026,24 @@
             $('#MIND_POSITIVE_Creative__ID').on('change',function(){
                 if($('#MIND_POSITIVE_Creative__ID').is(":checked")){
                     $('#Creative_div__ID').show();
-                    if($('#MIND_POSITIVE_Creative__ID').val()=="0"){
+                    $('#F__ID #Creative_2__ID').prop('checked', true);
+                    /*if($('#MIND_POSITIVE_Creative__ID').val()=="0"){
                         $('#MIND_POSITIVE_Creative__ID').prop('checked', false);
-                    }
+                    }*/
                 }
                 else{
                     $('#Creative_div__ID').hide();
-                    //$('#F__ID input[name=MIND_POSITIVE_Creative]').prop('checked', false);
+                    $('#F__ID input[name=MIND_POSITIVE_Creative]').prop('checked', false);
                 }
             })
             //-------------------------------------
-            $('#F__ID input[name=MIND_POSITIVE_Creative]').on('change',function(){
+            /*$('#F__ID input[name=MIND_POSITIVE_Creative]').on('change',function(){
                 if($('#F__ID input[name=MIND_POSITIVE_Creative]:checked').val()=="0"){
                     //$('#F__ID input[name=MIND_POSITIVE_Creative]').prop('checked', false);
                     $('#MIND_POSITIVE_Creative__ID').prop('checked',false);
                     $('#Creative_div__ID').hide();
                 }
-            })
+            })*/
             //-------------------------------------
             $('#MIND_POSITIVE_Sociable_Supportive__ID').on('change',function(){
                 if($('#MIND_POSITIVE_Sociable_Supportive__ID').is(":checked")){
