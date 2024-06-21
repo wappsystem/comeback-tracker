@@ -53,8 +53,9 @@ padding:10px
   text-align: -webkit-center;
 }
 #D__ID .container {
-  background-color: #f0f0f0;
+  background-color: #000;
   border-radius: 5px;
+  padding-bottom: 10px;
 }
   #D__ID .mt-95 {
     max-width: 800px;
@@ -150,8 +151,8 @@ padding:10px
     grid-template-columns: 400px 150px 150px;
   }
   #D__ID .grid-container-3-special {
-    display: grid;
-    grid-template-columns: 120px 500px 120px;
+    display: flex;
+    grid-template-columns: 50px 50px 50px;
   }
   #D__ID .grid-container-2 {
     display: grid;
@@ -195,11 +196,15 @@ padding:10px
   #D__ID .width_44 {
     width: 90px;
   }
+  #D__ID .width_10 {
+    width: 40px;
+    text-align: center;
+  }
   #D__ID .width_btn_130 {
     width: 130px;
   }
   #D__ID .width_btn_full {
-    width: 80%;
+    width: 90%;
   }
 
   #D__ID input[type="radio"]:hover+label,
@@ -218,7 +223,7 @@ padding:10px
 
   #D__ID .ticked {
     opacity: 0;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
   }
 
@@ -231,7 +236,7 @@ padding:10px
   #D__ID #title__ID {
     font-family: 'Roboto Slab';
     font-size: 24px;
-    color: #167d7f;
+    color: #ffffff;
     letter-spacing: 0;
     display: block;
     /*background-color: #00263A;*/
@@ -248,7 +253,7 @@ padding:10px
 
   #D__ID .question {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 13px;
   }
 
   #D__ID .right {
@@ -311,10 +316,10 @@ padding:10px
       grid-template-columns: auto;
       text-align: center;
     }
-    #D__ID .grid-container-3-special{
+    /*#D__ID .grid-container-3-special{
       grid-template-columns: auto;
       text-align: center;
-    }
+    }*/
     #D__ID .textleft{
       text-align: center;
     }

@@ -14,6 +14,7 @@
         <button type="button" id=scanned__ID class="btn">Scanner data input</button>
         <br>
         <button type="button" id=questionnaire__ID class="btn">Questionnaire</button>
+        <button type="button" id=questionnaire_new__ID class="btn">Questionnaire New</button>
         <br>
         <!--<button type="button" id=upload_stock__ID class="btn">Upload Stock</button>
         <br>
@@ -51,6 +52,9 @@
     		})
 			$('#questionnaire__ID').on('click',function(e){
       		  $vm.load_module('questionnaire-data',$vm.root_layout_content_slot,{});
+    		})
+			$('#questionnaire_new__ID').on('click',function(e){
+      		  $vm.load_module('questionnaire-new-data',$vm.root_layout_content_slot,{});
     		})
 			/*$('#upload_stock__ID').on('click',function(e){
       		  $vm.load_module('upload-stock-data',$vm.root_layout_content_slot,{});
