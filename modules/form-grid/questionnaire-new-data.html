@@ -10,7 +10,7 @@
             $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);            
             //-------------------------------------
             var fields="_ID,First_Name,Entry_time,"
-            fields+="MEALS,ACTIVITY,INACTIVITY,ENERGY,SLEEP,LIFESTYLE,CRAVINGS,FEELING_GOOD,"
+            fields+="MEALS,ACTIVITY,INACTIVITY,ENERGY,SLEEP,LIFESTYLE,CRAVINGS,FEELING_GOOD,FEELING_BAD,MENTAL_STATE_POSITIVE,MENTAL_STATE_NEGATIVE,AILMENTS,ALLERGY,SKIN_HAIR,DIGESTION,"
             fields+="MEALS_Breakfast,MEALS_Morning_Snack,MEALS_Lunch,MEALS_Afternoon_Snack,MEALS_Dinner,MEALS_Evening_Snack,";
             fields+="ACTIVITY_Walking,ACTIVITY_Running,";
             fields+="INACTIVITY_Sitting,";
@@ -19,6 +19,15 @@
             fields+="LIFESTYLE_Alcohol,LIFESTYLE_Smoking,LIFESTYLE_Working_late,LIFESTYLE_Up_late,LIFESTYLE_Big_night,";
             fields+="CRAVINGS_Sweets,CRAVINGS_Salty,CRAVINGS_Fried,CRAVINGS_Spicy,CRAVINGS_Carbs,";
             fields+="FEELING_GOOD_Happy,FEELING_GOOD_Confident,FEELING_GOOD_Excited,FEELING_GOOD_Fulfilled,FEELING_GOOD_Grateful,";
+            fields+="FEELING_BAD_Helpless,FEELING_BAD_Frustrated,FEELING_BAD_Anxious,";
+            fields+="MENTAL_STATE_POSITIVE_Creative,MENTAL_STATE_POSITIVE_Sociable,MENTAL_STATE_POSITIVE_Calm,MENTAL_STATE_POSITIVE_Focussed,MENTAL_STATE_POSITIVE_Good_memory,MENTAL_STATE_POSITIVE_Motivated,MENTAL_STATE_POSITIVE_Organized,MENTAL_STATE_POSITIVE_Productive,";
+            fields+="MENTAL_STATE_NEGATIVE_Stuck,MENTAL_STATE_NEGATIVE_Antisocial,MENTAL_STATE_NEGATIVE_Stressed,MENTAL_STATE_NEGATIVE_Unfocussed,MENTAL_STATE_NEGATIVE_Forgetful,MENTAL_STATE_NEGATIVE_Unmotivated,MENTAL_STATE_NEGATIVE_Distracted,MENTAL_STATE_NEGATIVE_Unproductive,";
+            fields+="BODY_PAIN_Headache,BODY_PAIN_Chest,BODY_PAIN_Joint,BODY_PAIN_Upper_Back,BODY_PAIN_Lower_Back,BODY_PAIN_Hip,BODY_PAIN_Knee,BODY_PAIN_Ankle,BODY_PAIN_Feet,"
+            fields+="AILMENTS_Nauseous,AILMENTS_Vomiting,AILMENTS_Heartburn,AILMENTS_Ache,AILMENTS_Cold,AILMENTS_Fever,AILMENTS_Flu,AILMENTS_Hot_flushes,AILMENTS_UTI,"
+            fields+="ALLERGY_Runny_Nose,ALLERGY_Blocked_Nose,ALLERGY_Coughing,"
+            fields+="SKIN_HAIR_Itchy,SKIN_HAIR_Dry_skin,SKIN_HAIR_Dry_scalp,SKIN_HAIR_Hair_loss,"
+            fields+="DIGESTION_Bloated,DIGESTION_Gassy,DIGESTION_Diarrhea,DIGESTION_Constipation,"
+
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
